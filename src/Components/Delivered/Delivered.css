@@ -1,4 +1,4 @@
-.Delivered_main{
+.Delivered_main {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -8,18 +8,44 @@
     border-bottom: 4px solid black;
     border-top: 4px solid black;
     border-radius: 5px;
+    position: relative;
 }
 
-.Delivered_main h1{
+.Delivered_main h1 {
     font-size: 4rem;
     margin-bottom: 0px;
 }
 
-.Delivered_main p{
+.Delivered_main p {
     font-size: 17px;
 }
 
-.Delivered_main img{
+.Delivered_main img {
     height: 500px;
     width: 500px;
+}
+
+.fixed-images {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
+#elem5 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 30rem;
+    left: 53rem;
+    z-index: 1;
+}
+
+#elem4 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 10rem;
+    left: 113px;
+    z-index: 1;
 }

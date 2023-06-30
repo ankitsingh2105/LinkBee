@@ -1,21 +1,58 @@
-.Services_main{
+.Services_main {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
 }
-.Services_main p{
+
+.Services_main p {
     padding: 0rem 3rem;
     line-height: 26px;
     font-family: var(--main-font);
     font-size: 20px;
     font-weight: bolder;
 }
-.Services_main h1{
+
+.Services_main h1 {
     font-family: var(--main-font);
     font-size: 4rem;
 }
-.Services_main img{
+
+.Services_main img {
     width: 600px;
     height: 400px;
+}
+
+.fixed-images {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
+#elem2 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 160px;
+    z-index: 1;
+}
+
+#elem1 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 30px;
+    left: 63rem;
+    z-index: 1;
+}
+
+#elem3{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: -20px;
+    left: -213px;
+    z-index: 1;
 }

@@ -1,7 +1,8 @@
-:root{
-        --main-color: #FFBF23;
-        --main-font : 'space grotesk', sans-serif;
+:root {
+    --main-color: #FFBF23;
+    --main-font: 'space grotesk', sans-serif;
 }
+
 nav {
     display: flex;
     margin: 2rem;
@@ -17,11 +18,14 @@ nav ul {
 
 li {
     margin-right: 2.5rem;
+    cursor: pointer;
 }
-nav img{
+
+nav img {
     margin-left: 2rem;
 }
-.login_signup li{
+
+.login_signup li {
     background-color: var(--main-color);
     font-weight: bolder;
     padding: 5px;

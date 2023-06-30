@@ -1,0 +1,51 @@
+.Signup_main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: var(--main-font);
+}
+.Signup_main h1{
+    font-size: 3.5rem;
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 0px;
+}
+
+.Signup_main input{
+    padding: 1rem 10rem 1rem 1rem;  
+    margin-bottom: 1rem; 
+    border-radius: 10px;
+    border: 1.5px solid gray;
+}
+
+.Signup_main form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form button{
+    padding: 5px 10px;
+    background-color: var(--main-color);
+    font-weight: bolder;
+    border: none;
+    font-size: 15px;
+    box-shadow: 1px 1px 2px black;
+    border-radius: 5px;
+}
+button{
+    padding: 1rem 7rem; 
+
+    font-size: 16px;
+}
+
+#elem6 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 6rem;
+    left: 36rem;
+    z-index: 1;
+}

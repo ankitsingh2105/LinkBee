@@ -4,14 +4,31 @@ import Home from "./Components/Home/Home"
 import About from "./Components/About/About"
 import Servics from "./Components/Services/Services"
 import Delivered from "./Components/Delivered/Delivered"
+import Footer from "./Components/Footer/Footer"
+import Login from './Components/Login/Login';
+import Signup from "./Components/Signup/Signup"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 export default function App() {
   return (
     <>
-      <Navbar />
-      <Home />
-      <About/>
-      <Servics/>
-      <Delivered/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element=
+            {
+              <>
+                <Navbar />
+                <Home />
+                <About />
+                <Servics />
+                <Delivered />
+              </>
+            }>
+          </Route>
+          < Route element={<Login/>} path='login'/>
+          < Route element={<Signup/>} path='signup'/>
+        </Routes>
+        <Footer />
+      </BrowserRouter >
     </>
   )
 }
