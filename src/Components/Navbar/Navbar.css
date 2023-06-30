@@ -1,0 +1,30 @@
+:root{
+        --main-color: #FFBF23;
+        --main-font : 'space grotesk', sans-serif;
+}
+nav {
+    display: flex;
+    margin: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    list-style: none;
+}
+
+li {
+    margin-right: 2.5rem;
+}
+nav img{
+    margin-left: 2rem;
+}
+.login_signup li{
+    background-color: var(--main-color);
+    font-weight: bolder;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+}

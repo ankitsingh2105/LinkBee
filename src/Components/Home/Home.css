@@ -1,0 +1,18 @@
+.main_home{
+    margin: 3rem;
+    display: flex;
+}
+.main_home h1{
+    font-family: 'space grotesk',sans-serif;
+    font-size: 8rem;
+    margin: 0px;
+}
+.main_home h1:nth-child(2) {
+    margin-top: -4rem;
+}
+.main_home h1:nth-child(1) {
+    margin-top: 3rem;
+}
+.main_home img{
+    border-radius:30px ;
+}

@@ -1,0 +1,21 @@
+.Services_main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.Services_main p{
+    padding: 0rem 3rem;
+    line-height: 26px;
+    font-family: var(--main-font);
+    font-size: 20px;
+    font-weight: bolder;
+}
+.Services_main h1{
+    font-family: var(--main-font);
+    font-size: 4rem;
+}
+.Services_main img{
+    width: 600px;
+    height: 400px;
+}

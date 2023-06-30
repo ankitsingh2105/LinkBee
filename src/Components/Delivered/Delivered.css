@@ -1,0 +1,25 @@
+.Delivered_main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FFBF23;
+    font-family: var(--main-font);
+    margin: 4rem 0rem;
+    border-bottom: 4px solid black;
+    border-top: 4px solid black;
+    border-radius: 5px;
+}
+
+.Delivered_main h1{
+    font-size: 4rem;
+    margin-bottom: 0px;
+}
+
+.Delivered_main p{
+    font-size: 17px;
+}
+
+.Delivered_main img{
+    height: 500px;
+    width: 500px;
+}
