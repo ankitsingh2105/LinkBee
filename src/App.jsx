@@ -7,6 +7,7 @@ import Delivered from "./Components/Delivered/Delivered"
 import Footer from "./Components/Footer/Footer"
 import Login from './Components/Login/Login';
 import Signup from "./Components/Signup/Signup"
+import User from './Components/User/User';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 export default function App() {
   return (
@@ -24,8 +25,9 @@ export default function App() {
               </>
             }>
           </Route>
-          < Route element={<Login/>} path='login'/>
-          < Route element={<Signup/>} path='signup'/>
+          < Route element={<Login />} path='login' />
+          < Route element={<Signup />} path='signup' />
+          < Route element={<User />} path='user/edit' />
         </Routes>
         <Footer />
       </BrowserRouter >

@@ -25,7 +25,7 @@ nav img {
     margin-left: 2rem;
 }
 
-.login_signup li {
+.login_signup li , .login_signup2 {
     background-color: var(--main-color);
     font-weight: bolder;
     padding: 5px;
