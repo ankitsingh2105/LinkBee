@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import "./FinalDisplay.css"
-import { onAuthStateChanged, getAuth, updateProfile } from 'firebase/auth';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
-import { toast, ToastContainer } from 'react-toastify';
-import firebaseConfig from '../../firebaseConfig';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import firebaseConfig from '../../../firebaseConfig';
 export default function FinalDisplay() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const storage = getStorage(app);
     const db = getFirestore(app);
     const user = auth.currentUser;
 
