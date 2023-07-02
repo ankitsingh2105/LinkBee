@@ -7,7 +7,7 @@ export default function About() {
     return (
         <main className='About_main' >
             <h2> <b>Unlock</b> the Potential of <br /> Your Online Reach</h2>
-            <div>
+            <div className="About_main_primary_div" >
                 <div className='About_main_secondary_div'>
                     <img src={about1} alt="" />
                     <br />
@@ -27,8 +27,9 @@ export default function About() {
                 <div className='About_main_secondary_div'>
                     <img src={about3} alt="" />
                     <br />
-                    <h4>Optimize</h4>
-                    <p>We offer a range of analytics and optimization tools to help you fine-tune your online presence.
+                    <h4>Refine</h4>
+                    <p>
+                        We provide a variety of resources and techniques to help you refine your online presence and make it more polished and effective.
                     </p>
                 </div>
             </div>

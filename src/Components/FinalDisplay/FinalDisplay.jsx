@@ -3,7 +3,7 @@ import "./FinalDisplay.css"
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import firebaseConfig from '../../../firebaseConfig';
+import firebaseConfig from '../../firebaseConfig';
 export default function FinalDisplay() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);

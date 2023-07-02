@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import "./Navbar.css"
-import logo from "./logo.png";
+import React, { useState, useEffect } from 'react';
+import './Navbar.css';
+import logo from './logo.png';
 import { Link } from 'react-router-dom';
 
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
 import { initializeApp } from 'firebase/app';
-
 import { ToastContainer, toast } from 'react-toastify';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import firebaseConfig from '../../firebaseConfig';
 
 export default function Navbar() {
-
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const user = auth.currentUser;
@@ -37,8 +35,7 @@ export default function Navbar() {
     let tempStat;
     if (state === "true") {
         tempStat = true;
-    }
-    else {
+    } else {
         tempStat = false;
     }
 
@@ -51,14 +48,12 @@ export default function Navbar() {
         }, 1500);
     }
 
-
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 localStorage.setItem("localTempState", false);
                 setname(user.displayName)
-            }
-            else {
+            } else {
                 localStorage.setItem("localTempState", true);
             }
         });
@@ -69,28 +64,49 @@ export default function Navbar() {
         return firstWord;
     }
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <nav>
             <ToastContainer />
-            <img src={logo} alt="" srcset="" />
-            <ul>
+            <img src={logo} alt="" srcSet="" />
+            <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <div className="menu-line"></div>
+                <div className="menu-line"></div>
+                <div className="menu-line"></div>
+            </div>
+            <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
                 <li>Home</li>
                 <li>About Us</li>
                 <li>Our Services</li>
+                {
+                    tempStat ? (
+                        <>
+                            <li className="login_signup">
+                                <Link className='login_signup2' style={{ textDecoration: "none", color: "black" }} to="login">Login</Link>
+                            </li>
+                            <li><Link className='login_signup2' style={{ textDecoration: "none", color: "black" }} to="signup">Sign Up</Link></li>
+                        </>
+
+                    ) : (
+                        <>
+                            <li>
+                                <b>Welcome ~</b> {getFirstWord(name)}
+                            </li>
+                            <li className="login_signup2">
+                                <Link style={{ color: "black", textDecoration: "none" }} to={`/user/auth/edit/${userID}`}>
+                                    Create List
+                                </Link>
+                            </li>
+                            <li className="login_signup2" onClick={handleLogout}>Logout</li>
+                        </>
+                    )
+                }
             </ul>
-            {
-                tempStat ?
-                    (<ul className="login_signup">
-                        <li><Link style={{ textDecoration: "none", color: "black" }} to="login">Login</Link></li>
-                        <li><Link style={{ textDecoration: "none", color: "black" }} to="signup">Sign Up</Link></li>
-                    </ul>)
-                    :
-                    (<ul>
-                        <li> <b>Welcome ~</b> {getFirstWord(name)}</li>
-                        <li className="login_signup2"> <Link style={{ color: "black", textDecoration: "none" }} to={`/user/auth/edit/${userID}`}>Create List</Link></li>
-                        <li className="login_signup2" onClick={handleLogout} >Logout</li>
-                    </ul>)
-            }
         </nav>
     )
 }

@@ -49,3 +49,9 @@ button{
     left: 36rem;
     z-index: 1;
 }
+
+@media screen and (max-width: 739px) {
+    #elem6{
+        display: none;
+    }
+}

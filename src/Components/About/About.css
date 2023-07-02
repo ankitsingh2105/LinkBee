@@ -6,7 +6,6 @@ body {
 }
 
 .About_main {
-    font-family: 'space grotesk', sans-serif;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -22,10 +21,6 @@ body {
     width: 210px;
     height: 210px;
     margin-top: 10px;
-}
-
-.About_main div {
-    display: flex;
 }
 
 .About_main_secondary_div {
@@ -46,16 +41,124 @@ body {
     font-size: 17px;
     text-align: center;
     padding: 0px 10px;
+    line-height: 30px;
 }
+
 .About_main h2 {
     text-align: center;
     font-size: 4rem;
 }
 
-.About_main_secondary_div{
+.About_main_secondary_div {
     border: 1px solid black;
     background-color: white;
     width: 330px;
-    height: 350px;
+    height: 380px;
     border-radius: 40px;
+}
+
+.About_main_primary_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 1199px) {
+    .About_main h2 {
+        font-size: 3rem;
+    }
+
+    .About_main_secondary_div {
+        width: 274px;
+        height: 295px;
+    }
+
+    .About_main div img {
+        width: 178px;
+        height: 178px;
+        margin-top: 10px;
+    }
+
+}
+
+@media screen and (max-width: 1078px) {
+    .About_main_secondary_div {
+        margin: 0px 1rem;
+        width: 274px;
+        height: 295px;
+    }
+
+    .About_main div img {
+        width: 170px;
+        height: 170px;
+    }
+
+    .About_main_secondary_div h4 {
+        margin-top: -1rem;
+    }
+
+    .About_main_secondary_div p {
+        font-size: 16px;
+    }
+
+    .About_main {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 994px) {
+    .About_main h2 {
+        font-size: 2rem
+    }
+}
+
+@media screen and (max-width: 937px) {
+    .About_main_secondary_div {
+        width: 247px;
+        height: 295px;
+    }
+
+    .About_main div img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .About_main_secondary_div h4 {
+        font-size: 1.4rem;
+    }
+
+    .About_main_secondary_div p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 848px) {
+    .About_main_primary_div {
+        flex-direction: column;
+    }
+    .About_main_secondary_div h4 {
+        margin-top: -1rem;
+        margin-bottom: 37px;
+    }
+    .About_main_secondary_div {
+        width: 459px;
+        height: 289px;
+        margin-bottom: 2rem;
+    }
+    .About_main div img {
+        width: 180px;
+        height: 180px;
+    }
+}
+@media screen and (max-width: 559px) {
+    .About_main_secondary_div {
+        width: 300px;
+        height: 320px;
+        margin-bottom: 2rem;
+    }
+    .About_main div img {
+        width: 150px;
+        height: 150px;
+    }
 }

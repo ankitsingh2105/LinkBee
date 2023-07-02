@@ -1,13 +1,28 @@
 :root {
     --main-color: #FFBF23;
-    --main-font: 'space grotesk', sans-serif;
+    /* --main-color: lightgreen; */
+    --main-font: 'PT Serif', serif;
+    /* --main-font: 'space grotesk', sans-serif; */
+    font-family: 'PT Serif', serif;
 }
 
 nav {
     display: flex;
-    margin: 2rem;
+    justify-content: space-between;
+    /* Add this line to align items to the end */
+    margin: 2rem 1rem;
     font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background-color: white;
+    z-index: 10000;
+    border-radius: 100px;
 }
+
+/* Rest of the code remains the same */
+
 
 nav ul {
     display: flex;
@@ -25,10 +40,81 @@ nav img {
     margin-left: 2rem;
 }
 
-.login_signup li , .login_signup2 {
+.login_signup li,
+.login_signup2 {
     background-color: var(--main-color);
     font-weight: bolder;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid black;
+}
+
+@media screen and (max-width: 1199px) {
+    nav ul {
+        margin: 0px;
+    }
+
+    .main_home h1 {
+        font-size: 7rem;
+    }
+}
+
+@media screen and (max-width: 994px) {
+    li {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    li {
+        font-size: 12px;
+        margin: 0px 6px;
+    }
+
+    nav img {
+        margin-left: 20px;
+        width: 60px;
+        height: 60px;
+        padding: 2px;
+    }
+}
+
+@media screen and (max-width: 516px) {
+    .nav-links {
+        display: none;
+    }
+
+    .menu-icon {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-right: 1rem;
+    }
+
+    .menu-line {
+        width: 35px;
+        height: 4px;
+        border-radius: 20px;
+        background-color: #000;
+        margin: 2px 0px;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        padding: 1rem;
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.open li {
+        margin-bottom: 2rem;
+        font-size: 14px;
+    }
 }

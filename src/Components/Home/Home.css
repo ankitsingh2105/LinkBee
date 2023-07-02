@@ -1,18 +1,161 @@
-.main_home{
+body{
+    font-family: var(--main-font);
+}
+.main_home {
     margin: 3rem;
     display: flex;
+    margin-top: 7rem;
+    font-family: var(--main-font);
 }
-.main_home h1{
-    font-family: 'space grotesk',sans-serif;
+
+.main_home h1 {
     font-size: 8rem;
     margin: 0px;
 }
+
 .main_home h1:nth-child(2) {
     margin-top: -4rem;
 }
+
+.main_home p {
+    text-align: center;
+    line-height: 30px;
+}
+
 .main_home h1:nth-child(1) {
     margin-top: 3rem;
 }
-.main_home img{
-    border-radius:30px ;
+
+.main_home img {
+    border-radius: 30px;
+}
+
+
+@media screen and (max-width: 1199px) {
+    .main_home h1 {
+        font-size: 7rem;
+    }
+}
+
+@media screen and (max-width: 1130px) {
+    .main_home img {
+        width: 450px;
+        height: 450px;
+    }
+}
+
+@media screen and (max-width: 1078px) {
+    .main_home img {
+        width: 400px;
+        height: 400px;
+    }
+
+    .main_home h1 {
+        font-size: 6.5rem;
+    }
+}
+
+@media screen and (max-width: 994px) {
+    .main_home img {
+        width: 400px;
+        height: 400px;
+    }
+
+    .main_home h1 {
+        font-size: 6rem;
+    }
+
+    .main_home h1:nth-child(2) {
+        margin-top: -3rem;
+    }
+}
+
+@media screen and (max-width: 957px) {
+    .main_home img {
+        width: 350px;
+        height: 350px;
+    }
+
+    .main_home h1 {
+        font-size: 6rem;
+    }
+}
+
+@media screen and (max-width: 906px) {
+    .main_home img {
+        width: 300px;
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 858px) {
+    .main_home img {
+        width: 300px;
+        height: 350px;
+    }
+
+    .main_home h1 {
+        font-size: 5.5rem;
+        margin-top: 3rem;
+    }
+}
+
+@media screen and (max-width: 844px) {
+    .main_home img {
+        width: 270px;
+        height: 300px;
+    }
+
+    .main_home h1 {
+        font-size: 5.3rem;
+        margin-top: 3rem;
+    }
+
+    .main_home p {
+        font-size: 13.5px;
+    }
+}
+
+@media screen and (max-width: 775px) {
+
+    .main_home,
+    .main_home h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main_home img {
+        width: 358px;
+        height: 331px;
+    }
+
+    .main_home h1:nth-child(1) {
+        margin-top: -1rem;
+    }
+    .main_home{
+        margin: 0px;
+        margin-top: 7rem;
+    }
+}
+
+@media screen and (max-width: 485px) {
+    .main_home img {
+        width: 340px;
+        height: 300px;
+        margin-bottom: 2rem;
+    }
+
+    .main_home h1 {
+        font-size: 4.5rem;
+        margin-top: 3rem;
+    }
+
+    .main_home h1:nth-child(2) {
+        margin-top: -2rem;
+    }
+
+    .main_home p {
+        font-size: 15px;
+    }
 }
