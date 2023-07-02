@@ -5,12 +5,8 @@ import elem2 from "./elem2.png";
 
 import firebaseConfig from '../../firebaseConfig';
 import { initializeApp } from "firebase/app";
-import {
-    updateProfile,
-    createUserWithEmailAndPassword,
-    getAuth,
-} from 'firebase/auth';
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { updateProfile, createUserWithEmailAndPassword, getAuth} from 'firebase/auth';
+import { doc, getDoc, setDoc, collection, getFirestore } from "firebase/firestore";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,8 +54,8 @@ export default function Signup() {
 
     const adduserIDToFirestore = async (uid, userID) => {
         const db = getFirestore(app);
-        const usersRef = collection(db, "users");
-        await addDoc(usersRef, { uid, userID });
+        const ref = doc(db, 'users', uid);
+        await setDoc(ref, { uid: uid, userID: userID });
     };
 
     return (

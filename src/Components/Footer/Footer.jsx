@@ -5,9 +5,9 @@ export default function Footer() {
     return (
         <main className="Footer_main">
             <img src={footerImg} alt="" />
-            <h2>
+            <h3>
                 ~ Start connecting with the world now ~
-            </h2>
+            </h3>
         </main>
     )
 }

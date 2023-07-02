@@ -1,0 +1,47 @@
+.FinalDisplay_main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(239, 238, 238);
+    padding: 2rem 0rem;
+}
+
+.finalCard{
+    background-color: var(--main-color);
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40rem;
+    margin: 1rem 0rem;
+    border: 1px solid black;
+}
+.finalCard i{
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    font-size: 20px;
+}
+.finalCard span{
+    margin: 0px 4rem;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.FinalDisplay_main img{
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--main-color);
+    border-radius: 100px;
+}
+
+.FinalDisplay_main span{
+    font-size: 17px;
+}
