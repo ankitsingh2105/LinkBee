@@ -92,11 +92,11 @@ export default function Navbar() {
                     ) : (
                         <>
                             <li>
-                                <b>Welcome ~</b> {getFirstWord(name)}
+                                <b>Welcome </b> {getFirstWord(name)}
                             </li>
                             <li className="login_signup2">
                                 <Link style={{ color: "black", textDecoration: "none" }} to={`/user/auth/edit/${userID}`}>
-                                    Admin
+                                    Create
                                 </Link>
                             </li>
                             <li className="login_signup2" onClick={handleLogout}>Logout</li>
