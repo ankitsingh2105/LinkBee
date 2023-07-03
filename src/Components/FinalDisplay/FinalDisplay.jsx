@@ -5,6 +5,12 @@ import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import firebaseConfig from '../../firebaseConfig';
 import { Helmet } from 'react-helmet';
+import Dummy from "../User/dummyimage.webp"
+
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
+
 export default function FinalDisplay() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -21,20 +27,23 @@ export default function FinalDisplay() {
         onAuthStateChanged(auth, async (user) => {
             const docRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(docRef);
-            setbio(docSnap.data().bio);
-            setprofile(docSnap.data().profile);
-            setArray(docSnap.data().arrayOfObject);
-            setID(docSnap.data().userID);
+            if (docSnap.exists()) {
+                setbio(docSnap.data().bio);
+                setprofile(docSnap.data().profile);
+                setArray(docSnap.data().arrayOfObject);
+                setID(docSnap.data().userID);
+            }
         });
         console.log("are bbhai-> ", bio)
     }, []);
 
     return (
         <main className="FinalDisplay_main">
+            <ToastContainer style={{ zIndex: 99999999 }}/>
             <Helmet>
                 <title>Link Bee ~ @{id}</title>
             </Helmet>
-            <img src={user.photoURL} alt="" />
+            <img src={user.photoURL || Dummy } alt="" />
             <br />
             <span> <b> @{id} </b></span>
             <br />
@@ -42,7 +51,7 @@ export default function FinalDisplay() {
             <br />
             <span>{bio}</span>
             {
-                array.map((e) => {
+                array?.map((e) => {
                     return (
                         <div className='finalCard' key={e.name}>
                             <i style={{ color: `${e.color}` }} className={e.class}></i>

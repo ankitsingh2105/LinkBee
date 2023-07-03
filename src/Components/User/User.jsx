@@ -89,7 +89,6 @@ export default function User() {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    console.log("Document data:", docSnap.data());
                     setuserID(docSnap.data().userID);
                 }
             }
@@ -112,7 +111,6 @@ export default function User() {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    console.log("Document data:", docSnap.data());
                     settempArray(docSnap.data().arrayOfObject);
                 }
             }
@@ -130,6 +128,7 @@ export default function User() {
 
     const handleUploading = async () => {
         if (uploadedImage) {
+            console.log("opo"); 
             const user = auth.currentUser;
             if (!user) {
                 toast.error('Please login', { autoClose: 1500 });
@@ -170,8 +169,6 @@ export default function User() {
         let bio = document.querySelector(`.bio`);
         if (isValidLink(urlClass.value) && nameClass.value.length > 0) {
 
-            console.log("benchod-> ", urlClass.value);
-            console.log("this is -> ", className, title, color);
             let obj = {
                 class: className,
                 title: title,
@@ -185,7 +182,6 @@ export default function User() {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 toast("Link added see section below for preview", { autoClose: 1500 });
-                console.log("Document data:", docSnap.data());
                 tempArray = docSnap.data().arrayOfObject || [];
             }
             tempArray.push(obj);
@@ -210,14 +206,11 @@ export default function User() {
     };
 
     const handleDelete = async (naam) => {
-        console.log("deleting");
-        console.log("this is naame-> ", naam);
         let newTemp = tempsetArray.filter((e) => {
             return e.name !== naam;
         });
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
-        console.log("opwara-> ", newTemp);
         setDoc(docRef, {
             arrayOfObject: newTemp,
             uid: docSnap.data().uid,
@@ -234,19 +227,23 @@ export default function User() {
         let profile = document.querySelector(`.profile`);
         let bio = document.querySelector(`.bio`);
         let tempArray = [];
-        if (docSnap.exists()) {
-            tempArray = docSnap.data().arrayOfObject || [];
+        if(bio.value==="" || profile.value==="" ){
+            toast("Please fill both the sections", { autoClose: 1500 });
         }
-        setDoc(docRef, {
-            arrayOfObject: tempArray,
-            uid: docSnap.data().uid,
-            userID: docSnap.data().userID,
-            profile: profile.value,
-            bio: bio.value
-        });
-        console.log("adding something");
-        toast("Name and bio updates see preview section", { autoClose: 1500 });
-        setnameProfile({ profile: profile.value, bio: bio.value });
+        else{
+            if (docSnap.exists()) {
+                tempArray = docSnap.data().arrayOfObject || [];
+            }
+            setDoc(docRef, {
+                arrayOfObject: tempArray,
+                uid: docSnap.data().uid,
+                userID: docSnap.data().userID,
+                profile: profile.value,
+                bio: bio.value
+            });
+            toast("Name and bio updated, see section below", { autoClose: 1500 });
+            setnameProfile({ profile: profile.value, bio: bio.value });
+        }
     }
 
     return (
@@ -254,6 +251,7 @@ export default function User() {
             <Helmet>
                 <title>~ Create Section ~</title>
             </Helmet>
+            <ToastContainer style={{ zIndex: 99999999 }}/>
             <nav className='authNav'>
                 <ul>
                     <li><img src={logo} alt="" /></li>
@@ -261,13 +259,12 @@ export default function User() {
                 </ul>
             </nav>
             <main className="User_main">
-                <ToastContainer />
 
                 <h1>~ Customization ~</h1>
                 <h2>Profile Section</h2>
 
                 <div className='align2' >
-                    <img src={uploadedImage} alt="" />
+                    <img src={uploadedImage || Dummy} alt="dummy image" />
                     <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
                     <button onClick={handleUploading}>Upload New Image</button>
 

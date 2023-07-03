@@ -30,7 +30,6 @@ export default function App() {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
           setuserID(docSnap.data().userID);
         }
       }
