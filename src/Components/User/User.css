@@ -37,6 +37,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .User_main button {
     padding: 7px 15px;
     background-color: var(--main-color);
@@ -105,22 +106,22 @@
 
 }
 
-.socialIcons button:hover{
+.socialIcons button:hover {
     cursor: pointer;
 }
 
-.socialIcons div h4{
+.socialIcons div h4 {
     margin-top: 10px;
     margin-bottom: 0px;
 }
 
-.socialIcons div input{
+.socialIcons div input {
     padding: 5px;
     width: 200px;
     margin-bottom: 0px;
 }
 
-.box{
+.box {
     display: flex;
     margin: 20px 0px;
 }
@@ -134,39 +135,42 @@
     height: 40px;
     border-radius: 100px;
 }
-.box h4{
+
+.box h4 {
     margin: 0px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.box button{
+.box button {
     margin: 0px 10px;
 }
 
-.alignSocial{
+.alignSocial {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.alignSocial2{
+
+.alignSocial2 {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.addSocial h2{
+.addSocial h2 {
     margin: 0px;
 }
 
-.cards{
+.cards {
     background-color: aliceblue;
-    padding: 3rem;
+    padding: 3rem 1rem;
+    border-radius: 30px;
 }
 
-.socailCard input{
+.socailCard input {
     margin-top: 5px;
 }
 
@@ -178,18 +182,18 @@
     border-radius: 5px;
     border: 1px solid black;
 }
+
 .authNav li img {
     width: 50px;
     height: 50px;
     padding: 0px;
-    background-color: none;
 }
 
-.authNav ul{
+.authNav ul {
     margin: 4px 0px;
 }
 
-.authNav{
+.authNav {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -200,4 +204,89 @@
     border: .1px solid black;
     background-color: rgb(255, 252, 236);
     border-radius: 60px;
+}
+
+
+@media screen and (max-width: 949px) {
+    .socialIcons {
+        grid-template-columns: repeat(2, 20rem);
+        grid-template-rows: repeat(5, 20rem);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .User_main input::placeholder,
+    .User_main textarea::placeholder {
+        font-size: 12px;
+    }
+
+    .User_main button {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+
+    .cards {
+        font-size: 12px;
+    }
+
+    .User_main img {
+        width: 87px;
+        height: 87px;
+    }
+
+    .socialIcons div input {
+        width: 173px;
+    }
+
+    .socialIcons div {
+        width: 210px;
+        height: 250px;
+    }
+
+    .socialIcons {
+        grid-template-columns: repeat(2, 14rem);
+        grid-template-rows: repeat(5, 17rem);
+    }
+
+    body{
+        margin: 1rem;
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+    }
+    .User_main h1 {
+        font-size: 2.7rem;
+    }
+    
+    .User_main h2 {
+        font-size: 1.3rem;
+    }
+
+    .align2{
+        flex-direction: column;
+    }
+
+    .align2 button{
+        margin: 15px 0px;
+    }
+    .authNav img {
+        margin-left: -5px;
+    }
+}
+@media screen and (max-width: 515px) {
+    .socialIcons div {
+        width: 180px;
+        height: 240px;
+    }
+    .socialIcons div input {
+        width: 143px;
+    }
+    .socialIcons {
+        grid-template-columns: repeat(2, 12.5rem);
+        grid-template-rows: repeat(5, 16rem);
+    }
+    .box{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 }

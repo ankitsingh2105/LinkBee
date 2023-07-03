@@ -55,3 +55,11 @@ button{
         display: none;
     }
 }
+@media screen and (max-width: 516px) {
+    .Signup_main h1{
+        font-size: 3rem;
+    }
+    .Signup_main h2{
+        font-size: 1.4rem;
+    }
+}

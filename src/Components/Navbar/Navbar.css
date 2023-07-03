@@ -92,11 +92,11 @@ nav img {
     }
 
     .menu-line {
-        width: 35px;
+        width: 27px;
         height: 4px;
         border-radius: 20px;
         background-color: #000;
-        margin: 2px 0px;
+        margin: 2px 10px;
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
 

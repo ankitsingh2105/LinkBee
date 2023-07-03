@@ -74,15 +74,12 @@ export default function Navbar() {
         <nav>
             <ToastContainer />
             <img src={logo} alt="" srcSet="" />
-            <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                <div className="menu-line"></div>
-                <div className="menu-line"></div>
-                <div className="menu-line"></div>
-            </div>
             <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
                 <li>Home</li>
-                <li>About Us</li>
-                <li>Our Services</li>
+                <li>About</li>
+                <li>Services</li>
+            </ul>
+            <ul>
                 {
                     tempStat ? (
                         <>
@@ -99,7 +96,7 @@ export default function Navbar() {
                             </li>
                             <li className="login_signup2">
                                 <Link style={{ color: "black", textDecoration: "none" }} to={`/user/auth/edit/${userID}`}>
-                                    Create List
+                                    Admin
                                 </Link>
                             </li>
                             <li className="login_signup2" onClick={handleLogout}>Logout</li>
@@ -107,6 +104,11 @@ export default function Navbar() {
                     )
                 }
             </ul>
+            <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <div className="menu-line"></div>
+                <div className="menu-line"></div>
+                <div className="menu-line"></div>
+            </div>
         </nav>
     )
 }

@@ -78,7 +78,7 @@ export default function Signup() {
             <form action="" onSubmit={handleSubmit} >
                 <input type="text" placeholder='Name' name="name" required />
                 <input type="email" placeholder='Email' name="email" required />
-                <input type="text" placeholder='User Name' name="userID" required />
+                <input type="text" placeholder='User ID (cannot be changed)' name="userID" required />
                 <input placeholder='Password' type="password" name="password" required />
                 <button >Sign Up</button>
                 <br />

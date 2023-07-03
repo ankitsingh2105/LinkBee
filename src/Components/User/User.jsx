@@ -196,7 +196,6 @@ export default function User() {
                 bio: bio.value
             });
             settempArray(tempArray);
-            // setnameProfile({ profile: profile.value, bio: bio.value });
         }
         else {
             if (nameClass.value.length === 0) {
@@ -211,13 +210,13 @@ export default function User() {
 
     const handleDelete = async (naam) => {
         console.log("deleting");
-        console.log("this is naame-> " , naam);
+        console.log("this is naame-> ", naam);
         let newTemp = tempsetArray.filter((e) => {
             return e.name !== naam;
         });
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
-        console.log("opwara-> " , newTemp);
+        console.log("opwara-> ", newTemp);
         setDoc(docRef, {
             arrayOfObject: newTemp,
             uid: docSnap.data().uid,
@@ -264,13 +263,8 @@ export default function User() {
                 <h2>Profile Section</h2>
 
                 <div className='align2' >
-
-                    <div className='align'>
-                        <img src={uploadedImage} alt="" />
-                        <b></b>
-                    </div>
+                    <img src={uploadedImage} alt="" />
                     <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
-
                     <button onClick={handleUploading}>Upload New Image</button>
 
                 </div>
@@ -294,11 +288,11 @@ export default function User() {
                                     <div className='socailCard' >
                                         <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
                                         <h4>{e.title}</h4>
-                                        <input className={`name${index}`} placeholder={`Enter name (${e.title} id)`} type="text" />
+                                        <input className={`name${index}`} placeholder={`Enter title`} type="text" />
                                         <input className={`url${index}`} placeholder="Enter link here" type="url" />
                                         <br />
                                         <span>
-                                            <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button> &nbsp; &nbsp;
+                                            <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button>
                                         </span>
                                     </div>
                                 </>
@@ -310,17 +304,21 @@ export default function User() {
                 <br /><br />
                 <div className="cards align">
                     <h2>~ Added Links ~</h2>
-                    <h3><b>Name : </b>{nameProfile.profile || ""}</h3>
-                    <h3><b>Bio: </b> {nameProfile.bio || ""} </h3>
+                    <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
+                    <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
                     {
                         tempsetArray ? (tempsetArray.map((e) => {
                             return (
                                 <>
                                     <div className="box">
-                                        <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
-                                        <h4>{e.name}</h4>
-                                        <a href={e.link} className='align2'>{e.link}</a>
-                                        <button onClick={() => handleDelete(e.name)}>Delete</button>
+                                        <div>
+                                            <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
+                                            <h4>{e.name}</h4>
+                                            <a href={e.link} className='align2'>{e.link}</a>
+                                        </div>
+                                        <div>
+                                            <button onClick={() => handleDelete(e.name)}>Delete</button>
+                                        </div>
                                     </div>
                                 </>
                             )
