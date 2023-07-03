@@ -5,12 +5,14 @@ import elem2 from "./elem2.png";
 
 import firebaseConfig from '../../firebaseConfig';
 import { initializeApp } from "firebase/app";
-import { updateProfile, createUserWithEmailAndPassword, getAuth} from 'firebase/auth';
-import { doc, getDoc, setDoc, collection, getFirestore } from "firebase/firestore";
+import { updateProfile, createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+
+import { Helmet } from 'react-helmet';
 
 export default function Signup() {
     const app = initializeApp(firebaseConfig);
@@ -62,6 +64,9 @@ export default function Signup() {
         <main className="Signup_main">
 
             <ToastContainer />
+            <Helmet>
+                <title>Link Bee ~ Sign Up</title>
+            </Helmet>
 
             <div className="fixed-images">
                 <img id='elem4' src={elem2} alt="" />

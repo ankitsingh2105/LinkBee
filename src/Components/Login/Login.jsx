@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import "./Login.css"
 import elem1 from "./elem1.png"
 import elem2 from "./elem2.png"
@@ -9,6 +9,9 @@ import firebaseConfig from '../../firebaseConfig'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+
+import { Helmet } from 'react-helmet';
+
 
 export default function Login() {
 
@@ -38,6 +41,9 @@ export default function Login() {
     <main className="Login_main">
 
       <ToastContainer />
+      <Helmet>
+        <title>Link Bee ~ Log In</title>
+      </Helmet>
 
       <div className="fixed-images">
         <img id='elem4' src={elem2} alt="" />

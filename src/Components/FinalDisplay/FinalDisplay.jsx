@@ -4,6 +4,7 @@ import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import firebaseConfig from '../../firebaseConfig';
+import { Helmet } from 'react-helmet';
 export default function FinalDisplay() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -30,6 +31,9 @@ export default function FinalDisplay() {
 
     return (
         <main className="FinalDisplay_main">
+            <Helmet>
+                <title>Link Bee ~ @{id}</title>
+            </Helmet>
             <img src={user.photoURL} alt="" />
             <br />
             <span> <b> @{id} </b></span>
@@ -43,7 +47,7 @@ export default function FinalDisplay() {
                         <div className='finalCard' key={e.name}>
                             <i style={{ color: `${e.color}` }} className={e.class}></i>
                             <span>{e.name}</span>
-                            <a href={e.link}>< i class="fa-solid fa-diamond-turn-right"/></a>
+                            <a href={e.link}>< i class="fa-solid fa-diamond-turn-right" /></a>
                         </div>
                     )
                 })

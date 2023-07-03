@@ -8,6 +8,7 @@ import firebaseConfig from '../../firebaseConfig';
 import "./User.css"
 import Dummy from "./dummyimage.webp"
 import logo from "../Navbar/logo.png"
+import { Helmet } from 'react-helmet';
 
 export default function User() {
 
@@ -250,6 +251,9 @@ export default function User() {
 
     return (
         <>
+            <Helmet>
+                <title>~ Create Section ~</title>
+            </Helmet>
             <nav className='authNav'>
                 <ul>
                     <li><img src={logo} alt="" /></li>
