@@ -4,3 +4,7 @@
     justify-content: center;
     flex-direction: column;
 }
+.Footer_main img{
+    width: 70px;
+    height: 70px;
+}

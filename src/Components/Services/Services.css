@@ -4,6 +4,7 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
+    padding-top: 3rem;
 }
 
 .Services_main p {

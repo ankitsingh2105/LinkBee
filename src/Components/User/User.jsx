@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import firebaseConfig from '../../firebaseConfig';
 import "./User.css"
 import Dummy from "./dummyimage.webp"
-import logo from "../Navbar/logo.png"
+import logo from "../Navbar/link bee.png"
 import { Helmet } from 'react-helmet';
 
 export default function User() {
@@ -17,61 +17,71 @@ export default function User() {
             class: "fa fa-envelope",
             title: "Gmail",
             color: "red",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-facebook",
             title: "Facebook",
             color: "blue",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-instagram",
             title: "Instagram",
             color: "#E4405F",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-snapchat-ghost",
             title: "Snapchat",
             color: "yellow",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-link",
             title: "Website",
             color: "black",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-stack-overflow",
             title: "Stack Overflow",
             color: "orange",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-youtube",
             title: "YouTube",
             color: "#CD201F",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-github",
             title: "GitHub",
             color: "black",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-twitter",
             title: "Twitter",
             color: "#1DA1F2",
-            currentAddState: "Add",
+             
         },
         {
             class: "fa fa-linkedin",
             title: "LinkedIn",
             color: "#0A66C2",
-            currentAddState: "Add",
+             
+        },
+        {
+            class : "fa-solid fa-calendar-days",
+            title : "Event",
+            color : "black" 
+        },
+        {
+            class : "fa-brands fa-reddit",
+            title : "Event",
+            color : "#FF5700" 
         }
     ];
 
@@ -131,7 +141,6 @@ export default function User() {
 
     const handleUploading = async () => {
         if (uploadedImage) {
-            console.log("opo");
             const user = auth.currentUser;
             if (!user) {
                 toast.error('Please login', { autoClose: 1500 });
@@ -286,8 +295,8 @@ export default function User() {
                                 <br /><br />
 
                                 <br />
-                                <h2 style={{ marginBottom: "0px" }} > ~ Add Social Media Icons ~ </h2>
-                                <small>Click and add the social media links</small>
+                                <h2 style={{ marginBottom: "0px" }} > ~ Add Social Media or Events ~ </h2>
+                                <small>Present your digital presence with pride</small>
                                 <br /><br />
                                 <div className="socialIcons">
 
@@ -337,6 +346,7 @@ export default function User() {
                                     }
                                 </div>
                             </main>
+                            <br />
                         </>
 
                     )

@@ -1,9 +1,9 @@
 import React from 'react'
 import "./Home.css"
 import HomeImg from "./Linkbee_Home_Image.webp"
-export default function Home() {
+export default function Home(props) {
     return (
-        <main className="main_home">
+        <main className="main_home" id={props.id} >
             <div>
                 <h1>
                     Your links
@@ -12,7 +12,7 @@ export default function Home() {
                     Your story.
                 </h1>
                 <p>
-                    Welcome to our platform designed to empower you in the digital realm. Curate and showcase your online presence with ease, allowing others to explore the depths of your creativity.
+                    Welcome to our platform designed to empower you in the digital realm. Curate and showcase your online presence with ease, allowing others to explore the depths of your creativity. <b>Share you portfolio, social media accounts and more only with one ~ Link Bee ~ link.</b>
                 </p>
             </div>
             <div>

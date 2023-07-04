@@ -21,12 +21,10 @@ export default function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("we have submitted the form");
         const name = e.target.name.value;
         const email = e.target.email.value;
         const userID = e.target.userID.value;
         const password = e.target.password.value;
-        console.log(name, email, userID, password);
 
         if (!userIDRegex.test(userID)) {
             toast.error(
@@ -41,24 +39,21 @@ export default function Signup() {
             toast("Sign up successful", { autoClose: 1500 });
             await updateProfile(auth.currentUser, { displayName: name, userID: userID });
             await adduserIDToFirestore(newUser.user.uid, userID);
-            console.log("this is the user->", newUser.user.uid);
             window.location.href = "/";
         } catch (e) {
-            console.log("this is the erro- >", e);
-            toast.error("Password should be at least 6 characters / Email already exists", { autoClose: 1500 });
+            toast.error("Password should be at least 6 characters / Email already exists", { autoClose: 1700 });
         }
     };
-
-    useEffect(() => {
-        const user = auth.currentUser;
-        console.log("this is the user- >", user);
-    });
 
     const adduserIDToFirestore = async (uid, userID) => {
         const db = getFirestore(app);
         const ref = doc(db, 'users', uid);
         await setDoc(ref, { uid: uid, userID: userID });
     };
+
+    const signupMessage =()=>{
+        toast("Processing" , {autoClose:1500});
+    }
 
     return (
         <main className="Signup_main">
@@ -85,7 +80,7 @@ export default function Signup() {
                 <input type="email" placeholder='Email' name="email" required />
                 <input type="text" placeholder='User ID (cannot be changed)' name="userID" required />
                 <input placeholder='Password' type="password" name="password" required />
-                <button >Sign Up</button>
+                <button onClick={signupMessage} >Sign Up</button>
                 <br />
             </form>
         </main>

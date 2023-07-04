@@ -43,9 +43,9 @@ export default function App() {
             {
               <>
                 <Navbar />
-                <Home />
-                <About />
-                <Servics />
+                <Home id="home" />
+                <About id="about" />
+                <Servics id="services" />
                 <Delivered />
               </>
             }>

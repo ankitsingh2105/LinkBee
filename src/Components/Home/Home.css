@@ -3,8 +3,9 @@ body{
 }
 .main_home {
     margin: 3rem;
+    margin-top: 0px;
     display: flex;
-    margin-top: 7rem;
+    padding-top: 6rem;
     font-family: var(--main-font);
 }
 
@@ -135,7 +136,7 @@ body{
     }
     .main_home{
         margin: 0px;
-        margin-top: 7rem;
+        padding-top:9rem;
     }
 }
 

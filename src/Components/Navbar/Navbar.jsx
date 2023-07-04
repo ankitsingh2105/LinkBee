@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import logo from './logo.png';
+import logo from './link bee.png';
 import { Link } from 'react-router-dom';
 
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth'
@@ -9,10 +9,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import firebaseConfig from '../../firebaseConfig';
 
-export default function Navbar() {
+export default function Navbar(props) {
+
+    const { id } = props;
+    const scroll = (id) => {
+        const element = document.getElementById(id);
+        element.scrollIntoView({ behavior: "smooth" });
+    }
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const user = auth.currentUser;
     const [name, setname] = useState("")
 
     const [userID, setuserID] = useState("");
@@ -24,7 +30,6 @@ export default function Navbar() {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    console.log("Document data:", docSnap.data());
                     setuserID(docSnap.data().userID);
                 }
             }
@@ -41,7 +46,6 @@ export default function Navbar() {
 
     const handleLogout = async (e) => {
         await signOut(auth);
-        console.log("op ankit-> ", localStorage.getItem("localTempState"))
         toast.success("Logging Out", { autoClose: 1500 });
         setTimeout(() => {
             window.location.reload();
@@ -71,13 +75,13 @@ export default function Navbar() {
     };
 
     return (
-        <nav>
+        <nav id = {id}>
             <ToastContainer />
             <img src={logo} alt="" srcSet="" />
             <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-                <li>Home</li>
-                <li>About</li>
-                <li>Services</li>
+                <li onClick={() => { scroll("home") }}>Home</li>
+                <li onClick={() => { scroll("about") }}>About</li>
+                <li onClick={() => { scroll("services") }}>Services</li>
             </ul>
             <ul>
                 {

@@ -3,9 +3,9 @@ import "./About.css"
 import about1 from "./about1.webp"
 import about2 from "./about2.webp"
 import about3 from "./about3.webp"
-export default function About() {
+export default function About(props) {
     return (
-        <main className='About_main' >
+        <main className='About_main' id={props.id} >
             <h2> <b>Unlock</b> the Potential of <br /> Your Online Reach</h2>
             <div className="About_main_primary_div" >
                 <div className='About_main_secondary_div'>

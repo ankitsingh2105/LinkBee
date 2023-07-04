@@ -31,11 +31,13 @@ export default function Login() {
         window.location.href = "/";
       }, 1000);
     } catch (error) {
-      console.log(email, password);
-      console.log(auth.currentUser)
       toast.error("Invalid Credentials", { autoClose: 1500 });
     }
   }
+
+  const loginMessage =()=>{
+    toast("Checking Credentials" , {autoClose:1500});
+}
 
   return (
     <main className="Login_main">
@@ -56,7 +58,7 @@ export default function Login() {
       <form onSubmit={handleLogin} action="">
         <input type="email" placeholder='Email' name="email" />
         <input placeholder='Password' type="password" name="password" />
-        <button>Login</button>
+        <button onClick={loginMessage}>Login</button>
         <br />
       </form>
       <br />

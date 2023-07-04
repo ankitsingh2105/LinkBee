@@ -187,6 +187,7 @@
     width: 50px;
     height: 50px;
     padding: 0px;
+    border-radius: 20px;
 }
 
 .authNav ul {
@@ -256,8 +257,12 @@
         height: 87px;
     }
 
-    .socialIcons div input {
+    .User_main input {
         width: 173px;
+        font-size: 12px;
+    }
+    .User_main textarea{
+        font-size: 12px;
     }
 
     .socialIcons div {
@@ -270,11 +275,7 @@
         grid-template-rows: repeat(5, 17rem);
     }
 
-    body {
-        margin: 1rem;
-        border-top: 3px solid black;
-        border-bottom: 3px solid black;
-    }
+    
 
     .User_main h1 {
         font-size: 2.7rem;
@@ -309,7 +310,7 @@
 
     .socialIcons {
         grid-template-columns: repeat(2, 12.5rem);
-        grid-template-rows: repeat(5, 16rem);
+        grid-template-rows: repeat(6, 16rem);
     }
 
     .box {

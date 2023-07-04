@@ -1,7 +1,7 @@
 body {
-    margin: 1rem;
-    border-top: 10px solid black;
-    border-bottom: 10px solid black;
+    margin: .5rem 1rem;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
     border-radius: 10px;
 }
 
@@ -15,6 +15,7 @@ body {
     border-bottom: 4px solid black;
     border-top: 4px solid black;
     border-radius: 5px;
+    padding-top: 3rem;
 }
 
 .About_main div img {
@@ -137,26 +138,31 @@ body {
     .About_main_primary_div {
         flex-direction: column;
     }
+
     .About_main_secondary_div h4 {
         margin-top: -1rem;
         margin-bottom: 37px;
     }
+
     .About_main_secondary_div {
         width: 459px;
         height: 289px;
         margin-bottom: 2rem;
     }
+
     .About_main div img {
         width: 180px;
         height: 180px;
     }
 }
+
 @media screen and (max-width: 559px) {
     .About_main_secondary_div {
         width: 300px;
         height: 320px;
         margin-bottom: 2rem;
     }
+
     .About_main div img {
         width: 150px;
         height: 150px;

@@ -4,9 +4,9 @@ import meeting from "./meeting.webp"
 import elem1 from "./elem1.webp"
 import elem2 from "./elem2.webp"
 import elem3 from "./elem3.webp"
-export default function Services() {
+export default function Services(props) {
   return (
-    <main className="Services_main">
+    <main id={props.id} className="Services_main">
       <div className="fixed-images">
         <img id='elem1' src={elem1} alt="" />
         <img id="elem2" src={elem2} alt="" />
