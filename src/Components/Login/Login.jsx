@@ -1,8 +1,7 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 import "./Login.css"
 import elem1 from "./elem1.webp"
 import elem2 from "./elem2.webp"
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { initializeApp } from "firebase/app";
 import firebaseConfig from '../../firebaseConfig'
 
@@ -10,13 +9,18 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import { Helmet } from 'react-helmet';
+import { onAuthStateChanged, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
+import { Helmet } from 'react-helmet';
 
 export default function Login() {
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const [userId, setID] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,9 +31,15 @@ export default function Login() {
       e.target.email.value = "";
       e.target.password.value = "";
       toast.success("Logging in", { autoClose: 1500 });
-      setInterval(() => {
-        window.location.href = "/";
-      }, 1000);
+      onAuthStateChanged(auth, async (user) => {
+        if(user){
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+              setID(docSnap.data().userID);
+              window.location.href = `user/${docSnap.data().userID }`;
+          }
+      }});
     } catch (error) {
       toast.error("Invalid Credentials", { autoClose: 1500 });
     }

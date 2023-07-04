@@ -53,6 +53,18 @@ export default function App() {
           <Route element={<Login />} path='login' />
           <Route element={<Signup />} path='signup' />
           <Route element={<User />} path={`user/auth/edit/${userID}`} />
+
+          <Route path={`user/${userID}`} element={
+            <>
+              <Navbar />
+              <Home id="home" />
+              <About id="about" />
+              <Servics id="services" />
+              <Delivered />
+            </>
+            }
+          />
+          
           <Route element={<FinalDisplay />} path={`${userID}`} />
         </Routes>
         <Footer />

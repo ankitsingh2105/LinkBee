@@ -48,7 +48,7 @@ export default function Navbar(props) {
         await signOut(auth);
         toast.success("Logging Out", { autoClose: 1500 });
         setTimeout(() => {
-            window.location.reload();
+            window.location.href= "/";
         }, 1500);
     }
 

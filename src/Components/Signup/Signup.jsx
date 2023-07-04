@@ -39,7 +39,7 @@ export default function Signup() {
             toast("Sign up successful", { autoClose: 1500 });
             await updateProfile(auth.currentUser, { displayName: name, userID: userID });
             await adduserIDToFirestore(newUser.user.uid, userID);
-            window.location.href = "/";
+            window.location.href = `user/${userID}`;
         } catch (e) {
             toast.error("Password should be at least 6 characters / Email already exists", { autoClose: 1700 });
         }
