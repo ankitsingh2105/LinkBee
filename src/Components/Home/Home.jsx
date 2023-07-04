@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Home.css"
-import HomeImg from "./Linkbee_Home_Image.png"
+import HomeImg from "./Linkbee_Home_Image.webp"
 export default function Home() {
     return (
         <main className="main_home">
