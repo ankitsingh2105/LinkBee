@@ -1,9 +1,9 @@
 import React from 'react'
 import "./Services.css"
-import meeting from "./meeting.png"
-import elem1 from "./elem1.png"
-import elem2 from "./elem2.png"
-import elem3 from "./elem3.png"
+import meeting from "./meeting.webp"
+import elem1 from "./elem1.webp"
+import elem2 from "./elem2.webp"
+import elem3 from "./elem3.webp"
 export default function Services() {
   return (
     <main className="Services_main">
