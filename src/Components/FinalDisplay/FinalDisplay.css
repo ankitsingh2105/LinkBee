@@ -1,23 +1,29 @@
-.FinalDisplay_main{
+.FinalDisplay_main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(239, 238, 238);
+    background-color: rgb(254, 241, 200);
     padding: 2rem 0rem;
+    background: radial-gradient(circle at center, #f8e3ff, #C196D2, #e5a9fd, #dec6e8, #ce6af8);
+    font-family: sans-serif;
+
 }
 
-.finalCard{
-    background-color: var(--main-color);
+.finalCard {
+    background-color: black;
+    border-radius: 100px;
     padding: .5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40rem;
+    width: 30rem;
     margin: 1rem 0rem;
     border: 1px solid black;
+    color: greenyellow;
 }
-.finalCard i{
+
+.finalCard i {
     background-color: white;
     width: 40px;
     height: 40px;
@@ -27,21 +33,74 @@
     border-radius: 100px;
     font-size: 20px;
 }
-.finalCard span{
+
+.finalCard span {
     margin: 0px 4rem;
 }
-a{
+
+a {
     text-decoration: none;
     color: black;
 }
 
-.FinalDisplay_main img{
+.FinalDisplay_main img {
     width: 100px;
     height: 100px;
-    border: 2px solid var(--main-color);
+    border: 3px solid yellowgreen;
     border-radius: 100px;
 }
 
-.FinalDisplay_main span{
+.FinalDisplay_main span {
+    font-weight: bolder;
     font-size: 17px;
+    text-align: center;
+}
+
+.loadingWheel {
+    margin: 4rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-top: 4px solid var(--main-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+@media screen and (max-width: 610px) {
+    .FinalDisplay_main span {
+        padding: 0rem 2rem;
+    }
+}
+@media screen and (max-width: 542px) {
+    .FinalDisplay_main img {
+        width: 70px;
+        height: 70px;
+    }
+    .finalCard{
+        width: 25rem;
+    }
+}
+@media screen and (max-width: 452px) {
+    .finalCard{
+        width: 20rem;
+    }
+    .finalCard span{
+        margin: 0px 2rem;
+    }
+    .FinalDisplay_main span{
+        font-weight: 500;
+        font-size: 15px;
+    }
 }

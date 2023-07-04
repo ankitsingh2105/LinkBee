@@ -1,8 +1,8 @@
 import React from 'react'
 import "./About.css"
-import about1 from "./about1.png"
-import about2 from "./about2.png"
-import about3 from "./about3.png"
+import about1 from "./about1.webp"
+import about2 from "./about2.webp"
+import about3 from "./about3.webp"
 export default function About() {
     return (
         <main className='About_main' >

@@ -1,7 +1,7 @@
 import React from 'react'
-import globe from "./globe.png"
-import elem4 from "./elem4.png"
-import elem5 from "./elem5.png"
+import globe from "./globe.webp"
+import elem4 from "./elem4.webp"
+import elem5 from "./elem5.webp"
 import "./Delivered.css"
 export default function Delivered() {
     return (

@@ -81,7 +81,12 @@ export default function User() {
     const storage = getStorage(app);
     const db = getFirestore(app);
     const user = auth.currentUser;
+
     const [userID, setuserID] = useState("");
+    const [uploadedImage, setImage] = useState(Dummy);
+    const [tempsetArray, settempArray] = useState([]);
+    const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
+    const [loading, setloading] = useState(true);
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -100,9 +105,6 @@ export default function User() {
         return urlRegex.test(link);
     };
 
-    const [uploadedImage, setImage] = useState(Dummy);
-    const [tempsetArray, settempArray] = useState([]);
-    const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -117,6 +119,7 @@ export default function User() {
             const docRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(docRef);
             setnameProfile({ profile: docSnap.data().profile, bio: docSnap.data().bio });
+            setloading(false);
         });
     }, []);
 
@@ -128,7 +131,7 @@ export default function User() {
 
     const handleUploading = async () => {
         if (uploadedImage) {
-            console.log("opo"); 
+            console.log("opo");
             const user = auth.currentUser;
             if (!user) {
                 toast.error('Please login', { autoClose: 1500 });
@@ -227,10 +230,10 @@ export default function User() {
         let profile = document.querySelector(`.profile`);
         let bio = document.querySelector(`.bio`);
         let tempArray = [];
-        if(bio.value==="" || profile.value==="" ){
+        if (bio.value === "" || profile.value === "") {
             toast("Please fill both the sections", { autoClose: 1500 });
         }
-        else{
+        else {
             if (docSnap.exists()) {
                 tempArray = docSnap.data().arrayOfObject || [];
             }
@@ -251,83 +254,94 @@ export default function User() {
             <Helmet>
                 <title>~ Create Section ~</title>
             </Helmet>
-            <ToastContainer style={{ zIndex: 99999999 }}/>
-            <nav className='authNav'>
-                <ul>
-                    <li><img src={logo} alt="" /></li>
-                    <li onClick={() => { window.location.href = `/${userID}` }} >{`linkbee.online/${userID}`}</li>
-                </ul>
-            </nav>
-            <main className="User_main">
+            <ToastContainer style={{ zIndex: 99999999 }} />
 
-                <h1>~ Customization ~</h1>
-                <h2>Profile Section</h2>
+            {
+                loading ? (<div className="align"><main className="loadingWheel"></main></div>)
+                    :
+                    (
+                        <>
+                            <nav className='authNav'>
+                                <ul>
+                                    <li><img src={logo} alt="" /></li>
+                                    <li onClick={() => { window.location.href = `/${userID}` }} >{`linkbee.online/${userID}`}</li>
+                                </ul>
+                            </nav>
+                            <main className="User_main">
 
-                <div className='align2' >
-                    <img src={uploadedImage || Dummy} alt="dummy image" />
-                    <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
-                    <button onClick={handleUploading}>Upload New Image</button>
+                                <h1>~ Customization ~</h1>
+                                <h2>Profile Section</h2>
 
-                </div>
-                <input className="profile" placeholder='Profile name (@yourname)' type="text" />
-                <br />
-                <textarea className="bio" placeholder='Bio' cols="30" rows="3" />
-                <br />
-                <button onClick={AddNameAndBio} >Add name and bio</button>
-                <br /><br />
+                                <div className='align2' >
+                                    <img src={uploadedImage || Dummy} alt="dummy image" />
+                                    <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
+                                    <button onClick={handleUploading}>Upload New Image</button>
 
-                <br />
-                <h2 style={{ marginBottom: "0px" }} > ~ Add Social Media Icons ~ </h2>
-                <small>Click and add the social media links</small>
-                <br /><br />
-                <div className="socialIcons">
+                                </div>
+                                <input className="profile" placeholder='Profile name (@yourname)' type="text" />
+                                <br />
+                                <textarea className="bio" placeholder='Bio' cols="30" rows="3" />
+                                <br />
+                                <button onClick={AddNameAndBio} >Add name and bio</button>
+                                <br /><br />
 
-                    {
-                        objArray.map((e, index) => {
-                            return (
-                                <>
-                                    <div className='socailCard' >
-                                        <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
-                                        <h4>{e.title}</h4>
-                                        <input className={`name${index}`} placeholder={`Enter title`} type="text" />
-                                        <input className={`url${index}`} placeholder="Enter link here" type="url" />
-                                        <br />
-                                        <span>
-                                            <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button>
-                                        </span>
-                                    </div>
-                                </>
-                            )
-                        })
-                    }
+                                <br />
+                                <h2 style={{ marginBottom: "0px" }} > ~ Add Social Media Icons ~ </h2>
+                                <small>Click and add the social media links</small>
+                                <br /><br />
+                                <div className="socialIcons">
 
-                </div>
-                <br /><br />
-                <div className="cards align">
-                    <h2>~ Added Links ~</h2>
-                    <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
-                    <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
-                    {
-                        tempsetArray ? (tempsetArray.map((e) => {
-                            return (
-                                <>
-                                    <div className="box">
-                                        <div>
-                                            <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
-                                            <h4>{e.name}</h4>
-                                            <a href={e.link} className='align2'>{e.link}</a>
-                                        </div>
-                                        <div>
-                                            <button onClick={() => handleDelete(e.name)}>Delete</button>
-                                        </div>
-                                    </div>
-                                </>
-                            )
-                        })
-                        ) : (<div></div>)
-                    }
-                </div>
-            </main>
+                                    {
+                                        objArray.map((e, index) => {
+                                            return (
+                                                <>
+                                                    <div className='socailCard' >
+                                                        <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
+                                                        <h4>{e.title}</h4>
+                                                        <input className={`name${index}`} placeholder={`Enter title`} type="text" />
+                                                        <input className={`url${index}`} placeholder="Enter link here" type="url" />
+                                                        <br />
+                                                        <span>
+                                                            <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button>
+                                                        </span>
+                                                    </div>
+                                                </>
+                                            )
+                                        })
+                                    }
+
+                                </div>
+                                <br /><br />
+                                <div className="cards align">
+                                    <h2>~ Added Links ~</h2>
+                                    <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
+                                    <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
+                                    {
+                                        tempsetArray ? (tempsetArray.map((e) => {
+                                            return (
+                                                <>
+                                                    <div className="box">
+                                                        <div>
+                                                            <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
+                                                            <h4>{e.name}</h4>
+                                                            <a href={e.link} className='align2'>{e.link}</a>
+                                                        </div>
+                                                        <div>
+                                                            <button onClick={() => handleDelete(e.name)}>Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )
+                                        })
+                                        ) : (<div></div>)
+                                    }
+                                </div>
+                            </main>
+                        </>
+
+                    )
+            }
         </>
+
     )
 }

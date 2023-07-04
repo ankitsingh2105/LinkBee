@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Login.css"
-import elem1 from "./elem1.png"
-import elem2 from "./elem2.png"
+import elem1 from "./elem1.webp"
+import elem2 from "./elem2.webp"
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { initializeApp } from "firebase/app";
 import firebaseConfig from '../../firebaseConfig'

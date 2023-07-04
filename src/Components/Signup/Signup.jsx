@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import "./Signup.css";
-import elem1 from "./elem1.png";
-import elem2 from "./elem2.png";
+import elem1 from "./elem1.webp";
+import elem2 from "./elem2.webp";
 
 import firebaseConfig from '../../firebaseConfig';
 import { initializeApp } from "firebase/app";

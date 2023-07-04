@@ -16,13 +16,12 @@ export default function FinalDisplay() {
     const auth = getAuth(app);
     const db = getFirestore(app);
     const user = auth.currentUser;
-
+    const [loading, setloading] = useState(true);
     const [profile, setprofile] = useState("");
     const [bio, setbio] = useState("");
     const [array, setArray] = useState([]);
     const [id, setID] = useState("");
-
-    console.log("this is the user-> ", user);
+    
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             const docRef = doc(db, "users", user.uid);
@@ -32,36 +31,41 @@ export default function FinalDisplay() {
                 setprofile(docSnap.data().profile);
                 setArray(docSnap.data().arrayOfObject);
                 setID(docSnap.data().userID);
+                setloading(false);
             }
         });
-        console.log("are bbhai-> ", bio)
     }, []);
 
     return (
-        <main className="FinalDisplay_main">
-            <ToastContainer style={{ zIndex: 99999999 }}/>
-            <Helmet>
-                <title>Link Bee ~ @{id}</title>
-            </Helmet>
-            <img src={user.photoURL || Dummy } alt="" />
-            <br />
-            <span> <b> @{id} </b></span>
-            <br />
-            <span>{profile}</span>
-            <br />
-            <span>{bio}</span>
-            {
-                array?.map((e) => {
-                    return (
-                        <div className='finalCard' key={e.name}>
-                            <i style={{ color: `${e.color}` }} className={e.class}></i>
-                            <span>{e.name}</span>
-                            <a href={e.link}>< i class="fa-solid fa-diamond-turn-right" /></a>
-                        </div>
-                    )
-                })
+        <>
+            {loading ? (<main className="align"><div className='loadingWheel'></div></main>)
+                :
+                (<main className="FinalDisplay_main">
+                    <ToastContainer style={{ zIndex: 99999999 }} />
+                    <Helmet>
+                        <title>Link Bee ~ @{id}</title>
+                    </Helmet>
+                    <img src={user.photoURL || Dummy} alt="" />
+                    <br />
+                    <span> <b> @{id} </b></span>
+                    <br />
+                    <span style={{ marginTop: "-10px" }} >{bio}</span>
+                    <br />  <br />
+                    <span>{profile}</span>
+                    {
+                        array?.map((e) => {
+                            return (
+                                <div className='finalCard' key={e.name}>
+                                    <i style={{ color: `${e.color}` }} className={e.class}></i>
+                                    <span>{e.name}</span>
+                                    <a href={e.link}>< i class="fa-solid fa-diamond-turn-right" /></a>
+                                </div>
+                            )
+                        })
+                    }
+                    <br />
+                </main>)
             }
-            <br />
-        </main>
+        </>
     )
 }
