@@ -80,7 +80,7 @@ export default function User() {
         },
         {
             class : "fa-brands fa-reddit",
-            title : "Event",
+            title : "Reddit",
             color : "#FF5700" 
         }
     ];
@@ -305,7 +305,7 @@ export default function User() {
                                             return (
                                                 <>
                                                     <div className='socailCard' >
-                                                        <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
+                                                        <i style={{color:`${e.color}`, boxShadow: `0px 2px 1px ${e.color}`}} className={e.class} />
                                                         <h4>{e.title}</h4>
                                                         <input className={`name${index}`} placeholder={`Enter title`} type="text" />
                                                         <input className={`url${index}`} placeholder="Enter link here" type="url" />
@@ -346,7 +346,6 @@ export default function User() {
                                     }
                                 </div>
                             </main>
-                            <br />
                         </>
 
                     )

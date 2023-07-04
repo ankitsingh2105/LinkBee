@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 5rem;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
 }
 
 .User_main h1 {
@@ -56,7 +57,7 @@
 
 .User_main input,
 .User_main textarea {
-    font-size: 15px;
+    font-size: 14px;
     padding: 1rem 1rem;
     width: 300px;
     border-radius: 10px;
@@ -67,7 +68,7 @@
 
 .User_main input::placeholder,
 .User_main textarea::placeholder {
-    font-size: 16px;
+    font-size: 14px;
     color: black;
 }
 
@@ -93,7 +94,6 @@
 }
 
 .socialIcons div {
-    border: 1px solid gray;
     width: 230px;
     height: 250px;
     background-color: rgb(244, 244, 244);
@@ -103,6 +103,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    box-shadow: 5px 5px 4px rgb(214, 206, 206);
 
 }
 
@@ -174,6 +175,10 @@
     margin-top: 5px;
 }
 
+.socailCard i{
+    box-shadow: 1px 1px 1px black;
+}
+
 
 .authNav ul :nth-child(2) {
     background-color: var(--main-color);
@@ -184,8 +189,8 @@
 }
 
 .authNav li img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     padding: 0px;
     border-radius: 20px;
 }
@@ -309,7 +314,7 @@
     }
 
     .socialIcons {
-        grid-template-columns: repeat(2, 12.5rem);
+        grid-template-columns: repeat(2, 12rem);
         grid-template-rows: repeat(6, 16rem);
     }
 
