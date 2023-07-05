@@ -22,6 +22,10 @@
     background-color: rgb(51, 55, 55);
     color: white;
     transition: all .1s ease-out;
+    user-select: none;
+}
+body{
+    user-select: none;
 }
 .finalCard:hover{
     transform: scale(1.03);
