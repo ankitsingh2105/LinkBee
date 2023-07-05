@@ -68,6 +68,15 @@ export default function FinalDisplay() {
           </span>
         </div>
       ) : (
+
+        <>
+        <nav className='FinalDisplayNav' >
+          <ul>
+            <li><img src={imageUrl}alt="" /></li>
+            <li>@{id}</li>
+            <li><button> <a href="http://linkbee.online/signup">Sign Up</a></button></li>
+          </ul>
+        </nav>
         <main className="FinalDisplay_main">
           <ToastContainer style={{ zIndex: 99999999 }} />
           <Helmet>
@@ -95,6 +104,7 @@ export default function FinalDisplay() {
           })}
           <br />
         </main>
+        </>
       )}
     </>
   );

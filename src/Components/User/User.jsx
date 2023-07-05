@@ -185,33 +185,40 @@ export default function User() {
 
     //  * adding data a firebase;
 
+    const addHttpsToLink = (link) => {
+        if (!link.startsWith('http://') && !link.startsWith('https://')) {
+          return 'https://' + link;
+        }
+        return link;
+      };
+      
+
     const handleSave = async (className, title, color, indexop) => {
         let urlClass = document.querySelector(`.url${indexop}`);
         let nameClass = document.querySelector(`.name${indexop}`);
         let profile = document.querySelector(`.profile`);
         let bio = document.querySelector(`.bio`);
         if (isValidLink(urlClass.value) && nameClass.value.length > 0) {
-
             let obj = {
                 class: className,
                 title: title,
                 color: color,
-                link: urlClass.value,
+                link: addHttpsToLink(urlClass.value),
                 name: nameClass.value,
             };
             let tempArray = [];
             const docRef = doc(db, "users", lastTerm);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-                toast("Link added see section below for preview", { autoClose: 1500 });
+                toast("Link added, see section below for preview", { autoClose: 1500 });
                 tempArray = docSnap.data().arrayOfObject || [];
             }
             tempArray.push(obj);
             setDoc(docRef, {
                 arrayOfObject: tempArray,
                 userID: docSnap.data().userID,
-                profile: docSnap.data().profile ||   profile.value,
-                bio: docSnap.data().bio ||   bio.value,
+                profile: docSnap.data().profile || profile.value,
+                bio: docSnap.data().bio || bio.value,
                 imageURL: docSnap.data().imageURL || ""
             });
             settempArray(tempArray);

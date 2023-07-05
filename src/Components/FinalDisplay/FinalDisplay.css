@@ -3,22 +3,30 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(254, 241, 200);
-    padding: 2rem 0rem;
-    font-family: sans-serif;
-
+    padding: 6rem 0rem 3rem 0rem;
+    margin-bottom: 3rem;
+    font-family: Inter, sans-serif;
+    border-radius: .5rem;
+    font-weight: 300;
 }
 
 .finalCard {
-    background-color: rgb(255, 194, 26);
     border-radius: 100px;
     padding: .5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns:repeat(3, auto);
     width: 30rem;
+    place-items: center;
     margin: 1rem 0rem;
     border: 1px solid black;
+    background-color: rgb(51, 55, 55);
+    color: white;
+    transition: all .1s ease-out;
+}
+.finalCard:hover{
+    transform: scale(1.03);
+    color: greenyellow;
+    cursor: pointer;
 }
 
 .finalCard i {
@@ -32,9 +40,6 @@
     font-size: 20px;
 }
 
-.finalCard span {
-    margin: 0px 4rem;
-}
 
 a {
     text-decoration: none;
@@ -52,6 +57,11 @@ a {
     font-weight: bolder;
     font-size: 17px;
     text-align: center;
+    font-size: 15px;
+}
+
+.FinalDisplay_main {
+    background-color: aliceblue;
 }
 
 .loadingWheel {
@@ -64,18 +74,19 @@ a {
     border-top: 4px solid var(--main-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+    
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
-  
-.errorContainer button{
+}
+
+.errorContainer button, .FinalDisplayNav button {
     padding: 5px 10px;
     background-color: var(--main-color);
     font-weight: bolder;
@@ -85,29 +96,57 @@ a {
     border-radius: 5px;
     margin-bottom: 3rem;
 }
+.FinalDisplayNav button{
+    margin: 0px;
+}
 
-@media screen and (max-width: 610px) {
-    .FinalDisplay_main span {
-        padding: 0rem 2rem;
+.FinalDisplayNav {
+    margin: 1rem 10rem 0rem 10rem;
+}
+
+.FinalDisplayNav ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+}
+
+.FinalDisplayNav ul :nth-child(2){
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 848px) {
+    .FinalDisplayNav {
+        margin: 0rem;
+        margin-top: 1rem;
     }
 }
+@media screen and (max-width: 610px) {
+    .FinalDisplay_main span {
+        padding: 0rem 1rem;
+    }
+}
+
 @media screen and (max-width: 542px) {
     .FinalDisplay_main img {
         width: 70px;
         height: 70px;
     }
-    .finalCard{
+
+    .finalCard {
         width: 25rem;
     }
 }
+
 @media screen and (max-width: 452px) {
-    .finalCard{
-        width: 20rem;
+    .finalCard {
+        width: 21rem;
     }
-    .finalCard span{
-        margin: 0px 2rem;
-    }
-    .FinalDisplay_main span{
+
+    .FinalDisplay_main span {
         font-weight: 500;
         font-size: 15px;
     }
