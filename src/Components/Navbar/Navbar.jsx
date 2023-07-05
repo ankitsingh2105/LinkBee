@@ -23,10 +23,17 @@ export default function Navbar(props) {
 
     const [userID, setuserID] = useState("");
     const db = getFirestore(app);
+    const currentUrl = window.location.pathname;
+    const parts = currentUrl.split('/');
+    const lastTerm = parts[parts.length - 1];
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
+                const currentUrl = window.location.pathname;
+                const parts = currentUrl.split('/');
+                const lastTerm = parts[parts.length - 1];
+
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
@@ -48,7 +55,7 @@ export default function Navbar(props) {
         await signOut(auth);
         toast.success("Logging Out", { autoClose: 1500 });
         setTimeout(() => {
-            window.location.href= "/";
+            window.location.href = "/";
         }, 1500);
     }
 
@@ -74,8 +81,12 @@ export default function Navbar(props) {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const movetoauth = () => {
+        window.location.href = `/user/auth/edit/${userID}`
+    }
+
     return (
-        <nav id = {id}>
+        <nav id={id}>
             <ToastContainer />
             <img src={logo} alt="" srcSet="" />
             <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
@@ -98,10 +109,8 @@ export default function Navbar(props) {
                             <li>
                                 <b>Welcome </b> {getFirstWord(name)}
                             </li>
-                            <li className="login_signup2">
-                                <Link style={{ color: "black", textDecoration: "none" }} to={`/user/auth/edit/${userID}`}>
-                                    Create
-                                </Link>
+                            <li className="login_signup2" onClick={movetoauth} style={{ color: "black", textDecoration: "none" }}>
+                                Create
                             </li>
                             <li className="login_signup2" onClick={handleLogout}>Logout</li>
                         </>

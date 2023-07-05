@@ -128,3 +128,8 @@ nav img {
         font-size: 14px;
     }
 }
+@media screen and (max-width: 387px) {
+    nav ul {
+        padding: 0px;
+    }
+}

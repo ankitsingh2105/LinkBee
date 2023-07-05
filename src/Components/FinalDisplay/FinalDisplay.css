@@ -5,13 +5,12 @@
     flex-direction: column;
     background-color: rgb(254, 241, 200);
     padding: 2rem 0rem;
-    background: radial-gradient(circle at center, #f8e3ff, #C196D2, #e5a9fd, #dec6e8, #ce6af8);
     font-family: sans-serif;
 
 }
 
 .finalCard {
-    background-color: black;
+    background-color: rgb(255, 194, 26);
     border-radius: 100px;
     padding: .5rem;
     display: flex;
@@ -20,7 +19,6 @@
     width: 30rem;
     margin: 1rem 0rem;
     border: 1px solid black;
-    color: greenyellow;
 }
 
 .finalCard i {
@@ -77,6 +75,16 @@ a {
     }
   }
   
+.errorContainer button{
+    padding: 5px 10px;
+    background-color: var(--main-color);
+    font-weight: bolder;
+    border: none;
+    font-size: 15px;
+    box-shadow: 1px 1px 2px black;
+    border-radius: 5px;
+    margin-bottom: 3rem;
+}
 
 @media screen and (max-width: 610px) {
     .FinalDisplay_main span {

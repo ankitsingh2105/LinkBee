@@ -47,12 +47,19 @@ export default function Signup() {
 
     const adduserIDToFirestore = async (uid, userID) => {
         const db = getFirestore(app);
-        const ref = doc(db, 'users', uid);
-        await setDoc(ref, { uid: uid, userID: userID });
+        const ref = doc(db, 'users', userID);
+        await setDoc(ref, {
+            arrayOfObject: [],
+            userID: userID,
+            profile: "",
+            bio: ""
+        });
+        const ref2 = doc(db, 'users', uid);
+        await setDoc(ref2, { uid: uid, userID: userID });
     };
 
-    const signupMessage =()=>{
-        toast("Processing" , {autoClose:1500});
+    const signupMessage = () => {
+        toast("Processing", { autoClose: 1500 });
     }
 
     return (

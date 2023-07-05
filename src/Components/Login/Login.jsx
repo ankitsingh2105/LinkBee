@@ -20,24 +20,23 @@ export default function Login() {
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  const [userId, setID] = useState("");
-
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const userID = e.target.userID.value;
     try {
       await signInWithEmailAndPassword(auth, email, password);
       e.target.email.value = "";
       e.target.password.value = "";
+      e.target.userID.value = "";
       toast.success("Logging in", { autoClose: 1500 });
       onAuthStateChanged(auth, async (user) => {
         if(user){
           const docRef = doc(db, "users", user.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-              setID(docSnap.data().userID);
-              window.location.href = `user/${docSnap.data().userID }`;
+              window.location.href = `user/${docSnap.exists().userID}`;
           }
       }});
     } catch (error) {
@@ -68,6 +67,7 @@ export default function Login() {
       <form onSubmit={handleLogin} action="">
         <input type="email" placeholder='Email' name="email" />
         <input placeholder='Password' type="password" name="password" />
+        <input placeholder='User ID' type="text" name="userID" />
         <button onClick={loginMessage}>Login</button>
         <br />
       </form>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { onAuthStateChanged, getAuth, updateProfile } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
+import { collection, doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 import { toast, ToastContainer } from 'react-toastify';
 import firebaseConfig from '../../firebaseConfig';
 import "./User.css"
@@ -17,71 +17,71 @@ export default function User() {
             class: "fa fa-envelope",
             title: "Gmail",
             color: "red",
-             
+
         },
         {
             class: "fa fa-facebook",
             title: "Facebook",
             color: "blue",
-             
+
         },
         {
             class: "fa fa-instagram",
             title: "Instagram",
             color: "#E4405F",
-             
+
         },
         {
             class: "fa fa-snapchat-ghost",
             title: "Snapchat",
             color: "yellow",
-             
+
         },
         {
             class: "fa fa-link",
             title: "Website",
             color: "black",
-             
+
         },
         {
             class: "fa fa-stack-overflow",
             title: "Stack Overflow",
             color: "orange",
-             
+
         },
         {
             class: "fa fa-youtube",
             title: "YouTube",
             color: "#CD201F",
-             
+
         },
         {
             class: "fa fa-github",
             title: "GitHub",
             color: "black",
-             
+
         },
         {
             class: "fa fa-twitter",
             title: "Twitter",
             color: "#1DA1F2",
-             
+
         },
         {
             class: "fa fa-linkedin",
             title: "LinkedIn",
             color: "#0A66C2",
-             
+
         },
         {
-            class : "fa-solid fa-calendar-days",
-            title : "Event",
-            color : "black" 
+            class: "fa-solid fa-calendar-days",
+            title: "Event",
+            color: "black"
         },
         {
-            class : "fa-brands fa-reddit",
-            title : "Reddit",
-            color : "#FF5700" 
+            class: "fa-brands fa-reddit",
+            title: "Reddit",
+            color: "#FF5700"
         }
     ];
 
@@ -90,13 +90,18 @@ export default function User() {
     const auth = getAuth(app);
     const storage = getStorage(app);
     const db = getFirestore(app);
-    const user = auth.currentUser;
 
     const [userID, setuserID] = useState("");
     const [uploadedImage, setImage] = useState(Dummy);
     const [tempsetArray, settempArray] = useState([]);
     const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
     const [loading, setloading] = useState(true);
+
+
+    const currentUrl = window.location.pathname;
+    const parts = currentUrl.split('/');
+    const lastTerm = parts[parts.length - 1];
+
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -106,6 +111,9 @@ export default function User() {
                 if (docSnap.exists()) {
                     setuserID(docSnap.data().userID);
                 }
+            }
+            else {
+                window.location.href = "/";
             }
         });
     }, []);
@@ -118,18 +126,19 @@ export default function User() {
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
+            const currentUrl = window.location.pathname;
+            const parts = currentUrl.split('/');
+            const lastTerm = parts[parts.length - 1];
             if (user) {
                 setImage(user.photoURL);
-                const docRef = doc(db, "users", user.uid);
+                const docRef = doc(db, "users", lastTerm);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
                     settempArray(docSnap.data().arrayOfObject);
+                    setnameProfile({ profile: docSnap.data().profile, bio: docSnap.data().bio });
+                    setloading(false);
                 }
             }
-            const docRef = doc(db, "users", user.uid);
-            const docSnap = await getDoc(docRef);
-            setnameProfile({ profile: docSnap.data().profile, bio: docSnap.data().bio });
-            setloading(false);
         });
     }, []);
 
@@ -139,15 +148,18 @@ export default function User() {
         setImage(photo);
     };
 
+
     const handleUploading = async () => {
         if (uploadedImage) {
             const user = auth.currentUser;
             if (!user) {
                 toast.error('Please login', { autoClose: 1500 });
+                return;
             }
+
             const storageRef = ref(
                 storage,
-                `images/${user.uid + ' - ' + user.email}/${uploadedImage.name}`
+                `images/${lastTerm + ' - ' + user.email}/${uploadedImage.name}`
             );
 
             try {
@@ -156,25 +168,24 @@ export default function User() {
                 const url = await getDownloadURL(storageRef);
 
                 await updateProfile(auth.currentUser, { photoURL: url });
-                try {
-                    window.location.reload();
-                }
-                catch (err) {
-                    toast.error('Something went wrong', { autoClose: 1500 });
-                }
+
+                const userRef = doc(db, "users", lastTerm);
+                await setDoc(userRef, { imageURL: url }, { merge: true });
+
+                toast('Photo uploaded successfully', { autoClose: 1500 });
+                window.location.reload();
             } catch (err) {
-                toast.error('Photo not updated', { autoClose: 1500 });
+                toast.error('Failed to upload photo', { autoClose: 1500 });
             }
-        }
-        else {
-            toast("Please choose image", { autoClose: 1500 });
+        } else {
+            toast('Please choose an image', { autoClose: 1500 });
         }
     };
+
 
     //  * adding data a firebase;
 
     const handleSave = async (className, title, color, indexop) => {
-        const user = auth.currentUser;
         let urlClass = document.querySelector(`.url${indexop}`);
         let nameClass = document.querySelector(`.name${indexop}`);
         let profile = document.querySelector(`.profile`);
@@ -187,10 +198,9 @@ export default function User() {
                 color: color,
                 link: urlClass.value,
                 name: nameClass.value,
-                currentAddState: "Added",
             };
             let tempArray = [];
-            const docRef = doc(db, "users", user.uid);
+            const docRef = doc(db, "users", lastTerm);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 toast("Link added see section below for preview", { autoClose: 1500 });
@@ -199,10 +209,10 @@ export default function User() {
             tempArray.push(obj);
             setDoc(docRef, {
                 arrayOfObject: tempArray,
-                uid: docSnap.data().uid,
                 userID: docSnap.data().userID,
                 profile: profile.value,
-                bio: bio.value
+                bio: bio.value,
+                imageURL: docSnap.data().imageURL || ""
             });
             settempArray(tempArray);
         }
@@ -221,20 +231,20 @@ export default function User() {
         let newTemp = tempsetArray.filter((e) => {
             return e.name !== naam;
         });
-        const docRef = doc(db, "users", user.uid);
+        const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
         setDoc(docRef, {
             arrayOfObject: newTemp,
-            uid: docSnap.data().uid,
             userID: docSnap.data().userID,
             profile: docSnap.data().profile || "",
-            bio: docSnap.data().bio || ""
+            bio: docSnap.data().bio || "",
+            imageURL: docSnap.data().imageURL || ""
         });
         settempArray(newTemp);
     };
 
     const AddNameAndBio = async () => {
-        const docRef = doc(db, "users", user.uid);
+        const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
         let profile = document.querySelector(`.profile`);
         let bio = document.querySelector(`.bio`);
@@ -248,8 +258,8 @@ export default function User() {
             }
             setDoc(docRef, {
                 arrayOfObject: tempArray,
-                uid: docSnap.data().uid,
                 userID: docSnap.data().userID,
+                imageURL: docSnap.data().imageURL,
                 profile: profile.value,
                 bio: bio.value
             });
@@ -287,7 +297,7 @@ export default function User() {
                                     <button onClick={handleUploading}>Upload New Image</button>
 
                                 </div>
-                                <input className="profile" placeholder='Profile name (@yourname)' type="text" />
+                                <input className="profile" placeholder='Profile name' type="text" />
                                 <br />
                                 <textarea className="bio" placeholder='Bio' cols="30" rows="3" />
                                 <br />
@@ -303,18 +313,16 @@ export default function User() {
                                     {
                                         objArray.map((e, index) => {
                                             return (
-                                                <>
-                                                    <div className='socailCard' >
-                                                        <i style={{color:`${e.color}`, boxShadow: `0px 2px 1px ${e.color}`}} className={e.class} />
-                                                        <h4>{e.title}</h4>
-                                                        <input className={`name${index}`} placeholder={`Enter title`} type="text" />
-                                                        <input className={`url${index}`} placeholder="Enter link here" type="url" />
-                                                        <br />
-                                                        <span>
-                                                            <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button>
-                                                        </span>
-                                                    </div>
-                                                </>
+                                                <div key={index} className='socailCard' >
+                                                    <i style={{ color: `${e.color}`, boxShadow: `0px 2px 1px ${e.color}` }} className={e.class} />
+                                                    <h4>{e.title}</h4>
+                                                    <input className={`name${index}`} placeholder={`Enter title`} type="text" />
+                                                    <input className={`url${index}`} placeholder="Enter link here" type="url" />
+                                                    <br />
+                                                    <span>
+                                                        <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button>
+                                                    </span>
+                                                </div>
                                             )
                                         })
                                     }
@@ -326,20 +334,18 @@ export default function User() {
                                     <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
                                     <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
                                     {
-                                        tempsetArray ? (tempsetArray.map((e) => {
+                                        tempsetArray ? (tempsetArray.map((e, index) => {
                                             return (
-                                                <>
-                                                    <div className="box">
-                                                        <div>
-                                                            <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
-                                                            <h4>{e.name}</h4>
-                                                            <a href={e.link} className='align2'>{e.link}</a>
-                                                        </div>
-                                                        <div>
-                                                            <button onClick={() => handleDelete(e.name)}>Delete</button>
-                                                        </div>
+                                                <div key={index} className="box">
+                                                    <div>
+                                                        <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
+                                                        <h4>{e.name}</h4>
+                                                        <a href={e.link} className='align2'>{e.link}</a>
                                                     </div>
-                                                </>
+                                                    <div>
+                                                        <button onClick={() => handleDelete(e.name)}>Delete</button>
+                                                    </div>
+                                                </div>
                                             )
                                         })
                                         ) : (<div></div>)

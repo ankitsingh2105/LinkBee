@@ -160,3 +160,8 @@ body{
         font-size: 15px;
     }
 }
+@media screen and (max-width: 379px) {
+    .main_home h1 {
+        font-size: 4.2rem;
+    }
+}
