@@ -29,6 +29,8 @@ body{
 
 .main_home img {
     border-radius: 30px;
+    width:  430px;
+    height: 540px;
 }
 
 
@@ -85,39 +87,22 @@ body{
 @media screen and (max-width: 906px) {
     .main_home img {
         width: 300px;
-        height: 350px;
+        height: 400px;
     }
 }
 
-@media screen and (max-width: 858px) {
-    .main_home img {
-        width: 300px;
-        height: 350px;
-    }
+@media screen and (max-width: 890px) {
 
     .main_home h1 {
         font-size: 5.5rem;
         margin-top: 3rem;
     }
-}
-
-@media screen and (max-width: 844px) {
-    .main_home img {
-        width: 270px;
-        height: 300px;
-    }
-
-    .main_home h1 {
-        font-size: 5.3rem;
-        margin-top: 3rem;
-    }
-
     .main_home p {
         font-size: 13.5px;
     }
 }
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 863px) {
 
     .main_home,
     .main_home h1 {
@@ -127,8 +112,9 @@ body{
     }
 
     .main_home img {
-        width: 358px;
-        height: 331px;
+        width: 388px;
+        height: 541px;
+        margin: 2rem 0rem;
     }
 
     .main_home h1:nth-child(1) {
@@ -141,11 +127,6 @@ body{
 }
 
 @media screen and (max-width: 485px) {
-    .main_home img {
-        width: 340px;
-        height: 300px;
-        margin-bottom: 2rem;
-    }
 
     .main_home h1 {
         font-size: 4.5rem;
