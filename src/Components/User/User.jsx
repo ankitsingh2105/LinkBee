@@ -97,6 +97,13 @@ export default function User() {
     const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
     const [loading, setloading] = useState(true);
 
+    const [profile, setprofile] = useState('');
+    const [bio, setbio] = useState('');
+    const [array, setArray] = useState([]);
+    const [id, setID] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [imageUrl, setImageUrl] = useState(Dummy);
+
 
     const currentUrl = window.location.pathname;
     const parts = currentUrl.split('/');
@@ -187,11 +194,11 @@ export default function User() {
 
     const addHttpsToLink = (link) => {
         if (!link.startsWith('http://') && !link.startsWith('https://')) {
-          return 'https://' + link;
+            return 'https://' + link;
         }
         return link;
-      };
-      
+    };
+
 
     const handleSave = async (className, title, color, indexop) => {
         let urlClass = document.querySelector(`.url${indexop}`);
@@ -274,6 +281,24 @@ export default function User() {
             setnameProfile({ profile: profile.value, bio: bio.value });
         }
     }
+
+    useEffect(() => {
+        onAuthStateChanged(auth, async (user) => {
+            const docRef = doc(db, 'users', lastTerm);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setbio(docSnap.data().bio);
+                setprofile(docSnap.data().profile);
+                setArray(docSnap.data().arrayOfObject);
+                setID(docSnap.data().userID);
+                setloading(false);
+                setImageUrl(docSnap.data().imageURL || Dummy);
+            } else {
+                setloading(false);
+                setErrorMessage('Invalid userID. User not found.');
+            }
+        });
+    }, []);
 
     return (
         <>
@@ -358,6 +383,36 @@ export default function User() {
                                         ) : (<div></div>)
                                     }
                                 </div>
+                            </main>
+
+                            {/* This is the preview */}
+                            <h1 className="align" >~ Preview ~</h1>
+                            <main className="FinalDisplay_main2">
+                                <ToastContainer style={{ zIndex: 99999999 }} />
+                                <Helmet>
+                                    <title>Link Bee ~ @{id}</title>
+                                </Helmet>
+                                <img src={imageUrl} alt="" />
+                                <br />
+                                <span>
+                                    <b> @{id} </b>
+                                </span>
+                                <br />
+                                <span style={{ marginTop: '-10px' }}>{bio}</span>
+                                <br /> <br />
+                                <span>{profile}</span>
+                                {array?.map((e) => {
+                                    return (
+                                        <div className="finalCard" key={e.name}>
+                                            <i style={{ color: `${e.color}` }} className={e.class}></i>
+                                            <span>{e.name}</span>
+                                            <a href={e.link}>
+                                                <i className="fa-solid fa-diamond-turn-right" />
+                                            </a>
+                                        </div> 
+                                    );
+                                })}
+                                <br />
                             </main>
                         </>
 

@@ -234,6 +234,27 @@
     }
 }
 
+.FinalDisplay_main2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.FinalDisplay_main2 img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-top: 2rem;
+}
+
+.FinalDisplay_main2 span {
+    font-weight: bolder;
+    font-size: 17px;
+    text-align: center;
+    font-size: 15px;
+}
+
 @media screen and (max-width: 949px) {
     .socialIcons {
         grid-template-columns: repeat(2, 20rem);
