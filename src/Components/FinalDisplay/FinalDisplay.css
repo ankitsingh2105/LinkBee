@@ -107,6 +107,9 @@ a {
 .FinalDisplayNav {
     margin: 1rem 10rem 0rem 10rem;
 }
+.FinalDisplayNav img {
+    border-radius: 100px;
+}
 
 .FinalDisplayNav ul {
     padding: 0;
