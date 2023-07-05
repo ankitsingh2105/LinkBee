@@ -210,8 +210,8 @@ export default function User() {
             setDoc(docRef, {
                 arrayOfObject: tempArray,
                 userID: docSnap.data().userID,
-                profile: profile.value,
-                bio: bio.value,
+                profile: docSnap.data().profile ||   profile.value,
+                bio: docSnap.data().bio ||   bio.value,
                 imageURL: docSnap.data().imageURL || ""
             });
             settempArray(tempArray);

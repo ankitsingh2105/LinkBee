@@ -23,17 +23,10 @@ export default function Navbar(props) {
 
     const [userID, setuserID] = useState("");
     const db = getFirestore(app);
-    const currentUrl = window.location.pathname;
-    const parts = currentUrl.split('/');
-    const lastTerm = parts[parts.length - 1];
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                const currentUrl = window.location.pathname;
-                const parts = currentUrl.split('/');
-                const lastTerm = parts[parts.length - 1];
-
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
