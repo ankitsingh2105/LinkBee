@@ -365,7 +365,7 @@ export default function User() {
                         <>
                             <nav className='authNav'>
                                 <ul>
-                                    <li onClick={()=>{window.location.href="/"}} ><img src={logo} alt="" /></li>
+                                    <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
                                     <li onClick={() => { window.location.href = `/${userID}` }} >{`linkbee.online/${userID}`}</li>
                                 </ul>
                             </nav>
@@ -440,12 +440,12 @@ export default function User() {
                                 <main>
 
                                     <h1 className="align" >~ Preview ~</h1>
-                                    <main style={{ backgroundImage: gradientValue }} className="FinalDisplay_main2">
-                                        <div className="notch"></div>
+                                    <main style={{ backgroundImage: gradientValue }} className="FinalDisplay_main2" >
                                         <ToastContainer style={{ zIndex: 99999999 }} />
                                         <Helmet>
                                             <title>Link Bee ~ @{id}</title>
                                         </Helmet>
+                                        <div className="notch"></div>
                                         <img src={imageUrl} alt="" />
                                         <br />
                                         <span>
@@ -457,7 +457,7 @@ export default function User() {
                                         <span>{profile}</span>
                                         {tempsetArray ? (tempsetArray.map((e, index) => {
                                             return (
-                                                <div className="finalCard" key={e.name}>
+                                                <div style={{ width: "17rem" }} className="finalCard" key={e.name}>
                                                     <i style={{ color: `${e.color}` }} className={e.class}></i>
                                                     <span>{e.name}</span>
                                                     <a href={e.link}>
