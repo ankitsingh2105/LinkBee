@@ -9,6 +9,7 @@ import "./User.css"
 import Dummy from "./dummyimage.webp"
 import logo from "../Navbar/link bee.png"
 import { Helmet } from 'react-helmet';
+// import { SketchPicker } from 'react-color';
 
 export default function User() {
 
@@ -84,6 +85,36 @@ export default function User() {
             color: "#FF5700"
         }
     ];
+    const backgroundsGradients = [
+        {
+            gradient: " linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+        },
+        {
+            gradient: " linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)",
+        },
+        {
+            gradient: " linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%)",
+        },
+        {
+            gradient: " linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%)",
+        },
+        {
+            gradient: " linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)",
+        },
+        {
+            gradient: " linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)",
+        },
+        {
+            gradient: " linear-gradient(132deg, #F4D03F 0%, #16A085 100%)",
+        },
+        {
+            gradient: " linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%)"
+        },
+        {
+            gradient: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)"
+        },
+    ];
+
 
 
     const app = initializeApp(firebaseConfig);
@@ -101,7 +132,7 @@ export default function User() {
     const [bio, setbio] = useState('');
     const [array, setArray] = useState([]);
     const [id, setID] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [gradientValue, setgradientValue] = useState("")
     const [imageUrl, setImageUrl] = useState(Dummy);
 
 
@@ -125,10 +156,23 @@ export default function User() {
         });
     }, []);
 
-    const isValidLink = (link) => {
-        const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
-        return urlRegex.test(link);
-    };
+    useEffect(() => {
+        onAuthStateChanged(auth, async (user) => {
+            const docRef = doc(db, 'users', lastTerm);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setbio(docSnap.data().bio);
+                setprofile(docSnap.data().profile);
+                setArray(docSnap.data().arrayOfObject);
+                setID(docSnap.data().userID);
+                setloading(false);
+                setImageUrl(docSnap.data().imageURL || Dummy);
+                setgradientValue(docSnap.data().gradient || "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)")
+            } else {
+                setloading(false);
+            }
+        });
+    }, []);
 
 
     useEffect(() => {
@@ -149,6 +193,11 @@ export default function User() {
         });
     }, []);
 
+
+    const isValidLink = (link) => {
+        const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
+        return urlRegex.test(link);
+    };
 
     const handleImageChanges = (e) => {
         const photo = e.target.files[0];
@@ -226,7 +275,8 @@ export default function User() {
                 userID: docSnap.data().userID,
                 profile: docSnap.data().profile || profile.value,
                 bio: docSnap.data().bio || bio.value,
-                imageURL: docSnap.data().imageURL || ""
+                imageURL: docSnap.data().imageURL || "",
+                gradient: gradientValue
             });
             settempArray(tempArray);
         }
@@ -252,7 +302,8 @@ export default function User() {
             userID: docSnap.data().userID,
             profile: docSnap.data().profile || "",
             bio: docSnap.data().bio || "",
-            imageURL: docSnap.data().imageURL || ""
+            imageURL: docSnap.data().imageURL || "",
+            gradient: gradientValue
         });
         settempArray(newTemp);
     };
@@ -275,30 +326,30 @@ export default function User() {
                 userID: docSnap.data().userID,
                 imageURL: docSnap.data().imageURL,
                 profile: profile.value,
-                bio: bio.value
+                bio: bio.value,
+                gradient: gradientValue
             });
             toast("Name and bio updated, see section below", { autoClose: 1500 });
             setnameProfile({ profile: profile.value, bio: bio.value });
         }
     }
 
-    useEffect(() => {
-        onAuthStateChanged(auth, async (user) => {
-            const docRef = doc(db, 'users', lastTerm);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                setbio(docSnap.data().bio);
-                setprofile(docSnap.data().profile);
-                setArray(docSnap.data().arrayOfObject);
-                setID(docSnap.data().userID);
-                setloading(false);
-                setImageUrl(docSnap.data().imageURL || Dummy);
-            } else {
-                setloading(false);
-                setErrorMessage('Invalid userID. User not found.');
-            }
+
+    const handleClick = async (e) => {
+        setgradientValue(e);
+        const docRef = doc(db, "users", lastTerm);
+        const docSnap = await getDoc(docRef);
+        setDoc(docRef, {
+            arrayOfObject: docSnap.data().arrayOfObject,
+            userID: docSnap.data().userID,
+            imageURL: docSnap.data().imageURL,
+            profile: docSnap.data().profile,
+            bio: docSnap.data().bio,
+            gradient: e
         });
-    }, []);
+    }
+
+
 
     return (
         <>
@@ -362,21 +413,20 @@ export default function User() {
                                 </div>
                                 <br /><br />
                                 <div className="cards align">
-                                    <h2>~ Added Links ~</h2>
+                                    <h2>~ Edits Links ~</h2>
                                     <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
                                     <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
                                     {
                                         tempsetArray ? (tempsetArray.map((e, index) => {
                                             return (
                                                 <div key={index} className="box">
-                                                    <div>
-                                                        <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
-                                                        <h4>{e.name}</h4>
-                                                        <a href={e.link} className='align2'>{e.link}</a>
-                                                    </div>
-                                                    <div>
-                                                        <button onClick={() => handleDelete(e.name)}>Delete</button>
-                                                    </div>
+                                                    <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
+                                                    <br />
+                                                    <h4>{e.name}</h4>
+                                                    <br />
+                                                    <a href={e.link} className='align2'>{e.link}</a>
+                                                    <br />
+                                                    <button onClick={() => handleDelete(e.name)}>Delete</button>
                                                 </div>
                                             )
                                         })
@@ -386,34 +436,57 @@ export default function User() {
                             </main>
 
                             {/* This is the preview */}
-                            <h1 className="align" >~ Preview ~</h1>
-                            <main className="FinalDisplay_main2">
-                                <ToastContainer style={{ zIndex: 99999999 }} />
-                                <Helmet>
-                                    <title>Link Bee ~ @{id}</title>
-                                </Helmet>
-                                <img src={imageUrl} alt="" />
-                                <br />
-                                <span>
-                                    <b> @{id} </b>
-                                </span>
-                                <br />
-                                <span style={{ marginTop: '-10px' }}>{bio}</span>
-                                <br /> <br />
-                                <span>{profile}</span>
-                                {array?.map((e) => {
-                                    return (
-                                        <div className="finalCard" key={e.name}>
-                                            <i style={{ color: `${e.color}` }} className={e.class}></i>
-                                            <span>{e.name}</span>
-                                            <a href={e.link}>
-                                                <i className="fa-solid fa-diamond-turn-right" />
-                                            </a>
-                                        </div> 
-                                    );
-                                })}
-                                <br />
-                            </main>
+                            <div className="align2">
+                                <main>
+
+                                    <h1 className="align" >~ Preview ~</h1>
+                                    <main style={{ backgroundImage: gradientValue }} className="FinalDisplay_main2">
+                                        <div className="notch"></div>
+                                        <ToastContainer style={{ zIndex: 99999999 }} />
+                                        <Helmet>
+                                            <title>Link Bee ~ @{id}</title>
+                                        </Helmet>
+                                        <img src={imageUrl} alt="" />
+                                        <br />
+                                        <span>
+                                            <b> @{id} </b>
+                                        </span>
+                                        <br />
+                                        <span style={{ marginTop: '-10px' }}>{bio}</span>
+                                        <br /> <br />
+                                        <span>{profile}</span>
+                                        {tempsetArray ? (tempsetArray.map((e, index) => {
+                                            return (
+                                                <div className="finalCard" key={e.name}>
+                                                    <i style={{ color: `${e.color}` }} className={e.class}></i>
+                                                    <span>{e.name}</span>
+                                                    <a href={e.link}>
+                                                        <i className="fa-solid fa-diamond-turn-right" />
+                                                    </a>
+                                                </div>
+                                            );
+                                        })) : (<div></div>)}
+                                        <br />
+                                    </main>
+                                </main>
+                                <main className="align5">
+                                    <div className='align'>
+                                        <h1>~ Select Gradient ~</h1>
+                                        <main className="gradient_background">
+                                            {
+                                                backgroundsGradients.map((e, index) => {
+                                                    return (
+                                                        <div key={index} onClick={() => handleClick(e.gradient)} style={{ backgroundImage: e.gradient }} className="gradient_box"></div>
+                                                    )
+                                                })
+                                            }
+                                        </main>
+                                    </div>
+                                    <br /><br />
+                                </main>
+                            </div>
+                            <br />
+
                         </>
 
                     )

@@ -21,6 +21,7 @@ export default function FinalDisplay() {
   const [id, setID] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [imageUrl, setImageUrl] = useState(Dummy);
+  const [gradient, setgradient] = useState("")
 
 
   const currentUrl = window.location.pathname;
@@ -38,6 +39,7 @@ export default function FinalDisplay() {
         setID(docSnap.data().userID);
         setloading(false);
         setImageUrl(docSnap.data().imageURL || Dummy );
+        setgradient(docSnap.data().gradient);
       } else {
         setloading(false);
         setErrorMessage('Invalid userID. User not found.');
@@ -77,7 +79,7 @@ export default function FinalDisplay() {
             <li><button> <a href="http://linkbee.online/">Link Bee</a></button></li>
           </ul>
         </nav>
-        <main className="FinalDisplay_main">
+        <main className="FinalDisplay_main" style={{backgroundImage : gradient}} >
           <ToastContainer style={{ zIndex: 99999999 }} />
           <Helmet>
             <title>Link Bee ~ @{id}</title>

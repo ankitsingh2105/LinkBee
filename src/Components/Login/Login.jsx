@@ -4,6 +4,7 @@ import elem1 from "./elem1.webp"
 import elem2 from "./elem2.webp"
 import { initializeApp } from "firebase/app";
 import firebaseConfig from '../../firebaseConfig'
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +18,7 @@ export default function Login() {
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +29,9 @@ export default function Login() {
       e.target.password.value = "";
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Logging in", { autoClose: 1500 });
-      window.location.href = `user/${auth.currentUser.userID}`;
+      const docRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      window.location.href = `user/${docSnap.data().userID}`;
     } catch (error) {
       toast.error("Invalid Credentials", { autoClose: 1500 });
     }
@@ -59,6 +63,9 @@ export default function Login() {
         <button onClick={loginMessage}>Login</button>
         <br />
       </form>
+      <h2>Don't have an account? Sign Up here</h2>
+            <button onClick={() => { window.location.href = "/signup" }} >Sign Up</button>
+            <br />
       <br />
     </main>
   )

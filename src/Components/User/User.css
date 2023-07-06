@@ -26,27 +26,27 @@
     margin: 10px;
 }
 
+.align5 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
 .align {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+
 }
 
 .align2 {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.User_main button {
-    padding: 7px 15px;
-    background-color: var(--main-color);
-    font-weight: bolder;
-    border: none;
-    font-size: 15px;
-    box-shadow: 1px 1px 2px black;
-    border-radius: 5px;
 }
 
 .align div {
@@ -125,6 +125,9 @@
 .box {
     display: flex;
     margin: 20px 0px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 1px 1px 3px rgb(122, 150, 144);
 }
 
 .box i {
@@ -148,6 +151,19 @@
     margin: 0px 10px;
 }
 
+.gradient_box {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.gradient_background {
+    display: grid;
+    grid-template-columns: repeat(4, 10rem);
+    grid-template-rows: repeat(2, 10rem);
+    place-items: center;
+}
+
 .alignSocial {
     display: flex;
     align-items: center;
@@ -167,16 +183,24 @@
 
 .cards {
     background-color: aliceblue;
-    padding: 3rem 1rem;
+    padding: 3rem 10px;
     border-radius: 30px;
+    text-align: center;
 }
 
 .socailCard input {
     margin-top: 5px;
 }
 
-.socailCard i{
+.socailCard i {
     box-shadow: 1px 1px 1px black;
+}
+
+.socailCard {
+    background-color: #fee2f8;
+    background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
+
+
 }
 
 
@@ -234,25 +258,43 @@
     }
 }
 
-.FinalDisplay_main2{
+.FinalDisplay_main2 {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+    border-radius: 20px;
+    border: 6px solid black;
 }
 
 .FinalDisplay_main2 img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     border-radius: 100px;
     margin-top: 2rem;
 }
 
 .FinalDisplay_main2 span {
     font-weight: bolder;
-    font-size: 17px;
+    font-size: 13px;
     text-align: center;
-    font-size: 15px;
+}
+
+.notch {
+    position: relative;
+    width: 140px;
+    height: 13px;
+    background-color: black;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+@media screen and (max-width: 1047px) {
+    .gradient_background {
+        grid-template-columns: repeat(3, 10rem);
+        grid-template-rows: repeat(3, 10rem);
+    }
 }
 
 @media screen and (max-width: 949px) {
@@ -276,6 +318,7 @@
 
     .cards {
         font-size: 12px;
+        margin: 0rem 3rem;
     }
 
     .User_main img {
@@ -287,7 +330,8 @@
         width: 173px;
         font-size: 12px;
     }
-    .User_main textarea{
+
+    .User_main textarea {
         font-size: 12px;
     }
 
@@ -301,18 +345,12 @@
         grid-template-rows: repeat(5, 17rem);
     }
 
-    
-
     .User_main h1 {
         font-size: 2.7rem;
     }
 
     .User_main h2 {
         font-size: 1.3rem;
-    }
-
-    .align2 {
-        flex-direction: column;
     }
 
     .align2 button {
@@ -343,5 +381,54 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        width: 340px;
+        padding: 10px 0px;
+    }
+}
+
+@media screen and (max-width: 936px) {
+    .gradient_background {
+        grid-template-columns: repeat(2, 10rem);
+        grid-template-rows: repeat(5, 10rem);
+    }
+}
+
+@media screen and (max-width: 756px) {
+    .gradient_background {
+        grid-template-columns: repeat(3, 10rem);
+        grid-template-rows: repeat(3, 10rem);
+    }
+
+    .align2 {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .gradient_background {
+        grid-template-columns: repeat(2, 10rem);
+        grid-template-rows: repeat(4, 10rem);
+    }
+
+    .align2 {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 382px) {
+    .authNav li img {
+        margin-left: 1rem;
+    }
+
+    .User_main h1 {
+        font-size: 2.5rem;
+    }
+
+    .socialIcons div {
+        width: 170px;
+    }
+
+    .socialIcons {
+        grid-template-columns: repeat(2, 11.2rem);
     }
 }

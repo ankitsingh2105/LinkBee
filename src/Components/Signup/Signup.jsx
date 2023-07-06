@@ -58,10 +58,6 @@ export default function Signup() {
         await setDoc(ref2, { uid: uid, userID: userID });
     };
 
-    const signupMessage = () => {
-        toast("Processing", { autoClose: 1500 });
-    }
-
     return (
         <main className="Signup_main">
 
@@ -87,9 +83,13 @@ export default function Signup() {
                 <input type="email" placeholder='Email' name="email" required />
                 <input type="text" placeholder='User ID (cannot be changed)' name="userID" required />
                 <input placeholder='Password' type="password" name="password" required />
-                <button onClick={signupMessage} >Sign Up</button>
+                <button onClick={() => { toast("Processing", { autoClose: 1500 }); }} >Sign Up</button>
                 <br />
             </form>
+
+            <h2>Already have an account? Login here</h2>
+            <button onClick={() => { window.location.href = "/login" }} >Log In</button>
+            <br /><br />
         </main>
     )
 }

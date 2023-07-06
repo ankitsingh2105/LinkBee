@@ -3,10 +3,18 @@ body{
 }
 .main_home {
     margin: 3rem;
-    margin-top: 0px;
+    margin-top: -20px;
     display: flex;
     padding-top: 6rem;
     font-family: var(--main-font);
+}
+
+.main_home button{
+    font-size: 40px;
+    font-family: var(--main-font);
+}
+.main_home p{
+    font-family: sans-serif;
 }
 
 .main_home h1 {
@@ -114,7 +122,7 @@ body{
     .main_home img {
         width: 388px;
         height: 541px;
-        margin: 2rem 0rem;
+        margin: 4rem 0rem;
     }
 
     .main_home h1:nth-child(1) {
@@ -123,6 +131,9 @@ body{
     .main_home{
         margin: 0px;
         padding-top:9rem;
+    }
+    .main_home button{
+        font-size: 30px;
     }
 }
 

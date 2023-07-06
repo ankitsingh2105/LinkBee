@@ -1,6 +1,7 @@
 :root {
     --main-color: #FFBF23;
     --main-font: 'PT Serif', serif;
+    --main-font1: sans-serif;
 }
 body {
     transition: all .7s ease-out;
@@ -17,6 +18,16 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background-color: var(--main-color);
     border-radius: 89px;
+}
+
+button{
+    padding: 5px 10px;
+    background-color: var(--main-color);
+    font-weight: bolder;
+    border: none;
+    font-size: 15px;
+    box-shadow: 1px 1px 2px black;
+    border-radius: 5px;
 }
 nav {
     display: flex;
