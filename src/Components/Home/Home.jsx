@@ -15,7 +15,7 @@ export default function Home(props) {
                     <p>
                         Welcome to our platform designed to empower you in the digital realm. Curate and showcase your online presence with ease, allowing others to explore the depths of your creativity. <b>Share you portfolio, social media accounts and more only with one ~ Link Bee ~ link.</b>
                     </p>
-                    <button>Get Started</button>
+                    <button onClick={()=>{window.location.href = "/login"}} >Get Started</button>
                 </div>
             </div>
             <div>

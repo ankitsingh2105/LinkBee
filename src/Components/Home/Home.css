@@ -13,6 +13,9 @@ body{
     font-size: 40px;
     font-family: var(--main-font);
 }
+.main_home button:hover{
+    cursor: pointer;
+}
 .main_home p{
     font-family: sans-serif;
 }
