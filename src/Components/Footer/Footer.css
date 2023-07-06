@@ -9,9 +9,11 @@
     height: 70px;
 }
 .Footer_main a {
-    color: var(--main-color);
-    text-shadow: 0px 0px 1px rgb(255, 185, 7);
+    color: black;
     font-weight: bolder;
+    background-color: var(--main-color);
+    padding: 0px 2px;
+    border-radius: 2px;
 }
 .Footer_main small{
     margin-bottom: 1rem;

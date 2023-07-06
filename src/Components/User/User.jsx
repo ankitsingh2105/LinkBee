@@ -365,7 +365,7 @@ export default function User() {
                         <>
                             <nav className='authNav'>
                                 <ul>
-                                    <li><img src={logo} alt="" /></li>
+                                    <li onClick={()=>{window.location.href="/"}} ><img src={logo} alt="" /></li>
                                     <li onClick={() => { window.location.href = `/${userID}` }} >{`linkbee.online/${userID}`}</li>
                                 </ul>
                             </nav>

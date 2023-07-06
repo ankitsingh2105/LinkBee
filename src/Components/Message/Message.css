@@ -13,6 +13,8 @@
     border: 1px solid black;
     border-radius: 10px;
     padding: 1rem;
+    background-color: var(--main-color);
+    font-weight: bolder;
 }
 
 .Message_main input::placeholder,
@@ -29,7 +31,7 @@
 }
 
 .Message_main form {
-    padding: 2rem;
+    padding: 1rem;
     margin-bottom: 3rem;
     border: 2px solid black;
     border-radius: 30px;
