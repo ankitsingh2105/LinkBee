@@ -160,7 +160,7 @@
 .gradient_background {
     display: grid;
     grid-template-columns: repeat(4, 10rem);
-    grid-template-rows: repeat(2, 10rem);
+    grid-template-rows: repeat(3, 10rem);
     place-items: center;
 }
 
@@ -263,7 +263,7 @@
     background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
     border-radius: 20px;
     border: 6px solid black;
-    width: 290px;
+    width: 280px;
     height: 500px;
     overflow: auto;
 }

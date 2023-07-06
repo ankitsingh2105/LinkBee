@@ -350,7 +350,6 @@ export default function User() {
     }
 
 
-
     return (
         <>
             <Helmet>
@@ -445,7 +444,8 @@ export default function User() {
                                         <Helmet>
                                             <title>Link Bee ~ @{id}</title>
                                         </Helmet>
-                                        <div className="notch"></div>
+                                        <div className="notch">
+                                        </div>
                                         <img src={imageUrl} alt="" />
                                         <br />
                                         <span>
@@ -455,7 +455,7 @@ export default function User() {
                                         <span style={{ marginTop: '-10px' }}>{bio}</span>
                                         <br /> <br />
                                         <span>{profile}</span>
-                                        {tempsetArray ? (tempsetArray.map((e, index) => {
+                                        {tempsetArray ? (tempsetArray.map((e) => {
                                             return (
                                                 <div style={{ width: "17rem" }} className="finalCard" key={e.name}>
                                                     <i style={{ color: `${e.color}` }} className={e.class}></i>
