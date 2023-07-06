@@ -84,7 +84,6 @@ export default function Signup() {
                 <input type="text" placeholder='User ID (cannot be changed)' name="userID" required />
                 <input placeholder='Password' type="password" name="password" required />
                 <button onClick={() => { toast("Processing", { autoClose: 1500 }); }} >Sign Up</button>
-                <br />
             </form>
 
             <h2>Already have an account? Login here</h2>

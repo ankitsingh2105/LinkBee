@@ -199,8 +199,6 @@
 .socailCard {
     background-color: #fee2f8;
     background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
-
-
 }
 
 
@@ -232,8 +230,8 @@
     right: 0px;
     left: 0px;
     border: .1px solid black;
-    background-color: rgb(255, 252, 236);
     border-radius: 60px;
+    background-color: rgb(255, 252, 236);
 }
 
 .loadingWheel {

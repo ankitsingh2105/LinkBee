@@ -76,7 +76,7 @@ export default function FinalDisplay() {
           <ul>
             <li><img src={imageUrl}alt="" /></li>
             <li>@{id}</li>
-            <li><button> <a href="http://linkbee.online/">Link Bee</a></button></li>
+            <li onClick={()=>{window.location.href="http://linkbee.online/"}} ><button>Link Bee</button></li>
           </ul>
         </nav>
         <main className="FinalDisplay_main" style={{backgroundImage : gradient}} >

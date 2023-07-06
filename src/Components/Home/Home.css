@@ -43,6 +43,9 @@ body{
     width:  430px;
     height: 540px;
 }
+.main_home img:hover {
+    cursor: pointer;
+}
 
 
 @media screen and (max-width: 1199px) {

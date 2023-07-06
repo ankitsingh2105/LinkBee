@@ -19,7 +19,7 @@ export default function Home(props) {
                 </div>
             </div>
             <div>
-                <img src={HomeImg} alt="" />
+                <img onClick={()=>{window.location.href = "http://linkbee.online/ankit21"}} src={HomeImg} alt="" />
             </div>
         </main>
     )

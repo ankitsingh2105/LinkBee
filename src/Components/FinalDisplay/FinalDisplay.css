@@ -13,8 +13,9 @@
 }
 
 .finalCard {
+    justify-content: space-between;
     border-radius: 100px;
-    padding: .5rem;
+    padding: 0rem 0rem;
     display: grid;
     grid-template-columns: repeat(3, auto);
     place-items: center;
@@ -26,7 +27,8 @@
     user-select: none;
     width: 24rem;
 }
-.slug_finalCard{
+
+.slug_finalCard {
     width: 40rem;
 }
 
@@ -42,8 +44,8 @@ body {
 
 .finalCard i {
     background-color: white;
-    width: 40px;
-    height: 40px;
+    width:  45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,6 +94,24 @@ a {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.FinalDisplayNav {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    border: 1px solid white;
+}
+
+.FinalDisplayNav:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: -1;
 }
 
 .errorContainer button,
@@ -143,9 +163,11 @@ a {
     .FinalDisplay_main span {
         padding: 0rem 1rem;
     }
+
     .FinalDisplayNav ul :nth-child(2) {
         font-size: 15px;
     }
+
     .FinalDisplayNav ul button {
         font-size: 13px;
     }

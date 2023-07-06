@@ -61,7 +61,6 @@ export default function Login() {
         <input type="email" placeholder='Email' name="email" />
         <input placeholder='Password' type="password" name="password" />
         <button onClick={loginMessage}>Login</button>
-        <br />
       </form>
       <h2>Don't have an account? Sign Up here</h2>
             <button onClick={() => { window.location.href = "/signup" }} >Sign Up</button>
