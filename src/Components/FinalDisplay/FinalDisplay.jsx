@@ -95,7 +95,7 @@ export default function FinalDisplay() {
           <span>{profile}</span>
           {array?.map((e) => {
             return (
-              <div className="finalCard" key={e.name}>
+              <div className="finalCard slug_finalCard" key={e.name}>
                 <i style={{ color: `${e.color}` }} className={e.class}></i>
                 <span>{e.name}</span>
                 <a href={e.link}>

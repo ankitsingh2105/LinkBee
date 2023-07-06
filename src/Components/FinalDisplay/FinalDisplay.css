@@ -17,7 +17,6 @@
     padding: .5rem;
     display: grid;
     grid-template-columns: repeat(3, auto);
-    width: 23rem;
     place-items: center;
     margin: 1rem 0rem;
     border: 1px solid black;
@@ -25,6 +24,10 @@
     color: white;
     transition: all .1s ease-out;
     user-select: none;
+    width: 24rem;
+}
+.slug_finalCard{
+    width: 40rem;
 }
 
 body {
@@ -49,6 +52,7 @@ body {
 }
 
 
+
 a {
     text-decoration: none;
     color: black;
@@ -62,7 +66,6 @@ a {
 }
 
 .FinalDisplay_main span {
-    font-weight: bolder;
     font-size: 17px;
     text-align: center;
     font-size: 15px;
@@ -140,15 +143,24 @@ a {
     .FinalDisplay_main span {
         padding: 0rem 1rem;
     }
+    .FinalDisplayNav ul :nth-child(2) {
+        font-size: 15px;
+    }
+    .FinalDisplayNav ul button {
+        font-size: 13px;
+    }
+    .FinalDisplay_main img {
+        margin-top: 1rem;
+    }
 }
 
-@media screen and (max-width: 542px) {
+@media screen and (max-width: 667px) {
     .FinalDisplay_main img {
         width: 70px;
         height: 70px;
     }
 
-    .finalCard {
+    .slug_finalCard {
         width: 25rem;
     }
 }
