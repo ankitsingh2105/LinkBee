@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { onAuthStateChanged, getAuth, updateProfile } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 import { toast, ToastContainer } from 'react-toastify';
 import firebaseConfig from '../../firebaseConfig';
 import "./User.css"
 import Dummy from "./dummyimage.webp"
 import logo from "../Navbar/link bee.png"
 import { Helmet } from 'react-helmet';
-// import { SketchPicker } from 'react-color';
 
 export default function User() {
 
@@ -119,10 +118,11 @@ export default function User() {
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    let user = auth.currentUser;
     const storage = getStorage(app);
     const db = getFirestore(app);
 
-    const [userID, setuserID] = useState("");
+    const [userID, setuserID] = useState("tempUser");
     const [uploadedImage, setImage] = useState(Dummy);
     const [tempsetArray, settempArray] = useState([]);
     const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
@@ -142,8 +142,11 @@ export default function User() {
 
 
     useEffect(() => {
+        const currentURL=  window.location.href ; 
+        const urlArray = currentURL.split("/");
+        const lastTerm = urlArray[urlArray.length-1];
         onAuthStateChanged(auth, async (user) => {
-            if (user) {
+            if (user || lastTerm ==="tempUser" ) {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
@@ -250,6 +253,10 @@ export default function User() {
 
 
     const handleSave = async (className, title, color, indexop) => {
+        if(!user){
+            toast("Please login first" , {autoClose:1500});
+            return;
+        }
         let urlClass = document.querySelector(`.url${indexop}`);
         let nameClass = document.querySelector(`.name${indexop}`);
         let profile = document.querySelector(`.profile`);
@@ -314,7 +321,10 @@ export default function User() {
         let profile = document.querySelector(`.profile`);
         let bio = document.querySelector(`.bio`);
         let tempArray = [];
-        if (bio.value === "" || profile.value === "") {
+        if(!user){
+            toast("Please login first" , {autoClose:1500});
+        }
+        else if (bio.value === "" || profile.value === "") {
             toast("Please fill both the sections", { autoClose: 1500 });
         }
         else {
@@ -374,7 +384,7 @@ export default function User() {
                                 <h2>Profile Section</h2>
 
                                 <div className='align2' >
-                                    <img src={uploadedImage || Dummy} alt="dummy image" />
+                                    <img src={uploadedImage || Dummy} alt="click upload new image" />
                                     <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
                                     <button onClick={handleUploading}>Upload New Image</button>
 
