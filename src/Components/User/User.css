@@ -97,7 +97,7 @@
     width: 230px;
     height: 250px;
     background-color: rgb(244, 244, 244);
-    border-radius: 30px;
+    border-radius: 18px;
     font-family: var(--main-font);
     display: flex;
     align-items: center;
@@ -186,6 +186,7 @@
     padding: 3rem 10px;
     border-radius: 30px;
     text-align: center;
+    font-size: 14px;
 }
 
 .socailCard input {
@@ -267,6 +268,7 @@
     height: 500px;
     overflow: auto;
 }
+
 .FinalDisplay_main2::-webkit-scrollbar {
     width: 0px;
 }
@@ -296,7 +298,7 @@
 @media screen and (max-width: 1047px) {
     .gradient_background {
         grid-template-columns: repeat(3, 10rem);
-        grid-template-rows: repeat(3, 10rem);
+        grid-template-rows: repeat(4, 10rem);
     }
 }
 
@@ -392,14 +394,14 @@
 @media screen and (max-width: 936px) {
     .gradient_background {
         grid-template-columns: repeat(2, 10rem);
-        grid-template-rows: repeat(5, 10rem);
+        grid-template-rows: repeat(6, 10rem);
     }
 }
 
 @media screen and (max-width: 756px) {
     .gradient_background {
         grid-template-columns: repeat(3, 10rem);
-        grid-template-rows: repeat(3, 10rem);
+        grid-template-rows: repeat(4, 10rem);
     }
 
     .align2 {
@@ -410,7 +412,7 @@
 @media screen and (max-width: 479px) {
     .gradient_background {
         grid-template-columns: repeat(2, 10rem);
-        grid-template-rows: repeat(4, 10rem);
+        grid-template-rows: repeat(6, 10rem);
     }
 
     .align2 {

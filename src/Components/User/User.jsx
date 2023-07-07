@@ -112,6 +112,13 @@ export default function User() {
         {
             gradient: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)"
         },
+        {
+            gradient: "linear-gradient(90deg, #FEE140 0%, #FA709A 100%)"
+        },
+        {
+            gradient: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)"
+        },
+
     ];
 
 
@@ -131,7 +138,7 @@ export default function User() {
     const [profile, setprofile] = useState('');
     const [bio, setbio] = useState('');
     const [array, setArray] = useState([]);
-    const [id, setID] = useState('');
+    const [id, setID] = useState('tempUser');
     const [gradientValue, setgradientValue] = useState("")
     const [imageUrl, setImageUrl] = useState(Dummy);
 
@@ -142,11 +149,11 @@ export default function User() {
 
 
     useEffect(() => {
-        const currentURL=  window.location.href ; 
+        const currentURL = window.location.href;
         const urlArray = currentURL.split("/");
-        const lastTerm = urlArray[urlArray.length-1];
+        const lastTerm = urlArray[urlArray.length - 1];
         onAuthStateChanged(auth, async (user) => {
-            if (user || lastTerm ==="tempUser" ) {
+            if (user || lastTerm === "tempUser") {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
@@ -253,8 +260,8 @@ export default function User() {
 
 
     const handleSave = async (className, title, color, indexop) => {
-        if(!user){
-            toast("Please login first" , {autoClose:1500});
+        if (!user) {
+            toast("Please login first", { autoClose: 1500 });
             return;
         }
         let urlClass = document.querySelector(`.url${indexop}`);
@@ -321,8 +328,8 @@ export default function User() {
         let profile = document.querySelector(`.profile`);
         let bio = document.querySelector(`.bio`);
         let tempArray = [];
-        if(!user){
-            toast("Please login first" , {autoClose:1500});
+        if (!user) {
+            toast("Please login first", { autoClose: 1500 });
         }
         else if (bio.value === "" || profile.value === "") {
             toast("Please fill both the sections", { autoClose: 1500 });
@@ -363,144 +370,143 @@ export default function User() {
     return (
         <>
             <Helmet>
-                <title>~ Create Section ~</title>
+                <title>~ Create Section | @{id} ~</title>
             </Helmet>
             <ToastContainer style={{ zIndex: 99999999 }} />
+            <main className="cover">
 
-            {
-                loading ? (<div className="align"><main className="loadingWheel"></main></div>)
-                    :
-                    (
-                        <>
-                            <nav className='authNav'>
-                                <ul>
-                                    <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
-                                    <li onClick={() => { window.location.href = `/${userID}` }} >{`linkbee.online/${userID}`}</li>
-                                </ul>
-                            </nav>
-                            <main className="User_main">
+                {
+                    loading ? (<div className="align"><main className="loadingWheel"></main></div>)
+                        :
+                        (
+                            <>
+                                <nav className='authNav'>
+                                    <ul>
+                                        <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
+                                        <li onClick={() => { window.location.href = `/${userID}` }} >{`linkbee.online/${userID}`}</li>
+                                    </ul>
+                                </nav>
+                                <main className="User_main">
 
-                                <h1>~ Customization ~</h1>
-                                <h2>Profile Section</h2>
+                                    <h1>~ Customization ~</h1>
+                                    <h2>Profile Section</h2>
 
-                                <div className='align2' >
-                                    <img src={uploadedImage || Dummy} alt="click upload new image" />
-                                    <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
-                                    <button onClick={handleUploading}>Upload New Image</button>
+                                    <div className='align2' >
+                                        <img src={uploadedImage || Dummy} alt="click upload new image" />
+                                        <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
+                                        <button onClick={handleUploading}>Upload New Image</button>
 
-                                </div>
-                                <input className="profile" placeholder='Profile name' type="text" />
-                                <br />
-                                <textarea className="bio" placeholder='Bio' cols="30" rows="3" />
-                                <br />
-                                <button onClick={AddNameAndBio} >Add name and bio</button>
-                                <br /><br />
+                                    </div>
+                                    <input className="profile" placeholder='Profile name' type="text" />
+                                    <br />
+                                    <textarea className="bio" placeholder='Bio' cols="30" rows="3" />
+                                    <br />
+                                    <button onClick={AddNameAndBio} >Add name and bio</button>
+                                    <br /><br />
 
-                                <br />
-                                <h2 style={{ marginBottom: "0px" }} > ~ Add Social Media or Events ~ </h2>
-                                <small>Present your digital presence with pride</small>
-                                <br /><br />
-                                <div className="socialIcons">
+                                    <br />
+                                    <h2 style={{ marginBottom: "0px" }} > ~ Add Social Media or Events ~ </h2>
+                                    <small>Present your digital presence with pride</small>
+                                    <br /><br />
+                                    <div className="socialIcons">
 
-                                    {
-                                        objArray.map((e, index) => {
-                                            return (
-                                                <div key={index} className='socailCard' >
-                                                    <i style={{ color: `${e.color}`, boxShadow: `0px 2px 1px ${e.color}` }} className={e.class} />
-                                                    <h4>{e.title}</h4>
-                                                    <input className={`name${index}`} placeholder={`Enter title`} type="text" />
-                                                    <input className={`url${index}`} placeholder="Enter link here" type="url" />
-                                                    <br />
-                                                    <span>
-                                                        <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button>
-                                                    </span>
-                                                </div>
-                                            )
-                                        })
-                                    }
+                                        {
+                                            objArray.map((e, index) => {
+                                                return (
+                                                    <div key={index} className='socailCard' >
+                                                        <i style={{ color: `${e.color}`, boxShadow: `0px 2px 1px ${e.color}` }} className={e.class} />
+                                                        <h4>{e.title}</h4>
+                                                        <input className={`name${index}`} placeholder={`Enter title`} type="text" />
+                                                        <input className={`url${index}`} placeholder="Enter link here" type="url" />
+                                                        <br />
+                                                        <span>
+                                                            <button onClick={() => { handleSave(e.class, e.title, e.color, index) }}>Add</button>
+                                                        </span>
+                                                    </div>
+                                                )
+                                            })
+                                        }
 
-                                </div>
-                                <br /><br />
-                                <div className="cards align">
-                                    <h2>~ Edits Links ~</h2>
-                                    <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
-                                    <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
-                                    {
-                                        tempsetArray ? (tempsetArray.map((e, index) => {
-                                            return (
-                                                <div key={index} className="box">
-                                                    <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
-                                                    <br />
-                                                    <h4>{e.name}</h4>
-                                                    <br />
-                                                    <a href={e.link} className='align2'>{e.link}</a>
-                                                    <br />
-                                                    <button onClick={() => handleDelete(e.name)}>Delete</button>
-                                                </div>
-                                            )
-                                        })
-                                        ) : (<div></div>)
-                                    }
-                                </div>
-                            </main>
-
-                            {/* This is the preview */}
-                            <div className="align2">
-                                <main>
-
-                                    <h1 className="align" >~ Preview ~</h1>
-                                    <main style={{ backgroundImage: gradientValue }} className="FinalDisplay_main2" >
-                                        <ToastContainer style={{ zIndex: 99999999 }} />
-                                        <Helmet>
-                                            <title>Link Bee ~ @{id}</title>
-                                        </Helmet>
-                                        <div className="notch">
-                                        </div>
-                                        <img src={imageUrl} alt="" />
-                                        <br />
-                                        <span>
-                                            <b> @{id} </b>
-                                        </span>
-                                        <br />
-                                        <span style={{ marginTop: '-10px' }}>{bio}</span>
-                                        <br /> <br />
-                                        <span>{profile}</span>
-                                        {tempsetArray ? (tempsetArray.map((e) => {
-                                            return (
-                                                <div style={{ width: "17rem" }} className="finalCard" key={e.name}>
-                                                    <i style={{ color: `${e.color}` }} className={e.class}></i>
-                                                    <span>{e.name}</span>
-                                                    <a href={e.link}>
-                                                        <i className="fa-solid fa-diamond-turn-right" />
-                                                    </a>
-                                                </div>
-                                            );
-                                        })) : (<div></div>)}
-                                        <br />
-                                    </main>
-                                </main>
-                                <main className="align5">
-                                    <div className='align'>
-                                        <h1>~ Select Gradient ~</h1>
-                                        <main className="gradient_background">
-                                            {
-                                                backgroundsGradients.map((e, index) => {
-                                                    return (
-                                                        <div key={index} onClick={() => handleClick(e.gradient)} style={{ backgroundImage: e.gradient }} className="gradient_box"></div>
-                                                    )
-                                                })
-                                            }
-                                        </main>
                                     </div>
                                     <br /><br />
+                                    <div className="cards align">
+                                        <h2>~ Edits Links ~</h2>
+                                        <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
+                                        <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
+                                        {
+                                            tempsetArray ? (tempsetArray.map((e, index) => {
+                                                return (
+                                                    <div key={index} className="box">
+                                                        <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
+                                                        <br />
+                                                        <h4>{e.name}</h4>
+                                                        <br />
+                                                        <a href={e.link} className='align2'>{e.link}</a>
+                                                        <br />
+                                                        <button onClick={() => handleDelete(e.name)}>Delete</button>
+                                                    </div>
+                                                )
+                                            })
+                                            ) : (<div></div>)
+                                        }
+                                    </div>
                                 </main>
-                            </div>
-                            <br />
 
-                        </>
+                                {/* This is the preview */}
+                                <div className="align2">
+                                    <main>
 
-                    )
-            }
+                                        <h1 className="align" >~ Preview ~</h1>
+                                        <main style={{ backgroundImage: gradientValue }} className="FinalDisplay_main2" >
+                                            <ToastContainer style={{ zIndex: 99999999 }} />
+                                            <div className="notch">
+                                            </div>
+                                            <img src={imageUrl} alt="" />
+                                            <br />
+                                            <span>
+                                                <b> @{id} </b>
+                                            </span>
+                                            <br />
+                                            <span style={{ marginTop: '-10px' }}>{bio}</span>
+                                            <br /> <br />
+                                            <span>{profile}</span>
+                                            {tempsetArray ? (tempsetArray.map((e) => {
+                                                return (
+                                                    <div style={{ width: "17rem" }} className="finalCard" key={e.name}>
+                                                        <i style={{ color: `${e.color}` }} className={e.class}></i>
+                                                        <span>{e.name}</span>
+                                                        <a href={e.link}>
+                                                            <i className="fa-solid fa-diamond-turn-right" />
+                                                        </a>
+                                                    </div>
+                                                );
+                                            })) : (<div></div>)}
+                                            <br />
+                                        </main>
+                                    </main>
+                                    <main className="align5">
+                                        <div className='align'>
+                                            <h1>~ Select Gradient ~</h1>
+                                            <main className="gradient_background">
+                                                {
+                                                    backgroundsGradients.map((e, index) => {
+                                                        return (
+                                                            <div key={index} onClick={() => handleClick(e.gradient)} style={{ background: e.gradient }} className="gradient_box"></div>
+                                                        )
+                                                    })
+                                                }
+                                            </main>
+                                        </div>
+                                        <br /><br />
+                                    </main>
+                                </div>
+                                <br />
+
+                            </>
+
+                        )
+                }
+            </main>
         </>
 
     )
