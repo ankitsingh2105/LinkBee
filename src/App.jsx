@@ -37,7 +37,7 @@ export default function App() {
           <Route element={<Login />} path='login' />
           <Route element={<Signup />} path='signup' />
           <Route element={<User />} path={`user/auth/edit/${userID}`} />
-          <Route element={<User />} path={`tempUser`} />
+          <Route element={<User />} path={`/unauth/tempUser`} />
 
           <Route path={`user/${userID}`} element={
             <>

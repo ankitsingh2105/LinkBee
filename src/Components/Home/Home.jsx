@@ -9,8 +9,8 @@ export default function Home(props) {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    let user = auth.currentUser;
     const handleNavigation = () => {
+        let user = auth.currentUser;
         if (user) {
             async function Wait() {
                 const docRef = doc(db, "users", user.uid);
@@ -20,7 +20,8 @@ export default function Home(props) {
             Wait();
         }
         else {
-            window.location.href = "/tempUser";
+            console.log("this is not authorizes");
+            window.location.href = "/unauth/tempUser";
         }
     }
     return (

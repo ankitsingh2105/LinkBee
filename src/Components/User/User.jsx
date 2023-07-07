@@ -12,6 +12,44 @@ import { Helmet } from 'react-helmet';
 
 export default function User() {
 
+    const tempUserArray = [
+        {
+          class: "fa fa-facebook",
+          color: "blue",
+          link: "https://templinklinkbeen.link/",
+          name: "Temo Facebook",
+          title: "Temp Facebook"
+        },
+        {
+          class: "fa fa-instagram",
+          color: "#E4405F",
+          link: "https://templinklinkbeen.link/",
+          name: "Temp Insta ",
+          title: "Instagram"
+        },
+        {
+          class: "fa fa-github",
+          color: "black",
+          link: "https://templinklinkbeen.link/",
+          name: " Temp Github",
+          title: "Snapchat"
+        },
+        {
+          class: "fa fa-snapchat-ghost",
+          color: "yellow",
+          link: "https://templinklinkbeen.link/",
+          name: "Temp SnapChat",
+          title: "Snapchat"
+        },
+        {
+          class: "fa fa-stack-overflow",
+          color: "orange",
+          link: "https://templinklinkbeen.link/",
+          name: "Temp StackOverFlow",
+          title: "Snapchat"
+        },
+      ];
+
     const objArray = [
         {
             class: "fa fa-envelope",
@@ -131,78 +169,40 @@ export default function User() {
 
     const [userID, setuserID] = useState("tempUser");
     const [uploadedImage, setImage] = useState(Dummy);
-    const [tempsetArray, settempArray] = useState([]);
+    const [tempsetArray, settempArray] = useState(tempUserArray);
     const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
     const [loading, setloading] = useState(true);
 
-    const [profile, setprofile] = useState('');
-    const [bio, setbio] = useState('');
-    const [array, setArray] = useState([]);
+    const [profile, setprofile] = useState('TempUser Name');
+    const [bio, setbio] = useState('Bio for temp user, something have to here anyways');
     const [id, setID] = useState('tempUser');
     const [gradientValue, setgradientValue] = useState("")
     const [imageUrl, setImageUrl] = useState(Dummy);
-
-
-    const currentUrl = window.location.pathname;
-    const parts = currentUrl.split('/');
-    const lastTerm = parts[parts.length - 1];
-
-
-    useEffect(() => {
-        const currentURL = window.location.href;
-        const urlArray = currentURL.split("/");
-        const lastTerm = urlArray[urlArray.length - 1];
-        onAuthStateChanged(auth, async (user) => {
-            if (user || lastTerm === "tempUser") {
-                const docRef = doc(db, "users", user.uid);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    setuserID(docSnap.data().userID);
-                }
-            }
-            else {
-                window.location.href = "/";
-            }
-        });
-    }, []);
-
-    useEffect(() => {
-        onAuthStateChanged(auth, async (user) => {
-            const docRef = doc(db, 'users', lastTerm);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                setbio(docSnap.data().bio);
-                setprofile(docSnap.data().profile);
-                setArray(docSnap.data().arrayOfObject);
-                setID(docSnap.data().userID);
-                setloading(false);
-                setImageUrl(docSnap.data().imageURL || Dummy);
-                setgradientValue(docSnap.data().gradient || "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)")
-            } else {
-                setloading(false);
-            }
-        });
-    }, []);
-
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             const currentUrl = window.location.pathname;
             const parts = currentUrl.split('/');
             const lastTerm = parts[parts.length - 1];
-            if (user) {
+            const docRef = doc(db, 'users', lastTerm);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists() && user) {
+                setbio(docSnap.data().bio);
+                setprofile(docSnap.data().profile);
+                setID(docSnap.data().userID);
+                setImageUrl(docSnap.data().imageURL || Dummy);
+                setgradientValue(docSnap.data().gradient || "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)")
+                setloading(false);
+                settempArray(docSnap.data().arrayOfObject);
+                setnameProfile({ profile: docSnap.data().profile, bio: docSnap.data().bio });
+                setloading(false);
+                setuserID(docSnap.data().userID);
                 setImage(user.photoURL);
-                const docRef = doc(db, "users", lastTerm);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    settempArray(docSnap.data().arrayOfObject);
-                    setnameProfile({ profile: docSnap.data().profile, bio: docSnap.data().bio });
-                    setloading(false);
-                }
+            } else {
+                setloading(false);
             }
         });
     }, []);
-
 
     const isValidLink = (link) => {
         const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
@@ -323,6 +323,7 @@ export default function User() {
     };
 
     const AddNameAndBio = async () => {
+        const user = auth.currentUser;
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
         let profile = document.querySelector(`.profile`);
@@ -335,19 +336,19 @@ export default function User() {
             toast("Please fill both the sections", { autoClose: 1500 });
         }
         else {
-            if (docSnap.exists()) {
+            if (docSnap.exists() && user) {
                 tempArray = docSnap.data().arrayOfObject || [];
+                setDoc(docRef, {
+                    arrayOfObject: tempArray,
+                    userID: docSnap.data().userID,
+                    imageURL: docSnap.data().imageURL,
+                    profile: profile.value,
+                    bio: bio.value,
+                    gradient: gradientValue
+                });
+                toast("Name and bio updated, see section below", { autoClose: 1500 });
+                setnameProfile({ profile: profile.value, bio: bio.value });
             }
-            setDoc(docRef, {
-                arrayOfObject: tempArray,
-                userID: docSnap.data().userID,
-                imageURL: docSnap.data().imageURL,
-                profile: profile.value,
-                bio: bio.value,
-                gradient: gradientValue
-            });
-            toast("Name and bio updated, see section below", { autoClose: 1500 });
-            setnameProfile({ profile: profile.value, bio: bio.value });
         }
     }
 

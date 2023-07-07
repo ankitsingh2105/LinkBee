@@ -20,6 +20,7 @@ export default function Navbar(props) {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const [name, setname] = useState("")
+    const [loading, setloading] = useState(true)
 
     const [userID, setuserID] = useState("");
     const db = getFirestore(app);
@@ -32,6 +33,7 @@ export default function Navbar(props) {
                 if (docSnap.exists()) {
                     setuserID(docSnap.data().userID);
                 }
+                setloading(false);
             }
         });
     }, []);
@@ -100,7 +102,20 @@ export default function Navbar(props) {
                     ) : (
                         <>
                             <li>
-                                <b>Welcome </b> {getFirstWord(name)}
+                                {
+                                    loading ? (
+                                        <>
+                                        <b>Welcome</b>
+                                        <div className="loadingWheel2"></div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <b>Welcome </b> <div>
+                                                {getFirstWord(name)}
+                                            </div>
+                                        </>
+                                    )
+                                }
                             </li>
                             <li className="login_signup2" onClick={movetoauth} style={{ color: "black", textDecoration: "none" }}>
                                 Create
