@@ -79,7 +79,7 @@ export default function FinalDisplay() {
             <li onClick={()=>{window.location.href="http://linkbee.online/"}} ><button>Link Bee</button></li>
           </ul>
         </nav>
-        <main className="FinalDisplay_main" style={{backgroundImage : gradient}} >
+        <main className="FinalDisplay_main" style={{background : gradient}} >
           <ToastContainer style={{ zIndex: 99999999 }} />
           <Helmet>
             <title>Link Bee ~ @{id}</title>

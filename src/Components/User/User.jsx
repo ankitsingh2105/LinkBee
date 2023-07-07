@@ -179,6 +179,10 @@ export default function User() {
     const [gradientValue, setgradientValue] = useState("")
     const [imageUrl, setImageUrl] = useState(Dummy);
 
+    const currentUrl = window.location.pathname;
+    const parts = currentUrl.split('/');
+    const lastTerm = parts[parts.length - 1];
+
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             const currentUrl = window.location.pathname;
