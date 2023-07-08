@@ -17,35 +17,35 @@ export default function User() {
           class: "fa fa-facebook",
           color: "blue",
           link: "https://templinklinkbeen.link/",
-          name: "Temo Facebook",
-          title: "Temp Facebook"
+          name: "Dummy Facebook",
+          title: "Dummy Facebook"
         },
         {
           class: "fa fa-instagram",
           color: "#E4405F",
           link: "https://templinklinkbeen.link/",
-          name: "Temp Insta ",
+          name: "Dummy Insta ",
           title: "Instagram"
         },
         {
           class: "fa fa-github",
           color: "black",
           link: "https://templinklinkbeen.link/",
-          name: " Temp Github",
+          name: " Dummy Github",
           title: "Snapchat"
         },
         {
           class: "fa fa-snapchat-ghost",
           color: "yellow",
           link: "https://templinklinkbeen.link/",
-          name: "Temp SnapChat",
+          name: "Dummy SnapChat",
           title: "Snapchat"
         },
         {
           class: "fa fa-stack-overflow",
           color: "orange",
           link: "https://templinklinkbeen.link/",
-          name: "Temp StackOverFlow",
+          name: "Dummy StackOverFlow",
           title: "Snapchat"
         },
       ];
@@ -173,9 +173,9 @@ export default function User() {
     const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
     const [loading, setloading] = useState(true);
 
-    const [profile, setprofile] = useState('TempUser Name');
-    const [bio, setbio] = useState('Bio for temp user, something have to here anyways');
-    const [id, setID] = useState('tempUser');
+    const [profile, setprofile] = useState('Dummy User Name');
+    const [bio, setbio] = useState('Bio for Dummy user, something have to here anyways');
+    const [id, setID] = useState('DummyUser');
     const [gradientValue, setgradientValue] = useState("")
     const [imageUrl, setImageUrl] = useState(Dummy);
 
