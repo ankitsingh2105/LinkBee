@@ -10,6 +10,7 @@ import Signup from "./Components/Signup/Signup"
 import User from './Components/User/User';
 import FinalDisplay from './Components/FinalDisplay/FinalDisplay';
 import Message from './Components/Message/Message';
+import Error from './Components/Error/Error';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -52,6 +53,7 @@ export default function App() {
           />
 
           <Route element={<FinalDisplay />} path={`${userID}`} />
+          <Route path="*" element={<Error/>}/>
         </Routes>
         <Footer />
       </BrowserRouter >

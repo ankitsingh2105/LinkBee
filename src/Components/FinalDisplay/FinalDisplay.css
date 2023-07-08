@@ -114,6 +114,10 @@ a {
     z-index: -1;
 }
 
+.errorContainer{
+    margin-top: -3rem;
+}
+
 .errorContainer button,
 .FinalDisplayNav button {
     padding: 5px 10px;
