@@ -20,12 +20,19 @@ export default function Navbar(props) {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const [name, setname] = useState("")
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(true);
+    const [tempStat, setTempStat] = useState(true);
 
     const [userID, setuserID] = useState("");
     const db = getFirestore(app);
 
     useEffect(() => {
+        let state = localStorage.getItem("localTempState") || "true";
+        if (state === "true") {
+            setTempStat(true);
+        } else {
+            setTempStat(false);
+        }
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const docRef = doc(db, "users", user.uid);
@@ -38,13 +45,6 @@ export default function Navbar(props) {
         });
     }, []);
 
-    let state = localStorage.getItem("localTempState") || false;
-    let tempStat;
-    if (state === "true") {
-        tempStat = true;
-    } else {
-        tempStat = false;
-    }
 
     const handleLogout = async (e) => {
         await signOut(auth);
