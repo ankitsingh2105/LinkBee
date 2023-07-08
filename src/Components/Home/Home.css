@@ -56,28 +56,15 @@ body{
 
 @media screen and (max-width: 1130px) {
     .main_home img {
-        width: 450px;
-        height: 450px;
+        width: 408px;
+        height: 550px;
     }
-}
-
-@media screen and (max-width: 1078px) {
-    .main_home img {
-        width: 400px;
-        height: 400px;
-    }
-
     .main_home h1 {
         font-size: 6.5rem;
     }
 }
 
 @media screen and (max-width: 994px) {
-    .main_home img {
-        width: 400px;
-        height: 400px;
-    }
-
     .main_home h1 {
         font-size: 6rem;
     }
@@ -90,11 +77,11 @@ body{
 @media screen and (max-width: 957px) {
     .main_home img {
         width: 350px;
-        height: 350px;
+        height: 450px;
     }
 
     .main_home h1 {
-        font-size: 6rem;
+        font-size: 5.5rem;
     }
 }
 

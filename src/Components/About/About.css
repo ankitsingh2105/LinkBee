@@ -73,7 +73,7 @@ body {
 
     .About_main_secondary_div {
         width: 274px;
-        height: 295px;
+        height: 350px;
     }
 
     .About_main div img {
@@ -87,8 +87,6 @@ body {
 @media screen and (max-width: 1078px) {
     .About_main_secondary_div {
         margin: 0px 1rem;
-        width: 274px;
-        height: 295px;
     }
 
     .About_main div img {
@@ -118,7 +116,6 @@ body {
 @media screen and (max-width: 937px) {
     .About_main_secondary_div {
         width: 247px;
-        height: 295px;
     }
 
     .About_main div img {
