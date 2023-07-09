@@ -250,7 +250,7 @@ export default function User() {
                 setFontFamily(docSnap.data().fontFamily ? docSnap.data().fontFamily : "");
                 setbgColor(docSnap.data().cardBgColor ? docSnap.data().cardBgColor : "");
                 setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
-                
+
             } else {
                 setloading(false);
             }
@@ -488,7 +488,7 @@ export default function User() {
     return (
         <>
             <Helmet>
-                {/* <title>~ Create Section | @{id} ~</title> */}
+                <title>~ Create Section | @{id} ~</title>
             </Helmet>
             <ToastContainer style={{ zIndex: 999999999999 }} />
             <main className="cover">
@@ -501,7 +501,7 @@ export default function User() {
                                 <nav className='authNav'>
                                     <ul>
                                         <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
-                                        <li onClick={() => { window.location.href = `/${userID}` }} >{`linkbee.online/${userID}`}</li>
+                                        <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`linkbee.online/${userID}`}</button></li>
                                     </ul>
                                 </nav>
                                 <main className="User_main">
@@ -583,7 +583,7 @@ export default function User() {
                                                 <ul>
                                                     <li><img src={imageUrl} alt="" /></li>
                                                     <li>@{id}</li>
-                                                    <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button>Link Bee</button></li>
+                                                    <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button style={{ fontFamily: FontFamily }} >Link Bee</button></li>
                                                 </ul>
                                             </nav>
 

@@ -103,10 +103,10 @@ export default function FinalDisplay() {
               return (
                 <div className="finalCard slug_finalCard" key={e.name}
                   style={{ color: fontColor, background: bgColor }}>
-                  <i style={{ color: `${e.color}` , border:".1px solid black" }} className={e.class}></i>
+                  <i style={{ color: `${e.color}`, border: ".1px solid black" }} className={e.class}></i>
                   <span>{e.name}</span>
                   <a href={e.link}>
-                    <i  style={{border:".1px solid black"}} className="fa-solid fa-diamond-turn-right" />
+                    <i style={{ border: ".1px solid black" }} className="fa-solid fa-diamond-turn-right" />
                   </a>
                 </div>
               );

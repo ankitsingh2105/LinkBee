@@ -108,7 +108,7 @@
 
 .socialIcons div input {
     padding: 5px;
-    width: 200px;
+    width: 187px;
     margin-bottom: 0px;
 }
 
@@ -190,15 +190,6 @@
 .socailCard {
     background-color: #fee2f8;
     background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
-}
-
-
-.authNav ul :nth-child(2) {
-    background-color: var(--main-color);
-    font-weight: bolder;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid black;
 }
 
 .authNav li img {
