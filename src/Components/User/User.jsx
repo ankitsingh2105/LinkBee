@@ -250,18 +250,7 @@ export default function User() {
                 setFontFamily(docSnap.data().fontFamily ? docSnap.data().fontFamily : "");
                 setbgColor(docSnap.data().cardBgColor ? docSnap.data().cardBgColor : "");
                 setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
-
-                console.log('tempsetArray:', tempsetArray);
-                console.log('profile:', profile);
-                console.log('bio:', bio);
-                console.log('id:', id);
-                console.log('imageUrl:', imageUrl);
-                console.log('gradientValue:', gradientValue);
-                console.log('FontFamily:', FontFamily);
-                console.log('bgColor:', bgColor);
-                console.log('fontColor:', fontColor);
-                console.log('imgUrl:', imgUrl);
-
+                
             } else {
                 setloading(false);
             }
@@ -641,9 +630,9 @@ export default function User() {
                                             <h1>~ Select Fonts ~</h1>
                                             <main className="font_customization">
                                                 {
-                                                    fontFamilies.map((e , index) => {
+                                                    fontFamilies.map((e, index) => {
                                                         return (
-                                                            <div  key={index} onClick={() => handleFont(e)} className="font_style" style={{ fontFamily: e }}>The quick brown fox jumps over the lazy dog.</div>
+                                                            <div key={index} onClick={() => handleFont(e)} className="font_style" style={{ fontFamily: e }}>The quick brown fox jumps over the lazy dog.</div>
                                                         )
                                                     })
                                                 }
@@ -656,9 +645,9 @@ export default function User() {
                                             <h1>~ Select background ~</h1>
                                             <main className="font_color_customization">
                                                 {
-                                                    colors.map((e , index) => {
+                                                    colors.map((e, index) => {
                                                         return (
-                                                            <div  key={index} onClick={() => handleBgColor(e)} className="font_color" style={{ background: e }}></div>
+                                                            <div key={index} onClick={() => handleBgColor(e)} className="font_color" style={{ background: e }}></div>
                                                         )
                                                     })
                                                 }
@@ -670,9 +659,9 @@ export default function User() {
                                             <h1>~ Select Color ~</h1>
                                             <main className="font_color_customization">
                                                 {
-                                                    colors.map((e , index) => {
+                                                    colors.map((e, index) => {
                                                         return (
-                                                            <div  key={index} onClick={() => handleFontColor(e)} className="font_color" style={{ background: e }}></div>
+                                                            <div key={index} onClick={() => handleFontColor(e)} className="font_color" style={{ background: e }}></div>
                                                         )
                                                     })
                                                 }
