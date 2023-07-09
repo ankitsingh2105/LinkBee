@@ -4,7 +4,6 @@
     justify-content: center;
     flex-direction: column;
     padding-top: 5rem;
-    padding-bottom: 3rem;
 }
 
 .User_main h1 {
@@ -24,15 +23,6 @@
     border-radius: 100px;
     border: 4px solid var(--main-color);
     margin: 10px;
-}
-
-.align5 {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    flex-direction: column;
-
 }
 
 .align {
@@ -233,6 +223,7 @@
     border: .1px solid black;
     border-radius: 60px;
     background-color: rgb(255, 252, 236);
+    z-index: 99999999999;
 }
 
 .loadingWheel {
@@ -267,6 +258,7 @@
     width: 280px;
     height: 500px;
     overflow: auto;
+    font-weight: 100;
 }
 
 .FinalDisplay_main2::-webkit-scrollbar {
@@ -293,6 +285,67 @@
     background-color: black;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+}
+
+.sticky_phone_preview {
+    position: sticky;
+    top: 0;
+    padding-top: 4rem;
+}
+
+.preview_section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.font_style {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.font_style:hover {
+    cursor: pointer;
+}
+
+.font_color_customization {
+    display: grid;
+    grid-template-columns: repeat(5, 4rem);
+}
+
+.font_color {
+    width: 40px;
+    height: 40px;
+    margin: 12px;
+    border: .1px solid black;
+    border-radius: 10px;
+}
+
+.FinalDisplayNav2 {
+    position: absolute;
+    top: 23%;
+    right: 0%;
+    left: 0%;
+    border: 1px solid white;
+}
+
+.FinalDisplayNav2 ul li img {
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+}
+
+.FinalDisplayNav2 ul li button {
+    font-size: 12px;
+}
+
+.FinalDisplayNav2 ul {
+    margin: 0;
+}
+
+.FinalDisplayNav2 li {
+    margin: 0px 6px;
+    font-size: 13px;
 }
 
 @media screen and (max-width: 1047px) {
@@ -399,6 +452,12 @@
 }
 
 @media screen and (max-width: 756px) {
+    .align2 {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 656px) {
     .gradient_background {
         grid-template-columns: repeat(3, 10rem);
         grid-template-rows: repeat(4, 10rem);
@@ -407,16 +466,38 @@
     .align2 {
         flex-direction: column;
     }
+
+    .preview_section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sticky_phone_preview {
+        position: relative;
+    }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 485px) {
+    .gradient_box {
+        width: 70px;
+        height: 70px;
+    }
+
     .gradient_background {
-        grid-template-columns: repeat(2, 10rem);
-        grid-template-rows: repeat(6, 10rem);
+        grid-template-columns: repeat(3, 7rem);
     }
 
     .align2 {
         flex-direction: column;
+    }
+
+    .preview_section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sticky_phone_preview {
+        position: relative;
     }
 }
 

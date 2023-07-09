@@ -22,6 +22,9 @@ export default function FinalDisplay() {
   const [errorMessage, setErrorMessage] = useState('');
   const [imageUrl, setImageUrl] = useState(Dummy);
   const [gradient, setgradient] = useState("")
+  const [bgColor, setbgColor] = useState("");
+  const [fontColor, setfontColor] = useState("");
+  const [fontFamily, setfontFamily] = useState("")
 
 
   const currentUrl = window.location.pathname;
@@ -38,8 +41,11 @@ export default function FinalDisplay() {
         setArray(docSnap.data().arrayOfObject);
         setID(docSnap.data().userID);
         setloading(false);
-        setImageUrl(docSnap.data().imageURL || Dummy );
+        setImageUrl(docSnap.data().imageURL || Dummy);
         setgradient(docSnap.data().gradient);
+        setbgColor(docSnap.data().cardBgColor);
+        setfontColor(docSnap.data().cardFontColor);
+        setfontFamily(docSnap.data().fontFamily);
       } else {
         setloading(false);
         setErrorMessage('Invalid userID. User not found.');
@@ -48,7 +54,7 @@ export default function FinalDisplay() {
     check();
   }, []);
 
-  const sendToSignUp = () =>{
+  const sendToSignUp = () => {
     window.location.href = "/signup";
   }
 
@@ -61,7 +67,7 @@ export default function FinalDisplay() {
       ) : errorMessage ? (
         <div className="errorContainer">
           <span className="align">
-            <img style={{marginTop : "8rem"}} src={errorHoney} alt="" />
+            <img style={{ marginTop: "8rem" }} src={errorHoney} alt="" />
             <br />
             <span><b>Page don't exist, Sign up for this username </b></span>
             <br />
@@ -72,40 +78,41 @@ export default function FinalDisplay() {
       ) : (
 
         <>
-        <nav className='FinalDisplayNav' >
-          <ul>
-            <li><img src={imageUrl}alt="" /></li>
-            <li>@{id}</li>
-            <li onClick={()=>{window.location.href="http://linkbee.online/"}} ><button>Link Bee</button></li>
-          </ul>
-        </nav>
-        <main className="FinalDisplay_main" style={{background : gradient}} >
-          <ToastContainer style={{ zIndex: 99999999 }} />
-          <Helmet>
-            <title>Link Bee ~ @{id}</title>
-          </Helmet>
-          <img src={imageUrl} alt="" />
-          <br />
-          <span>
-            <b> @{id} </b>
-          </span>
-          <br />
-          <span style={{ marginTop: '-10px' }}>{bio}</span>
-          <br /> <br />
-          <span>{profile}</span>
-          {array?.map((e) => {
-            return (
-              <div className="finalCard slug_finalCard" key={e.name}>
-                <i style={{ color: `${e.color}` }} className={e.class}></i>
-                <span>{e.name}</span>
-                <a href={e.link}>
-                  <i className="fa-solid fa-diamond-turn-right" />
-                </a>
-              </div>
-            );
-          })}
-          <br />
-        </main>
+          <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav' >
+            <ul>
+              <li><img src={imageUrl} alt="" /></li>
+              <li>@{id}</li>
+              <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button>Link Bee</button></li>
+            </ul>
+          </nav>
+          <main className="FinalDisplay_main" style={{ background: gradient, fontFamily: fontFamily }} >
+            <ToastContainer style={{ zIndex: 99999999 }} />
+            <Helmet>
+              <title>Link Bee ~ @{id}</title>
+            </Helmet>
+            <img src={imageUrl} alt="" />
+            <br />
+            <span>
+              <b> @{id} </b>
+            </span>
+            <br />
+            <span style={{ marginTop: '-10px' }}>{bio}</span>
+            <br /> <br />
+            <span>{profile}</span>
+            {array?.map((e) => {
+              return (
+                <div className="finalCard slug_finalCard" key={e.name}
+                  style={{ color: fontColor, background: bgColor }}>
+                  <i style={{ color: `${e.color}` , border:".1px solid black" }} className={e.class}></i>
+                  <span>{e.name}</span>
+                  <a href={e.link}>
+                    <i  style={{border:".1px solid black"}} className="fa-solid fa-diamond-turn-right" />
+                  </a>
+                </div>
+              );
+            })}
+            <br />
+          </main>
         </>
       )}
     </>

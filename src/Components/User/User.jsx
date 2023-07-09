@@ -12,43 +12,59 @@ import { Helmet } from 'react-helmet';
 
 export default function User() {
 
+    const fontFamilies = [
+        "'Acme', sans-serif",
+        "'Anton', sans-serif",
+        "'Bacasime Antique', serif",
+        "'Bree Serif', serif",
+        "'Caveat', cursive",
+        "'Crimson Text', serif",
+        "'Dosis', sans-serif",
+        "'Pacifico', cursive",
+        "'Roboto', sans-serif",
+        "'Satisfy', cursive",
+        "'Teko', sans-serif",
+    ];
+
+
+
     const tempUserArray = [
         {
-          class: "fa fa-facebook",
-          color: "blue",
-          link: "https://templinklinkbeen.link/",
-          name: "Dummy Facebook",
-          title: "Dummy Facebook"
+            class: "fa fa-facebook",
+            color: "blue",
+            link: "https://templinklinkbeen.link/",
+            name: "Dummy Facebook",
+            title: "Dummy Facebook"
         },
         {
-          class: "fa fa-instagram",
-          color: "#E4405F",
-          link: "https://templinklinkbeen.link/",
-          name: "Dummy Insta ",
-          title: "Instagram"
+            class: "fa fa-instagram",
+            color: "#E4405F",
+            link: "https://templinklinkbeen.link/",
+            name: "Dummy Insta ",
+            title: "Instagram"
         },
         {
-          class: "fa fa-github",
-          color: "black",
-          link: "https://templinklinkbeen.link/",
-          name: " Dummy Github",
-          title: "Snapchat"
+            class: "fa fa-github",
+            color: "black",
+            link: "https://templinklinkbeen.link/",
+            name: " Dummy Github",
+            title: "Snapchat"
         },
         {
-          class: "fa fa-snapchat-ghost",
-          color: "yellow",
-          link: "https://templinklinkbeen.link/",
-          name: "Dummy SnapChat",
-          title: "Snapchat"
+            class: "fa fa-snapchat-ghost",
+            color: "yellow",
+            link: "https://templinklinkbeen.link/",
+            name: "Dummy SnapChat",
+            title: "Snapchat"
         },
         {
-          class: "fa fa-stack-overflow",
-          color: "orange",
-          link: "https://templinklinkbeen.link/",
-          name: "Dummy StackOverFlow",
-          title: "Snapchat"
+            class: "fa fa-stack-overflow",
+            color: "orange",
+            link: "https://templinklinkbeen.link/",
+            name: "Dummy StackOverFlow",
+            title: "Snapchat"
         },
-      ];
+    ];
 
     const objArray = [
         {
@@ -124,40 +140,66 @@ export default function User() {
     ];
     const backgroundsGradients = [
         {
-            gradient: " linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+            gradient: "linear-gradient(180deg, #FBAB7E 0%, #F7CE68 100%)",
         },
         {
-            gradient: " linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)",
+            gradient: "linear-gradient(180deg, #85FFBD 0%, #FFFB7D 100%)",
         },
         {
-            gradient: " linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%)",
+            gradient: "linear-gradient(180deg, #FA8BFF 0%,  #2BFF88 100%)",
         },
         {
-            gradient: " linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%)",
+            gradient: "linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%)",
         },
         {
-            gradient: " linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)",
+            gradient: "linear-gradient(180deg, #FAACA8 0%, #DDD6F3 100%)",
         },
         {
-            gradient: " linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%)",
+            gradient: "linear-gradient(180deg, #FF3CAC 0%, #2B86C5 100%)",
         },
         {
-            gradient: " linear-gradient(132deg, #F4D03F 0%, #16A085 100%)",
+            gradient: "linear-gradient(180deg, #F4D03F 0%, #16A085 100%)",
         },
         {
-            gradient: " linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%)"
+            gradient: "linear-gradient(180deg, #00DBDE 0%, #FC00FF 100%)",
         },
         {
-            gradient: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)"
+            gradient: "linear-gradient(180deg, #FFDEE9 0%, #B5FFFC 100%)",
         },
         {
-            gradient: "linear-gradient(90deg, #FEE140 0%, #FA709A 100%)"
+            gradient: "linear-gradient(180deg, #FEE140 0%, #FA709A 100%)",
         },
         {
-            gradient: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)"
+            gradient: "linear-gradient(180deg, #0093E9 0%, #80D0C7 100%)",
         },
-
     ];
+
+
+    const colors = [
+        "#000000", // Black
+        "rgb(51, 55, 55)",
+        "#ffffff", // White
+        "#FF4500", // OrangeRed
+        "#FFD700", // Gold
+        "#7FFF00", // Chartreuse
+        "#DC143C", // Crimson
+        "#00BFFF", // DeepSkyBlue
+        "#9400D3", // DarkViolet
+        "#FF1493", // DeepPink
+        "#00CED1", // DarkTurquoise
+        "#FF8C00", // DarkOrange
+        "#8A2BE2", // BlueViolet
+        "#00FF7F", // SpringGreen
+        "#9932CC", // DarkOrchid
+        "#FF4500", // OrangeRed
+        "#00FF00", // Lime
+        "#FF69B4", // HotPink
+        "#1E90FF", // DodgerBlue
+        "#FF00FF", // Fuchsia
+        "#00FFFF", // Cyan
+    ];
+
+
 
 
 
@@ -176,8 +218,11 @@ export default function User() {
     const [profile, setprofile] = useState('Dummy User Name');
     const [bio, setbio] = useState('Bio for Dummy user, something have to here anyways');
     const [id, setID] = useState('DummyUser');
-    const [gradientValue, setgradientValue] = useState("")
     const [imageUrl, setImageUrl] = useState(Dummy);
+    const [gradientValue, setgradientValue] = useState("")
+    const [FontFamily, setFontFamily] = useState("'Bree Serif', serif");
+    const [bgColor, setbgColor] = useState("rgb(51, 55, 55)");
+    const [fontColor, setfontColor] = useState("white")
 
     const currentUrl = window.location.pathname;
     const parts = currentUrl.split('/');
@@ -202,6 +247,9 @@ export default function User() {
                 setloading(false);
                 setuserID(docSnap.data().userID);
                 setImage(user.photoURL);
+                setFontFamily(docSnap.data().fontFamily);
+                setbgColor(docSnap.data().cardBgColor)
+                setfontColor(docSnap.data().cardFontColor);
             } else {
                 setloading(false);
             }
@@ -294,7 +342,11 @@ export default function User() {
                 profile: docSnap.data().profile || profile.value,
                 bio: docSnap.data().bio || bio.value,
                 imageURL: docSnap.data().imageURL || "",
-                gradient: gradientValue
+                gradient: gradientValue,
+                fontFamily: docSnap.data().fontFamily || "'Bree Serif', serif",
+                cardBgColor: docSnap.data().cardBgColor,
+                cardFontColor: docSnap.data().cardFontColor,
+
             });
             settempArray(tempArray);
         }
@@ -321,7 +373,10 @@ export default function User() {
             profile: docSnap.data().profile || "",
             bio: docSnap.data().bio || "",
             imageURL: docSnap.data().imageURL || "",
-            gradient: gradientValue
+            gradient: gradientValue,
+            fontFamily: docSnap.data().fontFamily,
+            cardBgColor: docSnap.data().cardBgColor,
+            cardFontColor: docSnap.data().cardFontColor,
         });
         settempArray(newTemp);
     };
@@ -348,7 +403,10 @@ export default function User() {
                     imageURL: docSnap.data().imageURL,
                     profile: profile.value,
                     bio: bio.value,
-                    gradient: gradientValue
+                    gradient: gradientValue,
+                    fontFamily: docSnap.data().fontFamily,
+                    cardBgColor: docSnap.data().cardBgColor,
+                    cardFontColor: docSnap.data().cardFontColor,
                 });
                 toast("Name and bio updated, see section below", { autoClose: 1500 });
                 setnameProfile({ profile: profile.value, bio: bio.value });
@@ -357,7 +415,7 @@ export default function User() {
     }
 
 
-    const handleClick = async (e) => {
+    const handleGradient = async (e) => {
         setgradientValue(e);
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
@@ -367,10 +425,63 @@ export default function User() {
             imageURL: docSnap.data().imageURL,
             profile: docSnap.data().profile,
             bio: docSnap.data().bio,
-            gradient: e
+            gradient: e,
+            fontFamily: docSnap.data().fontFamily,
+            cardBgColor: docSnap.data().cardBgColor,
+            cardFontColor: docSnap.data().cardFontColor,
         });
     }
 
+    const handleFont = async (e) => {
+        setFontFamily(e);
+        const docRef = doc(db, "users", lastTerm);
+        const docSnap = await getDoc(docRef);
+        setDoc(docRef, {
+            arrayOfObject: docSnap.data().arrayOfObject,
+            userID: docSnap.data().userID,
+            imageURL: docSnap.data().imageURL,
+            profile: docSnap.data().profile,
+            bio: docSnap.data().bio,
+            gradient: docSnap.data().gradient,
+            fontFamily: e,
+            cardBgColor: docSnap.data().cardBgColor,
+            cardFontColor: docSnap.data().cardFontColor,
+        });
+    }
+
+    const handleBgColor = async (e) => {
+        setbgColor(e);
+        const docRef = doc(db, "users", lastTerm);
+        const docSnap = await getDoc(docRef);
+        setDoc(docRef, {
+            arrayOfObject: docSnap.data().arrayOfObject,
+            userID: docSnap.data().userID,
+            imageURL: docSnap.data().imageURL,
+            profile: docSnap.data().profile,
+            bio: docSnap.data().bio,
+            gradient: docSnap.data().gradient,
+            fontFamily: docSnap.data().fontFamily,
+            cardBgColor: e,
+            cardFontColor: docSnap.data().cardFontColor,
+        });
+    }
+
+    const handleFontColor = async (e) => {
+        setfontColor(e);
+        const docRef = doc(db, "users", lastTerm);
+        const docSnap = await getDoc(docRef);
+        setDoc(docRef, {
+            arrayOfObject: docSnap.data().arrayOfObject,
+            userID: docSnap.data().userID,
+            imageURL: docSnap.data().imageURL,
+            profile: docSnap.data().profile,
+            bio: docSnap.data().bio,
+            gradient: docSnap.data().gradient,
+            fontFamily: docSnap.data().fontFamily,
+            cardBgColor: docSnap.data().cardBgColor,
+            cardFontColor: e,
+        });
+    }
 
     return (
         <>
@@ -394,7 +505,7 @@ export default function User() {
                                 <main className="User_main">
 
                                     <h1>~ Customization ~</h1>
-                                    <h2>Profile Section</h2>
+                                    <h2>~Profile Section~</h2>
 
                                     <div className='align2' >
                                         <img src={uploadedImage || Dummy} alt="click upload new image" />
@@ -458,15 +569,23 @@ export default function User() {
                                 </main>
 
                                 {/* This is the preview */}
-                                <div className="align2">
-                                    <main>
-
+                                <div className="preview_section">
+                                    <main className='sticky_phone_preview' >
                                         <h1 className="align" >~ Preview ~</h1>
-                                        <main style={{ backgroundImage: gradientValue }} className="FinalDisplay_main2" >
-                                            <ToastContainer style={{ zIndex: 99999999 }} />
+                                        <main style={{ backgroundImage: gradientValue, fontFamily: FontFamily }} className="FinalDisplay_main2" >
+
                                             <div className="notch">
                                             </div>
-                                            <img src={imageUrl} alt="" />
+
+                                            <nav style={{ background: gradientValue, fontFamily: FontFamily }} className='FinalDisplayNav2' >
+                                                <ul>
+                                                    <li><img src={imageUrl} alt="" /></li>
+                                                    <li>@{id}</li>
+                                                    <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button>Link Bee</button></li>
+                                                </ul>
+                                            </nav>
+
+                                            <img style={{ marginTop: "4rem" }} src={imageUrl} alt="" />
                                             <br />
                                             <span>
                                                 <b> @{id} </b>
@@ -477,11 +596,11 @@ export default function User() {
                                             <span>{profile}</span>
                                             {tempsetArray ? (tempsetArray.map((e) => {
                                                 return (
-                                                    <div style={{ width: "17rem" }} className="finalCard" key={e.name}>
-                                                        <i style={{ color: `${e.color}` }} className={e.class}></i>
+                                                    <div style={{ width: "17rem", background: bgColor, color: fontColor }} className="finalCard" key={e.name}>
+                                                        <i style={{ color: `${e.color}`, border: ".1px solid black" }} className={e.class}></i>
                                                         <span>{e.name}</span>
                                                         <a href={e.link}>
-                                                            <i className="fa-solid fa-diamond-turn-right" />
+                                                            <i style={{ border: ".1px solid black" }} className="fa-solid fa-diamond-turn-right" />
                                                         </a>
                                                     </div>
                                                 );
@@ -489,14 +608,58 @@ export default function User() {
                                             <br />
                                         </main>
                                     </main>
-                                    <main className="align5">
+                                    <main className="align5" style={{ paddingTop: "4rem" }} >
+
                                         <div className='align'>
                                             <h1>~ Select Gradient ~</h1>
                                             <main className="gradient_background">
                                                 {
                                                     backgroundsGradients.map((e, index) => {
                                                         return (
-                                                            <div key={index} onClick={() => handleClick(e.gradient)} style={{ background: e.gradient }} className="gradient_box"></div>
+                                                            <div key={index} onClick={() => handleGradient(e.gradient)} style={{ background: e.gradient }} className="gradient_box"></div>
+                                                        )
+                                                    })
+                                                }
+                                            </main>
+                                        </div>
+                                        <br /><br />
+
+                                        <div className='align'>
+                                            <h1>~ Select Fonts ~</h1>
+                                            <main className="font_customization">
+                                                {
+                                                    fontFamilies.map((e) => {
+                                                        return (
+                                                            <div onClick={() => handleFont(e)} className="font_style" style={{ fontFamily: e }}>The quick brown fox jumps over the lazy dog.</div>
+                                                        )
+                                                    })
+                                                }
+                                            </main>
+                                        </div>
+                                        <br /><br />
+
+
+                                        <div className='align'>
+                                            <h1>~ Select background ~</h1>
+                                            <main className="font_color_customization">
+                                                {
+                                                    colors.map((e) => {
+                                                        return (
+                                                            <div onClick={() => handleBgColor(e)} className="font_color" style={{ background: e }}></div>
+                                                        )
+                                                    })
+                                                }
+                                            </main>
+                                        </div>
+                                        <br /><br />
+
+                                        <div className='align'>
+                                            <h1>~ Select Color ~</h1>
+                                            <main className="font_color_customization">
+                                                {
+                                                    colors.map((e) => {
+                                                        return (
+                                                            <div onClick={() => handleFontColor(e)} className="font_color" style={{ background: e }}></div>
                                                         )
                                                     })
                                                 }
