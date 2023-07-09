@@ -209,20 +209,20 @@ export default function User() {
     const storage = getStorage(app);
     const db = getFirestore(app);
 
+    const [loading, setloading] = useState(true);
     const [userID, setuserID] = useState("tempUser");
     const [uploadedImage, setImage] = useState(Dummy);
     const [tempsetArray, settempArray] = useState(tempUserArray);
-    const [nameProfile, setnameProfile] = useState({ profile: "Enter a name above", bio: "Enter bio above" })
-    const [loading, setloading] = useState(true);
 
     const [profile, setprofile] = useState('Dummy User Name');
     const [bio, setbio] = useState('Bio for Dummy user, something have to here anyways');
     const [id, setID] = useState('DummyUser');
     const [imageUrl, setImageUrl] = useState(Dummy);
-    const [gradientValue, setgradientValue] = useState("")
+    const [gradientValue, setgradientValue] = useState("linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)")
     const [FontFamily, setFontFamily] = useState("'Bree Serif', serif");
     const [bgColor, setbgColor] = useState("rgb(51, 55, 55)");
-    const [fontColor, setfontColor] = useState("white")
+    const [fontColor, setfontColor] = useState("white");
+    const [imgUrl, seturl] = useState("")
 
     const currentUrl = window.location.pathname;
     const parts = currentUrl.split('/');
@@ -235,21 +235,33 @@ export default function User() {
             const lastTerm = parts[parts.length - 1];
             const docRef = doc(db, 'users', lastTerm);
             const docSnap = await getDoc(docRef);
+
             if (docSnap.exists() && user) {
-                setbio(docSnap.data().bio);
-                setprofile(docSnap.data().profile);
+                setbio(docSnap.data().bio ? docSnap.data().bio : "");
+                setprofile(docSnap.data().profile ? docSnap.data().profile : "");
                 setID(docSnap.data().userID);
-                setImageUrl(docSnap.data().imageURL || Dummy);
-                setgradientValue(docSnap.data().gradient || "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)")
+                setImageUrl(docSnap.data().imageURL ? docSnap.data().imageURL : imageUrl);
+                setgradientValue(docSnap.data().gradient ? docSnap.data().gradient : gradientValue);
                 setloading(false);
-                settempArray(docSnap.data().arrayOfObject);
-                setnameProfile({ profile: docSnap.data().profile, bio: docSnap.data().bio });
+                settempArray(docSnap.data().arrayOfObject ? docSnap.data().arrayOfObject : tempsetArray);
                 setloading(false);
                 setuserID(docSnap.data().userID);
-                setImage(user.photoURL);
-                setFontFamily(docSnap.data().fontFamily);
-                setbgColor(docSnap.data().cardBgColor)
-                setfontColor(docSnap.data().cardFontColor);
+                setImage(user.photoURL ? user.photoURL : "");
+                setFontFamily(docSnap.data().fontFamily ? docSnap.data().fontFamily : "");
+                setbgColor(docSnap.data().cardBgColor ? docSnap.data().cardBgColor : "");
+                setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
+
+                console.log('tempsetArray:', tempsetArray);
+                console.log('profile:', profile);
+                console.log('bio:', bio);
+                console.log('id:', id);
+                console.log('imageUrl:', imageUrl);
+                console.log('gradientValue:', gradientValue);
+                console.log('FontFamily:', FontFamily);
+                console.log('bgColor:', bgColor);
+                console.log('fontColor:', fontColor);
+                console.log('imgUrl:', imgUrl);
+
             } else {
                 setloading(false);
             }
@@ -289,6 +301,7 @@ export default function User() {
 
                 const userRef = doc(db, "users", lastTerm);
                 await setDoc(userRef, { imageURL: url }, { merge: true });
+                seturl(url)
 
                 toast('Photo uploaded successfully', { autoClose: 1500 });
                 window.location.reload();
@@ -318,8 +331,6 @@ export default function User() {
         }
         let urlClass = document.querySelector(`.url${indexop}`);
         let nameClass = document.querySelector(`.name${indexop}`);
-        let profile = document.querySelector(`.profile`);
-        let bio = document.querySelector(`.bio`);
         if (isValidLink(urlClass.value) && nameClass.value.length > 0) {
             let obj = {
                 class: className,
@@ -336,17 +347,17 @@ export default function User() {
                 tempArray = docSnap.data().arrayOfObject || [];
             }
             tempArray.push(obj);
+            console.log("this is the temp shit-> ", tempArray);
             setDoc(docRef, {
                 arrayOfObject: tempArray,
                 userID: docSnap.data().userID,
-                profile: docSnap.data().profile || profile.value,
-                bio: docSnap.data().bio || bio.value,
-                imageURL: docSnap.data().imageURL || "",
+                profile: profile,
+                bio: bio,
+                imageURL: imgUrl,
                 gradient: gradientValue,
-                fontFamily: docSnap.data().fontFamily || "'Bree Serif', serif",
-                cardBgColor: docSnap.data().cardBgColor,
-                cardFontColor: docSnap.data().cardFontColor,
-
+                fontFamily: FontFamily,
+                cardBgColor: bgColor,
+                cardFontColor: fontColor,
             });
             settempArray(tempArray);
         }
@@ -370,13 +381,13 @@ export default function User() {
         setDoc(docRef, {
             arrayOfObject: newTemp,
             userID: docSnap.data().userID,
-            profile: docSnap.data().profile || "",
-            bio: docSnap.data().bio || "",
-            imageURL: docSnap.data().imageURL || "",
+            profile: profile,
+            bio: bio,
+            imageURL: imgUrl,
             gradient: gradientValue,
-            fontFamily: docSnap.data().fontFamily,
-            cardBgColor: docSnap.data().cardBgColor,
-            cardFontColor: docSnap.data().cardFontColor,
+            fontFamily: FontFamily,
+            cardBgColor: bgColor,
+            cardFontColor: fontColor,
         });
         settempArray(newTemp);
     };
@@ -396,20 +407,22 @@ export default function User() {
         }
         else {
             if (docSnap.exists() && user) {
+                console.log("--->", bio.value, profile.value, lastTerm);
                 tempArray = docSnap.data().arrayOfObject || [];
                 setDoc(docRef, {
                     arrayOfObject: tempArray,
                     userID: docSnap.data().userID,
-                    imageURL: docSnap.data().imageURL,
                     profile: profile.value,
                     bio: bio.value,
+                    imageURL: imgUrl,
                     gradient: gradientValue,
-                    fontFamily: docSnap.data().fontFamily,
-                    cardBgColor: docSnap.data().cardBgColor,
-                    cardFontColor: docSnap.data().cardFontColor,
+                    fontFamily: FontFamily,
+                    cardBgColor: bgColor,
+                    cardFontColor: fontColor,
                 });
                 toast("Name and bio updated, see section below", { autoClose: 1500 });
-                setnameProfile({ profile: profile.value, bio: bio.value });
+                setbio(bio.value);
+                setprofile(profile.value);
             }
         }
     }
@@ -420,15 +433,15 @@ export default function User() {
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
         setDoc(docRef, {
-            arrayOfObject: docSnap.data().arrayOfObject,
+            arrayOfObject: tempsetArray,
             userID: docSnap.data().userID,
-            imageURL: docSnap.data().imageURL,
-            profile: docSnap.data().profile,
-            bio: docSnap.data().bio,
+            profile: profile,
+            bio: bio,
+            imageURL: imgUrl,
             gradient: e,
-            fontFamily: docSnap.data().fontFamily,
-            cardBgColor: docSnap.data().cardBgColor,
-            cardFontColor: docSnap.data().cardFontColor,
+            fontFamily: FontFamily,
+            cardBgColor: bgColor,
+            cardFontColor: fontColor,
         });
     }
 
@@ -437,15 +450,15 @@ export default function User() {
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
         setDoc(docRef, {
-            arrayOfObject: docSnap.data().arrayOfObject,
+            arrayOfObject: tempsetArray,
             userID: docSnap.data().userID,
-            imageURL: docSnap.data().imageURL,
-            profile: docSnap.data().profile,
-            bio: docSnap.data().bio,
-            gradient: docSnap.data().gradient,
+            profile: profile,
+            bio: bio,
+            imageURL: imgUrl,
+            gradient: gradientValue,
             fontFamily: e,
-            cardBgColor: docSnap.data().cardBgColor,
-            cardFontColor: docSnap.data().cardFontColor,
+            cardBgColor: bgColor,
+            cardFontColor: fontColor,
         });
     }
 
@@ -454,15 +467,15 @@ export default function User() {
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
         setDoc(docRef, {
-            arrayOfObject: docSnap.data().arrayOfObject,
+            arrayOfObject: tempsetArray,
             userID: docSnap.data().userID,
-            imageURL: docSnap.data().imageURL,
-            profile: docSnap.data().profile,
-            bio: docSnap.data().bio,
-            gradient: docSnap.data().gradient,
-            fontFamily: docSnap.data().fontFamily,
+            profile: profile,
+            bio: bio,
+            imageURL: imgUrl,
+            gradient: gradientValue,
+            fontFamily: FontFamily,
             cardBgColor: e,
-            cardFontColor: docSnap.data().cardFontColor,
+            cardFontColor: fontColor,
         });
     }
 
@@ -471,14 +484,14 @@ export default function User() {
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
         setDoc(docRef, {
-            arrayOfObject: docSnap.data().arrayOfObject,
+            arrayOfObject: tempsetArray,
             userID: docSnap.data().userID,
-            imageURL: docSnap.data().imageURL,
-            profile: docSnap.data().profile,
-            bio: docSnap.data().bio,
-            gradient: docSnap.data().gradient,
-            fontFamily: docSnap.data().fontFamily,
-            cardBgColor: docSnap.data().cardBgColor,
+            profile: profile,
+            bio: bio,
+            imageURL: imgUrl,
+            gradient: gradientValue,
+            fontFamily: FontFamily,
+            cardBgColor: bgColor,
             cardFontColor: e,
         });
     }
@@ -486,9 +499,9 @@ export default function User() {
     return (
         <>
             <Helmet>
-                <title>~ Create Section | @{id} ~</title>
+                {/* <title>~ Create Section | @{id} ~</title> */}
             </Helmet>
-            <ToastContainer style={{ zIndex: 99999999 }} />
+            <ToastContainer style={{ zIndex: 999999999999 }} />
             <main className="cover">
 
                 {
@@ -547,8 +560,8 @@ export default function User() {
                                     <br /><br />
                                     <div className="cards align">
                                         <h2>~ Edits Links ~</h2>
-                                        <h3 style={{ fontWeight: "300" }}><b>Name : </b>{nameProfile.profile || ""}</h3>
-                                        <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {nameProfile.bio || ""} </h3>
+                                        <h3 style={{ fontWeight: "300" }}><b>Name : </b>{profile || ""}</h3>
+                                        <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {bio || ""} </h3>
                                         {
                                             tempsetArray ? (tempsetArray.map((e, index) => {
                                                 return (
@@ -628,9 +641,9 @@ export default function User() {
                                             <h1>~ Select Fonts ~</h1>
                                             <main className="font_customization">
                                                 {
-                                                    fontFamilies.map((e) => {
+                                                    fontFamilies.map((e , index) => {
                                                         return (
-                                                            <div onClick={() => handleFont(e)} className="font_style" style={{ fontFamily: e }}>The quick brown fox jumps over the lazy dog.</div>
+                                                            <div  key={index} onClick={() => handleFont(e)} className="font_style" style={{ fontFamily: e }}>The quick brown fox jumps over the lazy dog.</div>
                                                         )
                                                     })
                                                 }
@@ -643,9 +656,9 @@ export default function User() {
                                             <h1>~ Select background ~</h1>
                                             <main className="font_color_customization">
                                                 {
-                                                    colors.map((e) => {
+                                                    colors.map((e , index) => {
                                                         return (
-                                                            <div onClick={() => handleBgColor(e)} className="font_color" style={{ background: e }}></div>
+                                                            <div  key={index} onClick={() => handleBgColor(e)} className="font_color" style={{ background: e }}></div>
                                                         )
                                                     })
                                                 }
@@ -657,9 +670,9 @@ export default function User() {
                                             <h1>~ Select Color ~</h1>
                                             <main className="font_color_customization">
                                                 {
-                                                    colors.map((e) => {
+                                                    colors.map((e , index) => {
                                                         return (
-                                                            <div onClick={() => handleFontColor(e)} className="font_color" style={{ background: e }}></div>
+                                                            <div  key={index} onClick={() => handleFontColor(e)} className="font_color" style={{ background: e }}></div>
                                                         )
                                                     })
                                                 }

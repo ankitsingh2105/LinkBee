@@ -223,7 +223,7 @@
     border: .1px solid black;
     border-radius: 60px;
     background-color: rgb(255, 252, 236);
-    z-index: 99999999999;
+    z-index: 9999999;
 }
 
 .loadingWheel {
