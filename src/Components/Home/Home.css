@@ -12,6 +12,7 @@ body{
 .main_home button{
     font-size: 40px;
     font-family: var(--main-font);
+    margin: 0px 20px;
 }
 .main_home button:hover{
     cursor: pointer;
@@ -45,6 +46,16 @@ body{
 }
 .main_home img:hover {
     cursor: pointer;
+}
+
+.floating_bee{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: -10;
+    top: 25%;
+    right: 46%;
+    rotate: -20deg;
 }
 
 
@@ -127,6 +138,10 @@ body{
     }
     .main_home button{
         font-size: 30px;
+    }
+    .floating_bee{
+        top: 10%;
+        right: 5%;
     }
 }
 
