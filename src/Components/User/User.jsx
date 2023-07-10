@@ -136,7 +136,13 @@ export default function User() {
             class: "fa-brands fa-reddit",
             title: "Reddit",
             color: "#FF5700"
-        }
+        },
+        {
+            class: "fa-solid fa-file",
+            title: "Resume",
+            color: "skyblue"
+        },
+        
     ];
     const backgroundsGradients = [
         {
