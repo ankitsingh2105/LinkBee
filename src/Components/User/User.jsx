@@ -20,6 +20,11 @@ import seven from "./LINKBEEDESIGNS/7.png";
 import eight from "./LINKBEEDESIGNS/8.png";
 import nine from "./LINKBEEDESIGNS/9.png";
 import ten from "./LINKBEEDESIGNS/10.png";
+import eleven from "./LINKBEEDESIGNS/11.png";
+import twelve from "./LINKBEEDESIGNS/12.png";
+import thirteen from "./LINKBEEDESIGNS/13.png";
+import fourteen from "./LINKBEEDESIGNS/14.png";
+import fifteen from "./LINKBEEDESIGNS/15.png";
 
 export default function User() {
 
@@ -43,6 +48,11 @@ export default function User() {
         seven,
         ten,
         six,
+        eleven,
+        twelve,
+        thirteen,
+        fourteen,
+        fifteen,
         five,
         eight,
         one,
@@ -203,6 +213,11 @@ export default function User() {
         {
             gradient: "linear-gradient(180deg, #0093E9 0%, #80D0C7 100%)",
         },
+        {
+            gradient: "linear-gradient(180deg, #d1f7ff 30%, #61bff6 100%",
+        },
+        // background-color: #abe9cd;
+
     ];
 
 
@@ -283,7 +298,7 @@ export default function User() {
                 setbgColor(docSnap.data().cardBgColor ? docSnap.data().cardBgColor : "");
                 setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
                 setbackImage(docSnap.data().backIMG ? docSnap.data().backIMG : "");
-                seturl(docSnap.data().imageURL ? docSnap.data().imageURL : "" );
+                seturl(docSnap.data().imageURL ? docSnap.data().imageURL : "");
 
             } else {
                 setloading(false);
