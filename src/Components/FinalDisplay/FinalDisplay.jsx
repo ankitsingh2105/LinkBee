@@ -21,11 +21,13 @@ export default function FinalDisplay() {
   const [id, setID] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [imageUrl, setImageUrl] = useState(Dummy);
-  const [gradient, setgradient] = useState("")
+  const [gradient, setgradient] = useState("");
   const [bgColor, setbgColor] = useState("");
   const [fontColor, setfontColor] = useState("");
-  const [fontFamily, setfontFamily] = useState("")
-
+  const [fontFamily, setfontFamily] = useState("");
+  const [backImage, setbackIMG] = useState("")
+  const [width, setWidth] = useState(window.innerWidth);
+  const certainLimit = 400; // Define your desired width limit
 
   const currentUrl = window.location.pathname;
   const parts = currentUrl.split('/');
@@ -46,12 +48,25 @@ export default function FinalDisplay() {
         setbgColor(docSnap.data().cardBgColor);
         setfontColor(docSnap.data().cardFontColor);
         setfontFamily(docSnap.data().fontFamily);
+        setbackIMG(docSnap.data().backIMG);
       } else {
         setloading(false);
         setErrorMessage('Invalid userID. User not found.');
       }
     };
     check();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const sendToSignUp = () => {
@@ -69,23 +84,33 @@ export default function FinalDisplay() {
           <span className="align">
             <img style={{ marginTop: "8rem" }} src={errorHoney} alt="" />
             <br />
-            <span><b>Page don't exist, Sign up for this username </b></span>
+            <span><b>Page doesn't exist. Sign up for this username.</b></span>
             <br />
-            <button onClick={sendToSignUp} >Sign up</button>
+            <button onClick={sendToSignUp}>Sign up</button>
             <br />
           </span>
         </div>
       ) : (
-
         <>
-          <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav' >
+          <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav'>
             <ul>
               <li><img src={imageUrl} alt="" /></li>
               <li>@{id}</li>
-              <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button>Link Bee</button></li>
+              <li onClick={() => { window.location.href = "http://linkbee.online/" }}><button>Link Bee</button></li>
             </ul>
           </nav>
-          <main className="FinalDisplay_main" style={{ background: gradient, fontFamily: fontFamily }} >
+          <main
+            className="FinalDisplay_main"
+            style={{
+              fontFamily: fontFamily,
+              position: "static",
+              overflow: "auto",
+              backgroundImage: width >= certainLimit ? gradient : `url(${backImage})`,
+              backgroundRepeat: "no-repeat", 
+              backgroundSize: "cover" ,
+            }}
+            
+          >
             <ToastContainer style={{ zIndex: 99999999 }} />
             <Helmet>
               <title>Link Bee ~ @{id}</title>
@@ -96,13 +121,16 @@ export default function FinalDisplay() {
               <b> @{id} </b>
             </span>
             <br />
-            <span style={{ marginTop: '-10px' }}>{bio}</span>
+            <span style={{ marginTop: '-10px'  }}>{bio}</span>
             <br /> <br />
             <span>{profile}</span>
             {array?.map((e) => {
               return (
-                <div className="finalCard slug_finalCard" key={e.name}
-                  style={{ color: fontColor, background: bgColor }}>
+                <div
+                  className="finalCard slug_finalCard"
+                  key={e.name}
+                  style={{ color: fontColor, background: bgColor }}
+                >
                   <i style={{ color: `${e.color}`, border: ".1px solid black" }} className={e.class}></i>
                   <span>{e.name}</span>
                   <a href={e.link}>

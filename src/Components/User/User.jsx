@@ -10,6 +10,17 @@ import Dummy from "./dummyimage.webp"
 import logo from "../Navbar/link bee.png"
 import { Helmet } from 'react-helmet';
 
+import one from "./LINKBEEDESIGNS/1.png";
+import two from "./LINKBEEDESIGNS/2.png";
+import three from "./LINKBEEDESIGNS/3.png";
+import four from "./LINKBEEDESIGNS/4.png";
+import five from "./LINKBEEDESIGNS/5.png";
+import six from "./LINKBEEDESIGNS/6.png";
+import seven from "./LINKBEEDESIGNS/7.png";
+import eight from "./LINKBEEDESIGNS/8.png";
+import nine from "./LINKBEEDESIGNS/9.png";
+import ten from "./LINKBEEDESIGNS/10.png";
+
 export default function User() {
 
     const fontFamilies = [
@@ -24,6 +35,20 @@ export default function User() {
         "'Roboto', sans-serif",
         "'Satisfy', cursive",
         "'Teko', sans-serif",
+    ];
+
+
+    const images = [
+        nine,
+        seven,
+        ten,
+        six,
+        five,
+        eight,
+        one,
+        two,
+        three,
+        four,
     ];
 
 
@@ -142,7 +167,7 @@ export default function User() {
             title: "Resume",
             color: "skyblue"
         },
-        
+
     ];
     const backgroundsGradients = [
         {
@@ -228,7 +253,8 @@ export default function User() {
     const [FontFamily, setFontFamily] = useState("'Bree Serif', serif");
     const [bgColor, setbgColor] = useState("rgb(51, 55, 55)");
     const [fontColor, setfontColor] = useState("white");
-    const [imgUrl, seturl] = useState("")
+    const [imgUrl, seturl] = useState("");
+    const [backImage, setbackImage] = useState("")
 
     const currentUrl = window.location.pathname;
     const parts = currentUrl.split('/');
@@ -256,6 +282,8 @@ export default function User() {
                 setFontFamily(docSnap.data().fontFamily ? docSnap.data().fontFamily : "");
                 setbgColor(docSnap.data().cardBgColor ? docSnap.data().cardBgColor : "");
                 setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
+                setbackImage(docSnap.data().backIMG ? docSnap.data().backIMG : "");
+                seturl(docSnap.data().imageURL ? docSnap.data().imageURL : "" );
 
             } else {
                 setloading(false);
@@ -295,7 +323,18 @@ export default function User() {
                 await updateProfile(auth.currentUser, { photoURL: url });
 
                 const userRef = doc(db, "users", lastTerm);
-                await setDoc(userRef, { imageURL: url }, { merge: true });
+                await setDoc(userRef, {
+                    imageURL: url,
+                    // arrayOfObject: tempsetArray,
+                    // userID: docSnap.data().userID,
+                    // profile: profile,
+                    // bio: bio,
+                    // gradient: gradientValue,
+                    // fontFamily: e,
+                    // cardBgColor: bgColor,
+                    // cardFontColor: fontColor,
+                    // backIMG: backImage,
+                }, { merge: true });
                 seturl(url)
 
                 toast('Photo uploaded successfully', { autoClose: 1500 });
@@ -353,6 +392,7 @@ export default function User() {
                 fontFamily: FontFamily,
                 cardBgColor: bgColor,
                 cardFontColor: fontColor,
+                backIMG: backImage,
             });
             settempArray(tempArray);
         }
@@ -383,6 +423,7 @@ export default function User() {
             fontFamily: FontFamily,
             cardBgColor: bgColor,
             cardFontColor: fontColor,
+            backIMG: backImage,
         });
         settempArray(newTemp);
     };
@@ -414,6 +455,7 @@ export default function User() {
                     fontFamily: FontFamily,
                     cardBgColor: bgColor,
                     cardFontColor: fontColor,
+                    backIMG: backImage,
                 });
                 toast("Name and bio updated, see section below", { autoClose: 1500 });
                 setbio(bio.value);
@@ -437,6 +479,7 @@ export default function User() {
             fontFamily: FontFamily,
             cardBgColor: bgColor,
             cardFontColor: fontColor,
+            backIMG: backImage,
         });
     }
 
@@ -454,6 +497,7 @@ export default function User() {
             fontFamily: e,
             cardBgColor: bgColor,
             cardFontColor: fontColor,
+            backIMG: backImage,
         });
     }
 
@@ -471,6 +515,7 @@ export default function User() {
             fontFamily: FontFamily,
             cardBgColor: e,
             cardFontColor: fontColor,
+            backIMG: backImage,
         });
     }
 
@@ -487,7 +532,27 @@ export default function User() {
             gradient: gradientValue,
             fontFamily: FontFamily,
             cardBgColor: bgColor,
+            backIMG: backImage,
             cardFontColor: e,
+
+        });
+    }
+
+    const handleBackgroundImage = async (e) => {
+        setbackImage(e);
+        const docRef = doc(db, "users", lastTerm);
+        const docSnap = await getDoc(docRef);
+        setDoc(docRef, {
+            arrayOfObject: tempsetArray,
+            userID: docSnap.data().userID,
+            profile: profile,
+            bio: bio,
+            imageURL: imgUrl,
+            gradient: gradientValue,
+            fontFamily: FontFamily,
+            cardBgColor: bgColor,
+            cardFontColor: fontColor,
+            backIMG: e,
         });
     }
 
@@ -580,7 +645,7 @@ export default function User() {
                                 <div className="preview_section">
                                     <main className='sticky_phone_preview' >
                                         <h1 className="align" >~ Preview ~</h1>
-                                        <main style={{ backgroundImage: gradientValue, fontFamily: FontFamily }} className="FinalDisplay_main2" >
+                                        <main style={{ backgroundImage: `url(${backImage})`, fontFamily: FontFamily }} className="FinalDisplay_main2" >
 
                                             <div className="notch">
                                             </div>
@@ -616,7 +681,26 @@ export default function User() {
                                             <br />
                                         </main>
                                     </main>
+
+
+                                    {/* options */}
                                     <main className="align5" style={{ paddingTop: "4rem" }} >
+
+                                        <div className='align'>
+                                            <h1>~Select background image~</h1>
+                                            <main className="image_background">
+                                                {
+                                                    images.map((e, index) => {
+                                                        return (
+                                                            <>
+                                                                <img onClick={() => { handleBackgroundImage(e) }} src={e} key={index} className="image_box" />
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </main>
+                                        </div>
+                                        <br /><br />
 
                                         <div className='align'>
                                             <h1>~ Select Gradient ~</h1>

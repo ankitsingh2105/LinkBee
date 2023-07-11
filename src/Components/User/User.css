@@ -338,7 +338,22 @@
     margin: 0px 6px;
     font-size: 13px;
 }
+.image_background{
+    display: grid;
+    grid-template-columns: 16rem 16rem;
+    place-items: center;
+}
+.image_box{
+    width: 250px;
+    height: 450px;
+    margin-top: 10px;
+}
 
+@media screen and (max-width: 827px) {
+    .image_background{
+        grid-template-columns: 16rem;
+    }
+}
 @media screen and (max-width: 1047px) {
     .gradient_background {
         grid-template-columns: repeat(3, 10rem);
