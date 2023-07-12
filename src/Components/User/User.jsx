@@ -302,7 +302,7 @@ export default function User() {
                 setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
                 setbackImage(docSnap.data().backIMG ? docSnap.data().backIMG : "");
                 seturl(docSnap.data().imageURL ? docSnap.data().imageURL : "");
-                setbioandprofile(docSnap.data().bioandprofilecolor ? docSnap.data().bioandprofilecolor : "" );
+                setbioandprofile(docSnap.data().bioandprofilecolor ? docSnap.data().bioandprofilecolor : "");
 
             } else {
                 setloading(false);
@@ -412,7 +412,7 @@ export default function User() {
                 cardBgColor: bgColor,
                 cardFontColor: fontColor,
                 backIMG: backImage,
-                bioandprofilecolor : bioandprofile
+                bioandprofilecolor: bioandprofile
             });
             settempArray(tempArray);
         }
@@ -444,7 +444,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: backImage,
-            bioandprofilecolor : bioandprofile
+            bioandprofilecolor: bioandprofile
         });
         settempArray(newTemp);
     };
@@ -477,7 +477,7 @@ export default function User() {
                     cardBgColor: bgColor,
                     cardFontColor: fontColor,
                     backIMG: backImage,
-                    bioandprofilecolor : bioandprofile
+                    bioandprofilecolor: bioandprofile
                 });
                 toast("Name and bio updated, see section below", { autoClose: 1500 });
                 setbio(bio.value);
@@ -502,7 +502,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: backImage,
-            bioandprofilecolor : bioandprofile
+            bioandprofilecolor: bioandprofile
         });
     }
 
@@ -521,7 +521,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: backImage,
-            bioandprofilecolor : bioandprofile
+            bioandprofilecolor: bioandprofile
         });
     }
 
@@ -540,7 +540,7 @@ export default function User() {
             cardBgColor: e,
             cardFontColor: fontColor,
             backIMG: backImage,
-            bioandprofilecolor : bioandprofile
+            bioandprofilecolor: bioandprofile
         });
     }
 
@@ -559,7 +559,7 @@ export default function User() {
             cardBgColor: bgColor,
             backIMG: backImage,
             cardFontColor: e,
-            bioandprofilecolor : bioandprofile
+            bioandprofilecolor: bioandprofile
 
         });
     }
@@ -579,7 +579,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: e,
-            bioandprofilecolor : bioandprofile
+            bioandprofilecolor: bioandprofile
         });
     }
 
@@ -598,7 +598,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: backImage,
-            bioandprofilecolor : e
+            bioandprofilecolor: e
         });
     }
 
@@ -707,12 +707,12 @@ export default function User() {
                                             <img style={{ marginTop: "4rem" }} src={imageUrl} alt="" />
                                             <br />
                                             <span>
-                                                <b style={{color : bioandprofile}} > @{id} </b>
+                                                <b style={{ color: bioandprofile }} > @{id} </b>
                                             </span>
                                             <br />
-                                            <span style={{ marginTop: '-10px', color : bioandprofile }}>{bio}</span>
+                                            <span style={{ marginTop: '-10px', color: bioandprofile }}>{bio}</span>
                                             <br /> <br />
-                                            <span>{profile}</span>
+                                            <span style={{ color: bioandprofile }}>{profile}</span>
                                             {tempsetArray ? (tempsetArray.map((e) => {
                                                 return (
                                                     <div style={{ width: "17rem", background: bgColor, color: fontColor }} className="finalCard" key={e.name}>

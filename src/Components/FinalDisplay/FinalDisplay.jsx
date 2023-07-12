@@ -27,7 +27,8 @@ export default function FinalDisplay() {
   const [fontFamily, setfontFamily] = useState("");
   const [backImage, setbackIMG] = useState("")
   const [width, setWidth] = useState(window.innerWidth);
-  const certainLimit = 400; // Define your desired width limit
+  const [bioandprofilecolor, setbioandprofile] = useState("")
+  const certainLimit = 400;
 
   const currentUrl = window.location.pathname;
   const parts = currentUrl.split('/');
@@ -38,17 +39,18 @@ export default function FinalDisplay() {
       const docRef = doc(db, 'users', userID);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        setbio(docSnap.data().bio);
-        setprofile(docSnap.data().profile);
-        setArray(docSnap.data().arrayOfObject);
-        setID(docSnap.data().userID);
+        setbio(docSnap.data().bio ? docSnap.data().bio : "");
+        setprofile(docSnap.data().profile ? docSnap.data().profile : "");
+        setArray(docSnap.data().arrayOfObject ? docSnap.data().arrayOfObject : []);
+        setID(docSnap.data().userID ? docSnap.data().userID : "");
         setloading(false);
         setImageUrl(docSnap.data().imageURL || Dummy);
-        setgradient(docSnap.data().gradient);
-        setbgColor(docSnap.data().cardBgColor);
-        setfontColor(docSnap.data().cardFontColor);
-        setfontFamily(docSnap.data().fontFamily);
-        setbackIMG(docSnap.data().backIMG);
+        setgradient(docSnap.data().gradient ? docSnap.data().gradient : "");
+        setbgColor(docSnap.data().cardBgColor ? docSnap.data().cardBgColor : "");
+        setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
+        setfontFamily(docSnap.data().fontFamily ? docSnap.data().fontFamily : "");
+        setbackIMG(docSnap.data().backIMG ? docSnap.data().backIMG : "");
+        setbioandprofile(docSnap.data().bioandprofile ? docSnap.data().bioandprofile : "")
       } else {
         setloading(false);
         setErrorMessage('Invalid userID. User not found.');
@@ -118,12 +120,12 @@ export default function FinalDisplay() {
             <img src={imageUrl} alt="" />
             <br />
             <span>
-              <b> @{id} </b>
+              <b style={{color : bioandprofilecolor}} > @{id} </b>
             </span>
             <br />
-            <span style={{ marginTop: '-10px'  }}>{bio}</span>
+            <span style={{ marginTop: '-10px' , color:bioandprofilecolor }}>{bio}</span>
             <br /> <br />
-            <span>{profile}</span>
+            <span style={{color : bioandprofilecolor}} >{profile}</span>
             {array?.map((e) => {
               return (
                 <div
