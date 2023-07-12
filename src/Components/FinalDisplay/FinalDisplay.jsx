@@ -27,7 +27,7 @@ export default function FinalDisplay() {
   const [fontFamily, setfontFamily] = useState("");
   const [backImage, setbackIMG] = useState("")
   const [width, setWidth] = useState(window.innerWidth);
-  const [bioandprofilecolor, setbioandprofile] = useState("")
+  const [bioandprofile, setbioandprofile] = useState("")
   const certainLimit = 400;
 
   const currentUrl = window.location.pathname;
@@ -50,7 +50,7 @@ export default function FinalDisplay() {
         setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
         setfontFamily(docSnap.data().fontFamily ? docSnap.data().fontFamily : "");
         setbackIMG(docSnap.data().backIMG ? docSnap.data().backIMG : "");
-        setbioandprofile(docSnap.data().bioandprofile ? docSnap.data().bioandprofile : "")
+        setbioandprofile(docSnap.data().bioandprofilecolor ? docSnap.data().bioandprofilecolor : "")
       } else {
         setloading(false);
         setErrorMessage('Invalid userID. User not found.');
@@ -120,12 +120,12 @@ export default function FinalDisplay() {
             <img src={imageUrl} alt="" />
             <br />
             <span>
-              <b style={{color : bioandprofilecolor}} > @{id} </b>
+              <b style={{color : bioandprofile}} > @{id} </b>
             </span>
             <br />
-            <span style={{ marginTop: '-10px' , color:bioandprofilecolor }}>{bio}</span>
+            <span style={{ marginTop: '-10px' , color:bioandprofile }}>{bio}</span>
             <br /> <br />
-            <span style={{color : bioandprofilecolor}} >{profile}</span>
+            <span style={{color : bioandprofile}} >{profile}</span>
             {array?.map((e) => {
               return (
                 <div
