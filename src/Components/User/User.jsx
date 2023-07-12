@@ -25,9 +25,39 @@ import twelve from "./LINKBEEDESIGNS/12.png";
 import thirteen from "./LINKBEEDESIGNS/13.png";
 import fourteen from "./LINKBEEDESIGNS/14.png";
 import fifteen from "./LINKBEEDESIGNS/15.png";
+import sixteen from "./LINKBEEDESIGNS/16.png";
+import seventeen from "./LINKBEEDESIGNS/17.png";
+import eighteen from "./LINKBEEDESIGNS/18.png";
+import nineteen from "./LINKBEEDESIGNS/19.png";
+import twenty from "./LINKBEEDESIGNS/20.png";
+import twentyOne from "./LINKBEEDESIGNS/21.png";
+
+const images = [
+    nine,
+    seven,
+    ten,
+    six,
+    eleven,
+    twelve,
+    thirteen,
+    fourteen,
+    fifteen,
+    five,
+    eight,
+    one,
+    two,
+    three,
+    four,
+    sixteen,
+    seventeen,
+    eighteen,
+    nineteen,
+    twenty,
+    twentyOne,
+];
+
 
 export default function User() {
-
     const fontFamilies = [
         "'Acme', sans-serif",
         "'Anton', sans-serif",
@@ -42,27 +72,8 @@ export default function User() {
         "'Teko', sans-serif",
     ];
 
-
-    const images = [
-        nine,
-        seven,
-        ten,
-        six,
-        eleven,
-        twelve,
-        thirteen,
-        fourteen,
-        fifteen,
-        five,
-        eight,
-        one,
-        two,
-        three,
-        four,
-    ];
-
-
-
+    
+    
     const tempUserArray = [
         {
             class: "fa fa-facebook",
@@ -184,10 +195,10 @@ export default function User() {
             gradient: "linear-gradient(180deg, #FBAB7E 0%, #F7CE68 100%)",
         },
         {
-            gradient: "linear-gradient(180deg, #85FFBD 0%, #FFFB7D 100%)",
+            gradient: "linear-gradient(180deg, black 0%, black 100%)",
         },
         {
-            gradient: "linear-gradient(180deg, #FA8BFF 0%,  #2BFF88 100%)",
+            gradient: "linear-gradient(180deg, white 0%, white 100%)",
         },
         {
             gradient: "linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%)",
@@ -782,11 +793,11 @@ export default function User() {
                                             <h1>~ Select background ~</h1>
                                             <small style={{ marginTop: "-1rem" }} >~for information section~</small>
                                             <br />
-                                            <main className="font_color_customization">
+                                            <main className="gradient_background">
                                                 {
-                                                    colors.map((e, index) => {
+                                                    backgroundsGradients.map((e, index) => {
                                                         return (
-                                                            <div key={index} onClick={() => handleBgColor(e)} className="font_color" style={{ background: e }}></div>
+                                                            <div key={index} onClick={() => handleBgColor(e.gradient)} style={{ background: e.gradient }} className="gradient_box"></div>
                                                         )
                                                     })
                                                 }
