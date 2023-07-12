@@ -105,11 +105,10 @@ export default function FinalDisplay() {
             className="FinalDisplay_main"
             style={{
               fontFamily: fontFamily,
-              position: "static",
-              overflow: "auto",
               backgroundImage: width >= certainLimit ? gradient : `url(${backImage})`,
               backgroundRepeat: "no-repeat", 
               backgroundSize: "cover" ,
+              backgroundAttachment: "fixed",
             }}
             
           >

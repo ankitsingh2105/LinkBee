@@ -200,7 +200,7 @@
 }
 
 .authNav ul {
-    margin: 4px 0px;
+    margin: 0px;
 }
 
 .authNav {
@@ -340,12 +340,12 @@
 }
 .image_background{
     display: grid;
-    grid-template-columns: 16rem 16rem;
+    grid-template-columns: 13rem 13rem;
     place-items: center;
 }
 .image_box{
-    width: 250px;
-    height: 450px;
+    width: 200px;
+    height: 360px;
     margin-top: 10px;
 }
 
