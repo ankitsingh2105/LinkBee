@@ -229,13 +229,14 @@ export default function User() {
         "#FFD700", // Gold
         "#7FFF00", // Chartreuse
         "#DC143C", // Crimson
-        "#00BFFF", // DeepSkyBlue
-        "#9400D3", // DarkViolet
+        "#F8B195",
+        "#F67280",
+        "#C06C84",
+        "#6C5B7B",
+        "#355C7D",
         "#FF1493", // DeepPink
         "#00CED1", // DarkTurquoise
         "#FF8C00", // DarkOrange
-        "#8A2BE2", // BlueViolet
-        "#00FF7F", // SpringGreen
         "#9932CC", // DarkOrchid
         "#FF4500", // OrangeRed
         "#00FF00", // Lime
@@ -243,6 +244,7 @@ export default function User() {
         "#1E90FF", // DodgerBlue
         "#FF00FF", // Fuchsia
         "#00FFFF", // Cyan
+        "rgb(97, 191, 246)"
     ];
 
 
@@ -269,7 +271,8 @@ export default function User() {
     const [bgColor, setbgColor] = useState("rgb(51, 55, 55)");
     const [fontColor, setfontColor] = useState("white");
     const [imgUrl, seturl] = useState("");
-    const [backImage, setbackImage] = useState("")
+    const [backImage, setbackImage] = useState("");
+    const [bioandprofile, setbioandprofile] = useState("")
 
     const currentUrl = window.location.pathname;
     const parts = currentUrl.split('/');
@@ -299,6 +302,7 @@ export default function User() {
                 setfontColor(docSnap.data().cardFontColor ? docSnap.data().cardFontColor : "");
                 setbackImage(docSnap.data().backIMG ? docSnap.data().backIMG : "");
                 seturl(docSnap.data().imageURL ? docSnap.data().imageURL : "");
+                setbioandprofile(docSnap.data().bioandprofilecolor ? docSnap.data().bioandprofilecolor : "" );
 
             } else {
                 setloading(false);
@@ -408,6 +412,7 @@ export default function User() {
                 cardBgColor: bgColor,
                 cardFontColor: fontColor,
                 backIMG: backImage,
+                bioandprofilecolor : bioandprofile
             });
             settempArray(tempArray);
         }
@@ -439,6 +444,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: backImage,
+            bioandprofilecolor : bioandprofile
         });
         settempArray(newTemp);
     };
@@ -471,6 +477,7 @@ export default function User() {
                     cardBgColor: bgColor,
                     cardFontColor: fontColor,
                     backIMG: backImage,
+                    bioandprofilecolor : bioandprofile
                 });
                 toast("Name and bio updated, see section below", { autoClose: 1500 });
                 setbio(bio.value);
@@ -495,6 +502,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: backImage,
+            bioandprofilecolor : bioandprofile
         });
     }
 
@@ -513,6 +521,7 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: backImage,
+            bioandprofilecolor : bioandprofile
         });
     }
 
@@ -531,6 +540,7 @@ export default function User() {
             cardBgColor: e,
             cardFontColor: fontColor,
             backIMG: backImage,
+            bioandprofilecolor : bioandprofile
         });
     }
 
@@ -549,6 +559,7 @@ export default function User() {
             cardBgColor: bgColor,
             backIMG: backImage,
             cardFontColor: e,
+            bioandprofilecolor : bioandprofile
 
         });
     }
@@ -568,6 +579,26 @@ export default function User() {
             cardBgColor: bgColor,
             cardFontColor: fontColor,
             backIMG: e,
+            bioandprofilecolor : bioandprofile
+        });
+    }
+
+    const handleBioProfileColor = async (e) => {
+        setbioandprofile(e);
+        const docRef = doc(db, "users", lastTerm);
+        const docSnap = await getDoc(docRef);
+        setDoc(docRef, {
+            arrayOfObject: tempsetArray,
+            userID: docSnap.data().userID,
+            profile: profile,
+            bio: bio,
+            imageURL: imgUrl,
+            gradient: gradientValue,
+            fontFamily: FontFamily,
+            cardBgColor: bgColor,
+            cardFontColor: fontColor,
+            backIMG: backImage,
+            bioandprofilecolor : e
         });
     }
 
@@ -676,10 +707,10 @@ export default function User() {
                                             <img style={{ marginTop: "4rem" }} src={imageUrl} alt="" />
                                             <br />
                                             <span>
-                                                <b> @{id} </b>
+                                                <b style={{color : bioandprofile}} > @{id} </b>
                                             </span>
                                             <br />
-                                            <span style={{ marginTop: '-10px' }}>{bio}</span>
+                                            <span style={{ marginTop: '-10px', color : bioandprofile }}>{bio}</span>
                                             <br /> <br />
                                             <span>{profile}</span>
                                             {tempsetArray ? (tempsetArray.map((e) => {
@@ -719,6 +750,7 @@ export default function User() {
 
                                         <div className='align'>
                                             <h1>~ Select Gradient ~</h1>
+                                            <small style={{ marginTop: "-1rem" }} >~only works on bigger devices otherwise image will be shown~</small>
                                             <main className="gradient_background">
                                                 {
                                                     backgroundsGradients.map((e, index) => {
@@ -748,6 +780,8 @@ export default function User() {
 
                                         <div className='align'>
                                             <h1>~ Select background ~</h1>
+                                            <small style={{ marginTop: "-1rem" }} >~for information section~</small>
+                                            <br />
                                             <main className="font_color_customization">
                                                 {
                                                     colors.map((e, index) => {
@@ -760,8 +794,23 @@ export default function User() {
                                         </div>
                                         <br /><br />
 
+
                                         <div className='align'>
-                                            <h1>~ Select Color ~</h1>
+                                            <h1>~ Select Font Colour ~</h1>
+                                            <small style={{ marginTop: "-1rem" }} >~for bio and profile text~</small>
+                                            <br />
+                                            <main className="align">
+                                                <div onClick={() => handleBioProfileColor("black")} className="font_color" style={{ background: "black" }}></div>
+                                                <div onClick={() => handleBioProfileColor("white")} className="font_color" style={{ background: "white" }}></div>
+                                            </main>
+                                        </div>
+                                        <br /><br />
+
+
+                                        <div className='align'>
+                                            <h1>~ Select Font Color ~</h1>
+                                            <small style={{ marginTop: "-1rem" }} >~for information section text~</small>
+                                            <br />
                                             <main className="font_color_customization">
                                                 {
                                                     colors.map((e, index) => {

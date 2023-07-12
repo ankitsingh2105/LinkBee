@@ -30,7 +30,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-
+    text-align: center;
 }
 
 .align2 {
@@ -351,7 +351,12 @@
 
 @media screen and (max-width: 827px) {
     .image_background{
-        grid-template-columns: 16rem;
+        grid-template-columns: 11.5rem 11.5rem;
+    }
+    .image_box{
+        width: 180px;
+        height: 320px;
+        margin-top:5px;
     }
 }
 @media screen and (max-width: 1047px) {
