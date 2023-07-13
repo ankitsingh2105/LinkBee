@@ -108,7 +108,8 @@ export default function FinalDisplay() {
               position: "static",
               overflow: "auto",
               backgroundImage: width >= certainLimit ? gradient : `url(${backImage})`,
-              backgroundRepeat: "no-repeat", 
+              backgroundImage : `url(${backImage})`,
+              // backgroundRepeat: "no-repeat", 
               backgroundAttachment: "fixed",
             }}
             
