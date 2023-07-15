@@ -12,7 +12,7 @@ body{
 .main_home button{
     font-size: 40px;
     font-family: var(--main-font);
-    margin: 0px 20px;
+    margin: 0px 10px;
 }
 .main_home button:hover{
     cursor: pointer;
@@ -134,10 +134,10 @@ body{
     }
     .main_home{
         margin: 0px;
-        padding-top:9rem;
+        padding-top:8rem;
     }
     .main_home button{
-        font-size: 30px;
+        font-size: 24px;
     }
     .floating_bee{
         top: 10%;

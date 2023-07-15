@@ -29,7 +29,7 @@ export default function About(props) {
                     <br />
                     <h4>Refine</h4>
                     <p>
-                        We provide a variety of resources and techniques to help you refine your online presence and make it more polished and effective.
+                        We provide a variety of resources and techniques to help you refine your online presence and make it more effective
                     </p>
                 </div>
             </div>
