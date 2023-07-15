@@ -28,6 +28,56 @@
     flex-direction: column;
 }
 
+.fixed-images {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
+#elem5 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 30rem;
+    left: 53rem;
+    z-index: 1;
+}
+
+#elem4 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 10rem;
+    left: 113px;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1199px) {
+    #elem5 {
+        top: 30rem;
+        left: 43rem;
+    }
+
+    #elem4 {
+        top: 10rem;
+        left: 113px;
+    }
+}
+
+@media screen and (max-width: 1078px) {
+
+    #elem5 {
+        display: none;
+    }
+
+    #elem4 {
+        display: none;
+    }
+}
+
+   
+
 @media screen and (max-width: 516px) {
     .Login_main h1{
         font-size: 3rem;

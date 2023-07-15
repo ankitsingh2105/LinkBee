@@ -1,16 +1,16 @@
-import React from 'react'
+import React ,{lazy} from 'react'
 import Navbar from './Components/Navbar/Navbar';
-import Home from "./Components/Home/Home"
-import About from "./Components/About/About"
-import Servics from "./Components/Services/Services"
-import Delivered from "./Components/Delivered/Delivered"
-import Footer from "./Components/Footer/Footer"
-import Login from './Components/Login/Login';
-import Signup from "./Components/Signup/Signup"
-import User from './Components/User/User';
-import FinalDisplay from './Components/FinalDisplay/FinalDisplay';
-import Message from './Components/Message/Message';
-import Error from './Components/Error/Error';
+const Home = lazy (()=> import("./Components/Home/Home"))
+const About = lazy (()=> import("./Components/About/About"))
+const Servics = lazy (()=> import("./Components/Services/Services"))
+const Delivered = lazy (()=> import("./Components/Delivered/Delivered"))
+const Footer = lazy (()=> import("./Components/Footer/Footer"))
+const Login = lazy (()=> import('./Components/Login/Login'));
+const Signup = lazy (()=> import("./Components/Signup/Signup"))
+const User = lazy (()=> import('./Components/User/User'));
+const FinalDisplay = lazy (()=> import('./Components/FinalDisplay/FinalDisplay'));
+const Message = lazy (()=> import('./Components/Message/Message'));
+const Error = lazy (()=> import('./Components/Error/Error'));
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 

@@ -5,32 +5,33 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
 import { toast, ToastContainer } from 'react-toastify';
 import firebaseConfig from '../../firebaseConfig';
-import "./User.css"
 import Dummy from "./dummyimage.webp"
 import logo from "../Navbar/link bee.png"
 import { Helmet } from 'react-helmet';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import "./User.css"
 
-import one from "./LINKBEEDESIGNS/1.png";
-import two from "./LINKBEEDESIGNS/2.png";
-import three from "./LINKBEEDESIGNS/3.png";
-import four from "./LINKBEEDESIGNS/4.png";
-import five from "./LINKBEEDESIGNS/5.png";
-import six from "./LINKBEEDESIGNS/6.png";
-import seven from "./LINKBEEDESIGNS/7.png";
-import eight from "./LINKBEEDESIGNS/8.png";
-import nine from "./LINKBEEDESIGNS/9.png";
-import ten from "./LINKBEEDESIGNS/10.png";
-import eleven from "./LINKBEEDESIGNS/11.png";
-import twelve from "./LINKBEEDESIGNS/12.png";
-import thirteen from "./LINKBEEDESIGNS/13.png";
-import fourteen from "./LINKBEEDESIGNS/14.png";
-import fifteen from "./LINKBEEDESIGNS/15.png";
-import sixteen from "./LINKBEEDESIGNS/16.png";
-import seventeen from "./LINKBEEDESIGNS/17.png";
-import eighteen from "./LINKBEEDESIGNS/18.png";
-import nineteen from "./LINKBEEDESIGNS/19.png";
-import twenty from "./LINKBEEDESIGNS/20.png";
-import twentyOne from "./LINKBEEDESIGNS/21.png";
+import one from "./LINKBEEDESIGNS/1.webp";
+import two from "./LINKBEEDESIGNS/2.webp";
+import four from "./LINKBEEDESIGNS/4.webp";
+import five from "./LINKBEEDESIGNS/5.webp";
+import six from "./LINKBEEDESIGNS/6.webp";
+import seven from "./LINKBEEDESIGNS/7.webp";
+import eight from "./LINKBEEDESIGNS/8.webp";
+import nine from "./LINKBEEDESIGNS/9.webp";
+import ten from "./LINKBEEDESIGNS/10.webp";
+import eleven from "./LINKBEEDESIGNS/11.webp";
+import twelve from "./LINKBEEDESIGNS/12.webp";
+import thirteen from "./LINKBEEDESIGNS/13.webp";
+import fourteen from "./LINKBEEDESIGNS/14.webp";
+import fifteen from "./LINKBEEDESIGNS/15.webp";
+import sixteen from "./LINKBEEDESIGNS/16.webp";
+import seventeen from "./LINKBEEDESIGNS/17.webp";
+import eighteen from "./LINKBEEDESIGNS/18.webp";
+import nineteen from "./LINKBEEDESIGNS/19.webp";
+import twenty from "./LINKBEEDESIGNS/20.webp";
+import twentyOne from "./LINKBEEDESIGNS/21.webp";
+import lazyload from "./LINKBEEDESIGNS/lazyLoadingIMG.webp"
 
 const images = [
     nine,
@@ -46,7 +47,6 @@ const images = [
     eight,
     one,
     two,
-    three,
     four,
     sixteen,
     seventeen,
@@ -750,7 +750,7 @@ export default function User() {
                                                     images.map((e, index) => {
                                                         return (
                                                             <>
-                                                                <img onClick={() => { handleBackgroundImage(e) }} src={e} key={index} className="image_box" />
+                                                                <LazyLoadImage effect="blur" placeholderSrc={lazyload} onClick={() => { handleBackgroundImage(e) }} src={e} key={index} className="image_box" />
                                                             </>
                                                         )
                                                     })

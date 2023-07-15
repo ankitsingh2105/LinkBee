@@ -9,7 +9,11 @@
     background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
     margin: -10px -16px;
     margin-bottom: 20px;
-    /* padding-bottom: 23rem; */
+}
+body{
+    border: none;
+    border-bottom: 4px solid black;
+    border-radius: 10px;
 }
 
 .finalCard {
@@ -31,10 +35,6 @@
 
 .slug_finalCard {
     width: 40rem;
-}
-
-body {
-    user-select: none;
 }
 
 .finalCard:hover {
@@ -156,6 +156,7 @@ a {
 @media screen and (max-width: 452px) {
     .finalCard {
         width: 20rem;
+
     }
     .FinalDisplay_main span {
         font-size: 15px;

@@ -5,6 +5,11 @@
 }
 body {
     transition: all .7s ease-out;
+    scroll-behavior: smooth;
+    margin: .5rem 1rem;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    border-radius: 10px;
 }
 
 body::-webkit-scrollbar {
@@ -28,6 +33,20 @@ button{
     font-size: 15px;
     box-shadow: 1.7px 1.7px 2px black;
     border-radius: 5px;
+}
+
+.align {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.align2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 button:hover{
     cursor: pointer;
