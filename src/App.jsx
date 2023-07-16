@@ -1,18 +1,17 @@
 import React ,{lazy} from 'react'
 import Navbar from './Components/Navbar/Navbar';
-const Home = lazy (()=> import("./Components/Home/Home"))
-const About = lazy (()=> import("./Components/About/About"))
-const Servics = lazy (()=> import("./Components/Services/Services"))
-const Delivered = lazy (()=> import("./Components/Delivered/Delivered"))
-const Footer = lazy (()=> import("./Components/Footer/Footer"))
-const Login = lazy (()=> import('./Components/Login/Login'));
-const Signup = lazy (()=> import("./Components/Signup/Signup"))
+import Home from "./Components/Home/Home"; 
+import About from "./Components/About/About"; 
+import Services from "./Components/Services/Services"
+import Delivered from "./Components/Delivered/Delivered"; 
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Signup/Signup";
+import Footer from './Components/Footer/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 const User = lazy (()=> import('./Components/User/User'));
 const FinalDisplay = lazy (()=> import('./Components/FinalDisplay/FinalDisplay'));
 const Message = lazy (()=> import('./Components/Message/Message'));
 const Error = lazy (()=> import('./Components/Error/Error'));
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 export default function App() {
 
@@ -29,7 +28,7 @@ export default function App() {
                 <Navbar />
                 <Home id="home" />
                 <About id="about" />
-                <Servics id="services" />
+                <Services id="services" />
                 <Delivered />
                 <Message />
               </>
@@ -45,7 +44,7 @@ export default function App() {
               <Navbar />
               <Home id="home" />
               <About id="about" />
-              <Servics id="services" />
+              <Services id="services" />
               <Delivered />
               <Message />
             </>

@@ -5,6 +5,7 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import firebaseConfig from '../../firebaseConfig';
 import { Helmet } from 'react-helmet';
 import Dummy from '../User/dummyimage.webp';
+import logo from "./logo.png"
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
@@ -111,6 +112,7 @@ export default function FinalDisplay() {
               backgroundImage : `url(${backImage})`,
               // backgroundRepeat: "no-repeat", 
               backgroundAttachment: "fixed",
+              backgroundSize : width >= certainLimit ? "cover" : ``,
             }}
             
           >

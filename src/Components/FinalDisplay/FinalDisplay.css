@@ -3,17 +3,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 6rem 0rem 3rem 0rem;
-    margin-bottom: 3rem;
-    font-family: Inter, sans-serif;
+    padding-top: 6rem;
     background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
-    margin: -10px -16px;
-    margin-bottom: 20px;
 }
 body{
     border: none;
-    border-bottom: 4px solid black;
-    border-radius: 10px;
+    margin: 0px;
 }
 
 .finalCard {

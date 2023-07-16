@@ -375,6 +375,19 @@
     text-decoration: none;
 }
 
+.branding:hover{
+    cursor: pointer;
+}
+.branding img{
+    border-radius: 20px;
+    margin-top: 2rem;
+    width:  70px;
+    height: 70px;
+}
+.branding h3{
+    margin-top: 4px;
+}
+
 @media screen and (max-width: 827px) {
     .image_background{
         grid-template-columns: 11.5rem 11.5rem;

@@ -72,8 +72,8 @@ export default function User() {
         "'Teko', sans-serif",
     ];
 
-    
-    
+
+
     const tempUserArray = [
         {
             class: "fa fa-facebook",
@@ -735,7 +735,10 @@ export default function User() {
                                                     </div>
                                                 );
                                             })) : (<div></div>)}
-                                            <br />
+                                            <div onClick={() => { window.location.href = "http://linkbee.online/" }} className="branding align">
+                                                <img style={{width:"50px" , height : "50px"}}  src={logo} alt="logo Image" />
+                                                <h3 style={{ color: bioandprofile }}>Link Bee</h3>
+                                            </div>
                                         </main>
                                     </main>
 
