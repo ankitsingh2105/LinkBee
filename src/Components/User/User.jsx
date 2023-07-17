@@ -355,15 +355,6 @@ export default function User() {
                 const userRef = doc(db, "users", lastTerm);
                 await setDoc(userRef, {
                     imageURL: url,
-                    // arrayOfObject: tempsetArray,
-                    // userID: docSnap.data().userID,
-                    // profile: profile,
-                    // bio: bio,
-                    // gradient: gradientValue,
-                    // fontFamily: e,
-                    // cardBgColor: bgColor,
-                    // cardFontColor: fontColor,
-                    // backIMG: backImage,
                 }, { merge: true });
                 seturl(url)
 
@@ -411,19 +402,9 @@ export default function User() {
                 tempArray = docSnap.data().arrayOfObject || [];
             }
             tempArray.push(obj);
-            console.log("this is the temp shit-> ", tempArray);
+            const info = docSnap.data();
             setDoc(docRef, {
-                arrayOfObject: tempArray,
-                userID: docSnap.data().userID,
-                profile: profile,
-                bio: bio,
-                imageURL: imgUrl,
-                gradient: gradientValue,
-                fontFamily: FontFamily,
-                cardBgColor: bgColor,
-                cardFontColor: fontColor,
-                backIMG: backImage,
-                bioandprofilecolor: bioandprofile
+                ...info, arrayOfObject: tempArray,
             });
             settempArray(tempArray);
         }
@@ -438,27 +419,6 @@ export default function User() {
 
     };
 
-    const handleDelete = async (naam) => {
-        let newTemp = tempsetArray.filter((e) => {
-            return e.name !== naam;
-        });
-        const docRef = doc(db, "users", lastTerm);
-        const docSnap = await getDoc(docRef);
-        setDoc(docRef, {
-            arrayOfObject: newTemp,
-            userID: docSnap.data().userID,
-            profile: profile,
-            bio: bio,
-            imageURL: imgUrl,
-            gradient: gradientValue,
-            fontFamily: FontFamily,
-            cardBgColor: bgColor,
-            cardFontColor: fontColor,
-            backIMG: backImage,
-            bioandprofilecolor: bioandprofile
-        });
-        settempArray(newTemp);
-    };
 
     const AddNameAndBio = async () => {
         const user = auth.currentUser;
@@ -466,7 +426,6 @@ export default function User() {
         const docSnap = await getDoc(docRef);
         let profile = document.querySelector(`.profile`);
         let bio = document.querySelector(`.bio`);
-        let tempArray = [];
         if (!user) {
             toast("Please login first", { autoClose: 1500 });
         }
@@ -475,20 +434,10 @@ export default function User() {
         }
         else {
             if (docSnap.exists() && user) {
-                console.log("--->", bio.value, profile.value, lastTerm);
-                tempArray = docSnap.data().arrayOfObject || [];
+                const info = docSnap.data();
                 setDoc(docRef, {
-                    arrayOfObject: tempArray,
-                    userID: docSnap.data().userID,
-                    profile: profile.value,
+                    ...info, profile: profile.value,
                     bio: bio.value,
-                    imageURL: imgUrl,
-                    gradient: gradientValue,
-                    fontFamily: FontFamily,
-                    cardBgColor: bgColor,
-                    cardFontColor: fontColor,
-                    backIMG: backImage,
-                    bioandprofilecolor: bioandprofile
                 });
                 toast("Name and bio updated, see section below", { autoClose: 1500 });
                 setbio(bio.value);
@@ -497,23 +446,26 @@ export default function User() {
         }
     }
 
+    const handleDelete = async (naam) => {
+        let newTemp = tempsetArray.filter((e) => {
+            return e.name !== naam;
+        });
+        settempArray(newTemp);
+        const docRef = doc(db, "users", lastTerm);
+        const docSnap = await getDoc(docRef);
+        const info = docSnap.data();
+        setDoc(docRef, {
+            ...info, arrayOfObject: newTemp,
+        });
+    };
 
     const handleGradient = async (e) => {
         setgradientValue(e);
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
+        const info = docSnap.data();
         setDoc(docRef, {
-            arrayOfObject: tempsetArray,
-            userID: docSnap.data().userID,
-            profile: profile,
-            bio: bio,
-            imageURL: imgUrl,
-            gradient: e,
-            fontFamily: FontFamily,
-            cardBgColor: bgColor,
-            cardFontColor: fontColor,
-            backIMG: backImage,
-            bioandprofilecolor: bioandprofile
+            ...info, gradient: e,
         });
     }
 
@@ -521,18 +473,9 @@ export default function User() {
         setFontFamily(e);
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
+        const info = docSnap.data();
         setDoc(docRef, {
-            arrayOfObject: tempsetArray,
-            userID: docSnap.data().userID,
-            profile: profile,
-            bio: bio,
-            imageURL: imgUrl,
-            gradient: gradientValue,
-            fontFamily: e,
-            cardBgColor: bgColor,
-            cardFontColor: fontColor,
-            backIMG: backImage,
-            bioandprofilecolor: bioandprofile
+            ...info, fontFamily: e,
         });
     }
 
@@ -540,18 +483,9 @@ export default function User() {
         setbgColor(e);
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
+        const info = docSnap.data();
         setDoc(docRef, {
-            arrayOfObject: tempsetArray,
-            userID: docSnap.data().userID,
-            profile: profile,
-            bio: bio,
-            imageURL: imgUrl,
-            gradient: gradientValue,
-            fontFamily: FontFamily,
-            cardBgColor: e,
-            cardFontColor: fontColor,
-            backIMG: backImage,
-            bioandprofilecolor: bioandprofile
+            ...info, cardBgColor: e,
         });
     }
 
@@ -559,19 +493,9 @@ export default function User() {
         setfontColor(e);
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
+        const info = docSnap.data();
         setDoc(docRef, {
-            arrayOfObject: tempsetArray,
-            userID: docSnap.data().userID,
-            profile: profile,
-            bio: bio,
-            imageURL: imgUrl,
-            gradient: gradientValue,
-            fontFamily: FontFamily,
-            cardBgColor: bgColor,
-            backIMG: backImage,
-            cardFontColor: e,
-            bioandprofilecolor: bioandprofile
-
+            ...info, cardFontColor: e,
         });
     }
 
@@ -579,18 +503,9 @@ export default function User() {
         setbackImage(e);
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
+        const info = docSnap.data();
         setDoc(docRef, {
-            arrayOfObject: tempsetArray,
-            userID: docSnap.data().userID,
-            profile: profile,
-            bio: bio,
-            imageURL: imgUrl,
-            gradient: gradientValue,
-            fontFamily: FontFamily,
-            cardBgColor: bgColor,
-            cardFontColor: fontColor,
-            backIMG: e,
-            bioandprofilecolor: bioandprofile
+            ...info, backIMG: e,
         });
     }
 
@@ -598,19 +513,8 @@ export default function User() {
         setbioandprofile(e);
         const docRef = doc(db, "users", lastTerm);
         const docSnap = await getDoc(docRef);
-        setDoc(docRef, {
-            arrayOfObject: tempsetArray,
-            userID: docSnap.data().userID,
-            profile: profile,
-            bio: bio,
-            imageURL: imgUrl,
-            gradient: gradientValue,
-            fontFamily: FontFamily,
-            cardBgColor: bgColor,
-            cardFontColor: fontColor,
-            backIMG: backImage,
-            bioandprofilecolor: e
-        });
+        const info = docSnap.data();
+        setDoc(docRef, { ...info, bioandprofilecolor: e });
     }
 
     return (
@@ -736,7 +640,7 @@ export default function User() {
                                                 );
                                             })) : (<div></div>)}
                                             <div onClick={() => { window.location.href = "http://linkbee.online/" }} className="branding align">
-                                                <img style={{width:"50px" , height : "50px"}}  src={logo} alt="logo Image" />
+                                                <img style={{ width: "50px", height: "50px" }} src={logo} alt="logo Image" />
                                                 <h3 style={{ color: bioandprofile }}>Link Bee</h3>
                                             </div>
                                         </main>
