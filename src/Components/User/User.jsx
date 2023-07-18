@@ -188,6 +188,11 @@ export default function User() {
             title: "Resume",
             color: "skyblue"
         },
+        {
+            class: "fa-solid fa-list-check",
+            title: "Projects",
+            color: "#FF5700"
+        },
 
     ];
     const backgroundsGradients = [
