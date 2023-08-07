@@ -678,7 +678,7 @@ export default function User() {
                                                 {
                                                     backgroundsGradients.map((e, index) => {
                                                         return (
-                                                            <div key={index} onClick={() => handleGradient(e.gradient)} style={{ background: e.gradient }} className="gradient_box"></div>
+                                                            <div key={index} onClick={() => handleGradient(e.gradient)} style={{ background: e.gradient, boxShadow: `1px 1px 4px rgb(177, 177, 177)` }} className="gradient_box"></div>
                                                         )
                                                     })
                                                 }
