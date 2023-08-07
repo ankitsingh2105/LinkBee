@@ -112,7 +112,7 @@ export default function FinalDisplay() {
               backgroundImage : `url(${backImage})`,
               // backgroundRepeat: "no-repeat", 
               backgroundAttachment: "fixed",
-              backgroundSize : width >= certainLimit ? "cover" : ``,
+              backgroundSize : width >= certainLimit ? "cover" : `auto 740px`,
             }}
             
           >

@@ -415,7 +415,7 @@ export default function User() {
         }
         else {
             if (nameClass.value.length === 0) {
-                toast("You have to enter a name", { autoClose: 1500 });
+                toast("Please enter a title", { autoClose: 1500 });
             }
             else {
                 toast("Please Enter a valid link", { autoClose: 1500 });
@@ -709,7 +709,7 @@ export default function User() {
                                                 {
                                                     backgroundsGradients.map((e, index) => {
                                                         return (
-                                                            <div key={index} onClick={() => handleBgColor(e.gradient)} style={{ background: e.gradient }} className="gradient_box"></div>
+                                                            <div key={index} onClick={() => handleBgColor(e.gradient)} style={{ background: e.gradient , boxShadow: `1px 1px 4px rgb(177, 177, 177)` }} className="gradient_box"></div>
                                                         )
                                                     })
                                                 }

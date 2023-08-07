@@ -29,9 +29,9 @@ export default function Login() {
       e.target.email.value = "";
       e.target.password.value = "";
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Logging in", { autoClose: 1500 });
       const docRef = doc(db, "users", auth.currentUser.uid);
       const docSnap = await getDoc(docRef);
+      toast.success("Logging in", { autoClose: 1500 });
       window.location.href = `user/${docSnap.data().userID}`;
     } catch (error) {
       toast.error("Invalid Credentials", { autoClose: 1500 });
@@ -63,8 +63,8 @@ export default function Login() {
         <button onClick={loginMessage}>Login</button>
       </form>
       <h2>Don't have an account? Sign Up here</h2>
-            <button onClick={() => { window.location.href = "/signup" }} >Sign Up</button>
-            <br />
+      <button onClick={() => { window.location.href = "/signup" }} >Sign Up</button>
+      <br />
       <br />
     </main>
   )
