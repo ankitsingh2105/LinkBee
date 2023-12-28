@@ -25,4 +25,4 @@ Polish and refine your online presence to make it more effective and visually ap
 
 Ready to take control of your digital presence? Visit our Demo Page to explore the features and benefits of Link Bee. Start connecting with the world today and unlock the potential of your online reach.
 
-Designed and developed by [Ankit Singh Chauhan](https://ankitsinghchauhan.in/). Create your unique digital footprint with Link Bee and start connecting with the world! 🌐
+Designed and developed by [Ankit Singh Chauhan](https://ankitsinghchauhan.in/) .Create your unique digital footprint with Link Bee and start connecting with the world! 🌐
