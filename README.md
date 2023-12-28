@@ -1,4 +1,5 @@
-# 🐝 Link Bee - Empowering Your Digital Presence
+# Link Bee - Empowering Your Digital Presence
+[link](https://linkbee.online/)
 
 Welcome to Link Bee! 🌟 We are here to help you unlock the full potential of your online reach and showcase your unique talents, passions, and achievements to the world.
 
