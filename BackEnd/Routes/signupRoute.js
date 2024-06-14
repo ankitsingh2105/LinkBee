@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const userModel = require("../models/userModel");
+const userModel = require("../models/userModel.js");
 
 router.use(express.json());
 router.post('/', async(req, response, next) => {
