@@ -1,23 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Home.css"
 import HomeImg from "./Linkbee_Home_Image.webp"
 import bee from "./elem2.webp";
+import axios from "axios";
+
 export default function Home(props) {
     const handleNavigation = () => {
-        // let user = auth.currentUser;
-        // if (user) {
-        //     async function Wait() {
-        //         const docRef = doc(db, "users", user.uid);
-        //         const docSnap = await getDoc(docRef);
-        //         window.location.href = `/user/auth/edit/${docSnap.data().userID}`
-        //     }
-        //     Wait();
-        // }
-        // else {
-        //     console.log("this is not authorizes");
-        // }
-            window.location.href = "/unauth/tempUser";
+        // window.location.href = "/unauth/tempUser";
     }
+
     return (
         <main className="main_home" id={props.id} >
             <img style={{ width: "100px", height: "100px" }} className="floating_bee" src={bee} alt="" />

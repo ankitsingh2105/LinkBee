@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "./Login.css"
 import elem1 from "./elem1.webp"
 import elem2 from "./elem2.webp"
+import axios from "axios";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,16 +16,22 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     toast("Checking Credentials", { autoClose: 1500 });
-    const email = e.target.email.value;
+    const userID = e.target.userID.value;
     const password = e.target.password.value;
     try {
-      e.target.email.value = "";
-      e.target.password.value = "";
+      // e.target.userID.value = "";
+      // e.target.password.value = "";
+      let response = await axios.post("http://localhost:3000/login", {
+        userID, password
+      });
+      console.log("response ::", response);
+      localStorage.setItem("jwttoken" , response.data);
       toast.success("Logging in", { autoClose: 1500 });
-      // window.location.href = `user/${docSnap.data().userID}`;
+      // window.location.href = `user/${userID}`;
     } catch (error) {
+      console.log(error);
       toast.error("Invalid Credentials", { autoClose: 1500 });
-    }
+    } 
   }
 
   const loginMessage = () => {
@@ -47,7 +54,7 @@ export default function Login() {
       </h1>
       <h2>~ Login to you Link Bee account ~</h2>
       <form onSubmit={handleLogin} action="">
-        <input type="email" placeholder='Email' name="email" />
+        <input type="userID" placeholder='userID' name="userID" />
         <input placeholder='Password' type="password" name="password" />
         <button onClick={loginMessage}>Login</button>
       </form>

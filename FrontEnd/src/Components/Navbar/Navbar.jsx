@@ -3,6 +3,7 @@ import './Navbar.css';
 import logo from './link bee.png';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import axios from "axios";
 
 export default function Navbar(props) {
 
@@ -14,7 +15,7 @@ export default function Navbar(props) {
 
     const [name, setname] = useState("")
     const [loading, setloading] = useState(true);
-    const [tempStat, setTempStat] = useState(true);
+    const [isUser, setTempStat] = useState(false);
 
     const [userID, setuserID] = useState("");
 
@@ -27,8 +28,10 @@ export default function Navbar(props) {
     }
 
     function getFirstWord(str) {
-        const firstWord = str.split(' ')[0];
-        return firstWord;
+        if(!str) return;
+        console.log(" :: " , str);
+        // const firstWord = str.split(' ')[0];
+        return "firstWord";
     }
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,6 +44,29 @@ export default function Navbar(props) {
         window.location.href = `/user/auth/edit/${userID}`
     }
 
+    useEffect(() => {
+        async function fetchData() {
+            console.log(window.location.href);
+            let fullUrl = window.location.href;
+            let lastOne = fullUrl.split("/");
+            console.log(lastOne);
+            const userID = lastOne[lastOne.length - 1];
+            if (userID) { // Ensure userID is defined
+                console.log("userID :: ", userID);
+                try {
+                    const response = await axios.post(`http://localhost:3000/user/${userID}`, {});
+                    setname(response.data);
+                    setloading(false);
+                    console.log( "some Data :: " , response.data);
+                    setTempStat(true);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            }
+        }
+        fetchData();
+    }, []); 
+
     return (
         <nav id={id}>
             <ToastContainer />
@@ -52,7 +78,7 @@ export default function Navbar(props) {
             </ul>
             <ul>
                 {
-                    tempStat ? (
+                    !isUser ? (
                         <>
                             <li className="login_signup">
                                 <Link className='login_signup2' style={{ textDecoration: "none", color: "black" }} to="login">Login</Link>
@@ -66,8 +92,8 @@ export default function Navbar(props) {
                                 {
                                     loading ? (
                                         <>
-                                        <b>Welcome</b>
-                                        <div className="loadingWheel2"></div>
+                                            <b>Welcome</b>
+                                            <div className="loadingWheel2"></div>
                                         </>
                                     ) : (
                                         <>
