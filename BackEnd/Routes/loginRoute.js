@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             secure :true,
-            sameSite: Strict
+            sameSite: strict
         });
         res.status(200).send({ token });
     }
