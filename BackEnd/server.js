@@ -64,6 +64,10 @@ app.use("/user", userRoute);
 // Static file serving
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.use("/" , (req , response)=>{
+    response.send("testing the api");
+})
+
 app.listen(PORT, () => {
     console.log("listening to the server");
 });
