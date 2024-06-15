@@ -283,7 +283,6 @@ export default function User() {
         async function fetchData() {
             try {
                 const response = await axios.get(`https://linkbee-1.onrender.com/user`);
-                // const response = await axios.get(`http://localhost:3000/user`);
                 console.log("here in the frontend :: ", response);
                 const userData = response.data;
                 console.log("this i s :: ", userData);
