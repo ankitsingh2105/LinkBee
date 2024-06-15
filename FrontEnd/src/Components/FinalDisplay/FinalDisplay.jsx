@@ -6,6 +6,7 @@ import logo from "./logo.png"
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+axios.defaults.withCredentials = true;
 
 import errorHoney from "./errorHoney.webp"
 

@@ -3,6 +3,7 @@ import "./Signup.css";
 import elem1 from "./elem1.webp";
 import elem2 from "./elem2.webp";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

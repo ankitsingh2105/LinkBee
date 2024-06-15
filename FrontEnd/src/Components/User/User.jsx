@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "./User.css"
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 import one from "./LINKBEEDESIGNS/1.webp";
 import two from "./LINKBEEDESIGNS/2.webp";
