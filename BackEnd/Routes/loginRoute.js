@@ -21,9 +21,9 @@ router.post('/', async (req, res) => {
         const token = jwt.sign({ userID }, SECRET_KEY);
 
         res.cookie('token', token, {
+            secure: true, // Ensure your site uses HTTPS
             httpOnly: true,
-            secure :true,
-            sameSite: "Strict"
+            sameSite: 'Strict',
         });
         res.status(200).send({ token });
     }
