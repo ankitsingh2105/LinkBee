@@ -29,7 +29,7 @@ export default function Signup() {
         }
 
         try {
-            let response  = await axios.post("https://linkbee-1.onrender.com/signup", {
+            let response  = await axios.post("https://linkbee-2.onrender.com/signup", {
             // let response  = await axios.post("http://localhost:3000/signup", {
                 name , email , userID , password
             });
