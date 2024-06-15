@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 
         res.cookie('token', token, {
             secure: true, // Ensure your site uses HTTPS
-            httpOnly: true,
+            httpOnly: false,
             sameSite: 'Strict',
         });
         res.status(200).send({ token });
