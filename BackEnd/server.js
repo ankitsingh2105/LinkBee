@@ -24,7 +24,8 @@ app.use(cookieParser());
 connectToMongoDB(process.env.MONGO_URL);
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://link-bee-roan.vercel.app/",
     credentials: true
 }));
 

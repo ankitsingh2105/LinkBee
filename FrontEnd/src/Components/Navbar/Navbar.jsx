@@ -23,7 +23,8 @@ export default function Navbar(props) {
 
     const handleLogout = async (e) => {
         try {
-            await axios.post("http://localhost:3000/user/logout");
+            await axios.post("https://linkbee-1.onrender.com//user/logout");
+            // await axios.post("http://localhost:3000/user/logout");
             window.location.href = "/";
         }
         catch (error) {

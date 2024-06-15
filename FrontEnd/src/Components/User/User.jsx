@@ -282,7 +282,8 @@ export default function User() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`http://localhost:3000/user`);
+                const response = await axios.get(`https://linkbee-1.onrender.com/user`);
+                // const response = await axios.get(`http://localhost:3000/user`);
                 console.log("here in the frontend :: ", response);
                 const userData = response.data;
                 console.log("this i s :: ", userData);
@@ -332,7 +333,8 @@ export default function User() {
 
                 toast('Uploading started', { autoClose: 1500 });
 
-                const response = await axios.post('http://localhost:3000/upload', {formData, userID}, {
+                const response = await axios.post('https://linkbee-1.onrender.com/upload', {formData, userID}, {
+                // const response = await axios.post('http://localhost:3000/upload', {formData, userID}, {
                     headers: { "Content-Type": "multipart/form-data" }
                 });
 
@@ -429,7 +431,7 @@ export default function User() {
     const haldleBackEndUpdates = async () => {
         console.log("In the update area");
         try {
-            await axios.put("http://localhost:3000/user/updateBackEnd", {
+            await axios.put("https://linkbee-1.onrender.com/user/updateBackEnd", {
                 profile,
                 bio,
                 imageUrl,
@@ -474,7 +476,7 @@ export default function User() {
                                 <nav className='authNav'>
                                     <ul>
                                         <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
-                                        <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`localhost:5173/${userID}`}</button></li>
+                                        <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`https://link-bee-roan.vercel.app/${userID}`}</button></li>
                                     </ul>
                                 </nav>
                                 <main className="User_main">
