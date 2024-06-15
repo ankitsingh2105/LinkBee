@@ -5,6 +5,7 @@ import logo from "../Navbar/link bee.png"
 import { Helmet } from 'react-helmet';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "./User.css"
+import axios from "axios";
 
 import one from "./LINKBEEDESIGNS/1.webp";
 import two from "./LINKBEEDESIGNS/2.webp";
@@ -255,33 +256,60 @@ export default function User() {
         "#1E90FF", // DodgerBlue
         "#FF00FF", // Fuchsia
         "#00FFFF", // Cyan
-        "rgb(97, 191, 246)"
     ];
 
 
 
     const [loading, setloading] = useState(true);
     const [userID, setuserID] = useState("tempUser");
-    const [uploadedImage, setImage] = useState(Dummy);
-    const [tempsetArray, settempArray] = useState(tempUserArray);
+    const [image, setImage] = useState(Dummy);
+    const [linkArray, setLinkArray] = useState(tempUserArray);
 
     const [profile, setprofile] = useState('Dummy User Name');
     const [bio, setbio] = useState('Bio for Dummy user, something have to here anyways');
     const [id, setID] = useState('DummyUser');
     const [imageUrl, setImageUrl] = useState(Dummy);
-    const [gradientValue, setgradientValue] = useState("linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)")
-    const [FontFamily, setFontFamily] = useState("'Bree Serif', serif");
+    const [gradient, setgradientValue] = useState("linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)")
+    const [fontFamily, setFontFamily] = useState("'Bree Serif', serif");
     const [bgColor, setbgColor] = useState("rgb(51, 55, 55)");
     const [fontColor, setfontColor] = useState("white");
     const [imgUrl, seturl] = useState("");
     const [backImage, setbackImage] = useState("");
-    const [bioandprofile, setbioandprofile] = useState("")
+    const [bioAndProfileColor, setbioandprofile] = useState("")
 
-    const currentUrl = window.location.pathname;
-    const parts = currentUrl.split('/');
-    const lastTerm = parts[parts.length - 1];
 
-    
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get(`http://localhost:3000/user`);
+                console.log("here in the frontend :: ", response);
+                const userData = response.data;
+                console.log("this i s :: ", userData);
+                setID(userData.userID);
+                setuserID(userData.userID);
+                setprofile(userData.profile || '');
+                setbio(userData.bio || '');
+                setImageUrl(userData.imageUrl || Dummy);
+                setgradientValue(userData.gradient || '');
+                setFontFamily(userData.fontFamily || '');
+                setbgColor(userData.bgColor || '');
+                setfontColor(userData.fontColor || '');
+                setbackImage(userData.backImage || '');
+                setbioandprofile(userData.bioAndProfileColor || '');
+                setLinkArray(userData.linkArray || []);
+            } catch (error) {
+                toast.error("Please Login", { autoClose: 1500 });
+            }
+        }
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        console.log(linkArray);
+    }, [linkArray])
+
+
 
     const isValidLink = (link) => {
         const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
@@ -291,47 +319,35 @@ export default function User() {
     const handleImageChanges = (e) => {
         const photo = e.target.files[0];
         setImage(photo);
+        console.log("the image is :: ", photo);
     };
 
 
     const handleUploading = async () => {
-        if (uploadedImage) {
-            const user = auth.currentUser;
-            if (!user) {
-                toast.error('Please login', { autoClose: 1500 });
-                return;
-            }
-
-            const storageRef = ref(
-                storage,
-                `images/${lastTerm + ' - ' + user.email}/${uploadedImage.name}`
-            );
-
+        console.log("image is ::", image);
+        if (image) {
             try {
+                const formData = new FormData();
+                formData.append('avatar', image);
+
                 toast('Uploading started', { autoClose: 1500 });
-                await uploadBytes(storageRef, uploadedImage);
-                const url = await getDownloadURL(storageRef);
 
-                await updateProfile(auth.currentUser, { photoURL: url });
+                const response = await axios.post('http://localhost:3000/upload', {formData, userID}, {
+                    headers: { "Content-Type": "multipart/form-data" }
+                });
 
-                const userRef = doc(db, "users", lastTerm);
-                await setDoc(userRef, {
-                    imageURL: url,
-                }, { merge: true });
-                seturl(url)
-
-                toast('Photo uploaded successfully', { autoClose: 1500 });
-                window.location.reload();
+                toast.success('Upload successful!', { autoClose: 1500 });
+                console.log(response.data);
             } catch (err) {
                 toast.error('Failed to upload photo', { autoClose: 1500 });
+                console.error("Failed to upload photo", err);
             }
         } else {
             toast('Please choose an image', { autoClose: 1500 });
         }
-    };
+    }
 
 
-    //  * adding data a firebase;
 
     const addHttpsToLink = (link) => {
         if (!link.startsWith('http://') && !link.startsWith('https://')) {
@@ -342,37 +358,108 @@ export default function User() {
 
 
     const handleSave = async (className, title, color, indexop) => {
-        
+        let urlClass = document.querySelector(`.url${indexop}`);
+        let nameClass = document.querySelector(`.name${indexop}`);
+        if (isValidLink(urlClass.value) && nameClass.value.length > 0) {
+            let obj = {
+                class: className,
+                title: title,
+                color: color,
+                link: addHttpsToLink(urlClass.value),
+                name: nameClass.value,
+            };
+            setLinkArray((prev) => [obj, ...prev]);
+            toast.success("Link added to page", { autoClose: 1500 });
+        }
+        else {
+            toast.error("invalid link or fields empty", { autoClose: 1500 });
+        }
     };
 
 
     const AddNameAndBio = async () => {
-        
+        let profile = document.querySelector(`.profile`);
+        let bio = document.querySelector(`.bio`);
+        if (bio.value === "" || profile.value === "") {
+            toast("Please fill both the sections", { autoClose: 1500 });
+            return;
+        }
+        setbio(bio.value);
+        setprofile(profile.value);
+        toast("Name and bio updated, see section below", { autoClose: 1500 });
     }
 
     const handleDelete = async (naam) => {
+        let newTemp = linkArray.filter((e) => {
+            return e.name !== naam;
+        });
+        setLinkArray(newTemp);
     };
 
     const handleGradient = async (e) => {
+        setgradientValue(e);
+
     }
 
     const handleFont = async (e) => {
+        setFontFamily(e);
+
     }
 
     const handleBgColor = async (e) => {
+        setbgColor(e);
+
     }
 
     const handleFontColor = async (e) => {
+        setfontColor(e);
+
     }
 
     const handleBackgroundImage = async (e) => {
+        setbackImage(e);
+
     }
 
     const handleBioProfileColor = async (e) => {
+        setbioandprofile(e);
+
     }
+
+    const haldleBackEndUpdates = async () => {
+        console.log("In the update area");
+        try {
+            await axios.put("http://localhost:3000/user/updateBackEnd", {
+                profile,
+                bio,
+                imageUrl,
+                gradient,
+                fontFamily,
+                bgColor,
+                fontColor,
+                backImage,
+                bioAndProfileColor,
+                linkArray,
+                userID
+            })
+            toast.success("Data Saved", { autoClose: 1500 });
+            console.log("this is the response from the server");
+        }
+        catch (error) {
+            console.log("Error :: ", error);
+            toast.error("Please Login", { autoClose: 1500 });
+        }
+    }
+
 
     return (
         <>
+            <section className="floatingButton" onClick={haldleBackEndUpdates} >
+                <center>
+                    Save
+                    <br /> Changes
+                </center>
+            </section>
             <Helmet>
                 <title>~ Create Section | @{id} ~</title>
             </Helmet>
@@ -387,7 +474,7 @@ export default function User() {
                                 <nav className='authNav'>
                                     <ul>
                                         <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
-                                        <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`linkbee.online/${userID}`}</button></li>
+                                        <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`localhost:5173/${userID}`}</button></li>
                                     </ul>
                                 </nav>
                                 <main className="User_main">
@@ -395,11 +482,10 @@ export default function User() {
                                     <h1>~ Customization ~</h1>
                                     <h2>~Profile Section~</h2>
 
-                                    <div className='align2' >
-                                        <img src={uploadedImage || Dummy} alt="click upload new image" />
-                                        <input id="imageInput" placeholder='' type="file" accept="image/*" onChange={handleImageChanges} />
+                                    <div className='align2'>
+                                        <img src={image ? image : Dummy} alt="click upload new image" />
+                                        <input name="avatar" id="imageInput" type="file" accept="image/*" onChange={handleImageChanges} />
                                         <button onClick={handleUploading}>Upload New Image</button>
-
                                     </div>
                                     <input className="profile" placeholder='Profile name' type="text" />
                                     <br />
@@ -438,7 +524,7 @@ export default function User() {
                                         <h3 style={{ fontWeight: "300" }}><b>Name : </b>{profile || ""}</h3>
                                         <h3 style={{ fontWeight: "300" }}><b>Bio: </b> {bio || ""} </h3>
                                         {
-                                            tempsetArray ? (tempsetArray.map((e, index) => {
+                                            linkArray ? (linkArray.map((e, index) => {
                                                 return (
                                                     <div key={index} className="box">
                                                         <i style={{ color: `${e.color}`, border: "1px solid " }} className={e.class} />
@@ -460,31 +546,31 @@ export default function User() {
                                 <div className="preview_section">
                                     <main className='sticky_phone_preview' >
                                         <h1 className="align" >~ Preview ~</h1>
-                                        <main style={{ backgroundImage: `url(${backImage})`, fontFamily: FontFamily }} className="FinalDisplay_main2" >
+                                        <main style={{ backgroundImage: `url(${backImage})`, fontFamily: fontFamily }} className="FinalDisplay_main2" >
 
                                             <div className="notch">
                                             </div>
 
-                                            <nav style={{ background: gradientValue, fontFamily: FontFamily }} className='FinalDisplayNav2' >
+                                            <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav2' >
                                                 <ul>
                                                     <li><img src={imageUrl} alt="" /></li>
                                                     <li>@{id}</li>
-                                                    <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button style={{ fontFamily: FontFamily }} >Link Bee</button></li>
+                                                    <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button style={{ fontFamily: fontFamily }} >Link Bee</button></li>
                                                 </ul>
                                             </nav>
 
                                             <img style={{ marginTop: "4rem" }} src={imageUrl} alt="" />
                                             <br />
                                             <span>
-                                                <b style={{ color: bioandprofile }} > @{id} </b>
+                                                <b style={{ color: bioAndProfileColor }} > @{id} </b>
                                             </span>
                                             <br />
-                                            <span style={{ marginTop: '-10px', color: bioandprofile }}>{bio}</span>
+                                            <span style={{ marginTop: '-10px', color: bioAndProfileColor }}>{bio}</span>
                                             <br /> <br />
-                                            <span style={{ color: bioandprofile }}>{profile}</span>
-                                            {tempsetArray ? (tempsetArray.map((e) => {
+                                            <span style={{ color: bioAndProfileColor }}>{profile}</span>
+                                            {linkArray ? (linkArray.map((e, index) => {
                                                 return (
-                                                    <div style={{ width: "17rem", background: bgColor, color: fontColor }} className="finalCard" key={e.name}>
+                                                    <div style={{ width: "17rem", background: bgColor, color: fontColor }} className="finalCard" key={index}>
                                                         <i style={{ color: `${e.color}`, border: ".1px solid black" }} className={e.class}></i>
                                                         <span>{e.name}</span>
                                                         <a href={e.link}>
@@ -495,7 +581,7 @@ export default function User() {
                                             })) : (<div></div>)}
                                             <div onClick={() => { window.location.href = "http://linkbee.online/" }} className="branding align">
                                                 <img style={{ width: "50px", height: "50px" }} src={logo} alt="logo Image" />
-                                                <h3 style={{ color: bioandprofile }}>Link Bee</h3>
+                                                <h3 style={{ color: bioAndProfileColor }}>Link Bee</h3>
                                             </div>
                                         </main>
                                     </main>
@@ -511,7 +597,7 @@ export default function User() {
                                                     images.map((e, index) => {
                                                         return (
                                                             <>
-                                                                <LazyLoadImage effect="blur" placeholderSrc={lazyload} onClick={() => { handleBackgroundImage(e) }} src={e} key={index} className="image_box" />
+                                                                <LazyLoadImage key={index} effect="blur" placeholderSrc={lazyload} onClick={() => { handleBackgroundImage(e) }} src={e} className="image_box" />
                                                             </>
                                                         )
                                                     })
@@ -558,7 +644,7 @@ export default function User() {
                                                 {
                                                     backgroundsGradients.map((e, index) => {
                                                         return (
-                                                            <div key={index} onClick={() => handleBgColor(e.gradient)} style={{ background: e.gradient , boxShadow: `1px 1px 4px rgb(177, 177, 177)` }} className="gradient_box"></div>
+                                                            <div key={index} onClick={() => handleBgColor(e.gradient)} style={{ background: e.gradient, boxShadow: `1px 1px 4px rgb(177, 177, 177)` }} className="gradient_box"></div>
                                                         )
                                                     })
                                                 }

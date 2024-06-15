@@ -5,7 +5,6 @@ const SECRET_KEY = "ankit";
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 
-// Use cookie-parser middleware
 router.use(cookieParser());
 
 router.post('/', async (req, res) => {
@@ -19,17 +18,13 @@ router.post('/', async (req, res) => {
             console.log("invalid credentials");
             return res.status(401).send({ message: 'Invalid Credentials' });
         }
-
         const token = jwt.sign({ userID }, SECRET_KEY);
 
         res.cookie('token', token, {
             httpOnly: true,
+            secure :true
         });
-
         res.status(200).send({ token });
-//         data
-// : 
-// {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiO…k0OH0.fHuanYnvrh9b
     }
     catch (error) {
         console.error('Error in login:', error);

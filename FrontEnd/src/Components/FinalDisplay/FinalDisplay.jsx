@@ -3,9 +3,9 @@ import './FinalDisplay.css';
 import { Helmet } from 'react-helmet';
 import Dummy from '../User/dummyimage.webp';
 import logo from "./logo.png"
-
+import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 import errorHoney from "./errorHoney.webp"
 
@@ -13,9 +13,9 @@ export default function FinalDisplay() {
   const [loading, setloading] = useState(true);
   const [profile, setprofile] = useState('');
   const [bio, setbio] = useState('');
-  const [array, setArray] = useState([]);
+  const [linkArray, setLinkArray] = useState([]);
   const [id, setID] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(true);
   const [imageUrl, setImageUrl] = useState(Dummy);
   const [gradient, setgradient] = useState("");
   const [bgColor, setbgColor] = useState("");
@@ -26,16 +26,40 @@ export default function FinalDisplay() {
   const [bioandprofile, setbioandprofile] = useState("")
   const certainLimit = 400;
 
-  const currentUrl = window.location.pathname;
-  const parts = currentUrl.split('/');
-  const userID = parts[parts.length - 1];
-
-
 
   const sendToSignUp = () => {
     window.location.href = "/signup";
   }
 
+  useEffect(() => {
+    const currentUrl = window.location.pathname;
+    const parts = currentUrl.split('/');
+    const userID = parts[parts.length - 1];
+    async function fetchData() {
+      console.log("this si the suer : ", userID);
+      try {
+        const response = await axios.post(`http://localhost:3000/user/displayUser`, { userID });
+        console.log("here in the frontend :: ", response);
+        setErrorMessage(false);
+        const userData = response.data;
+        console.log("this i s :: ", userData);
+        setID(userData.userID);
+        setprofile(userData.profile || '');
+        setbio(userData.bio || '');
+        setImageUrl(userData.imageUrl || Dummy);
+        setgradient(userData.gradient || '');
+        setfontFamily(userData.fontFamily || '');
+        setbgColor(userData.bgColor || '');
+        setfontColor(userData.fontColor || '');
+        setbackIMG(userData.backImage || '');
+        setbioandprofile(userData.bioAndProfileColor || '');
+        setLinkArray(userData.linkArray || []);
+      } catch (error) {
+        console.log("error :: ", error);
+      }
+    }
+    fetchData();
+  }, [])
   return (
     <>
       {!loading ? (
@@ -78,8 +102,10 @@ export default function FinalDisplay() {
           >
             <ToastContainer style={{ zIndex: 99999999 }} />
             <Helmet>
-              <title>Link Bee ~ @{id}</title>
+              <title>{`Link Bee ~ ${id}`}</title>
+              <meta name="title" content="From Helmet" />
             </Helmet>
+
             <img src={imageUrl} alt="" />
             <br />
             <span>
@@ -89,7 +115,7 @@ export default function FinalDisplay() {
             <span style={{ marginTop: '-10px', color: bioandprofile }}>{bio}</span>
             <br /> <br />
             <span style={{ color: bioandprofile }} >{profile}</span>
-            {array?.map((e) => {
+            {linkArray?.map((e) => {
               return (
                 <div
                   className="finalCard slug_finalCard"

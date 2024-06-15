@@ -23,11 +23,12 @@ export default function Login() {
       // e.target.password.value = "";
       let response = await axios.post("http://localhost:3000/login", {
         userID, password
+      },{
+        withCredentials: true,
       });
       console.log("response ::", response);
-      localStorage.setItem("jwttoken" , response.data);
       toast.success("Logging in", { autoClose: 1500 });
-      // window.location.href = `user/${userID}`;
+      window.location.href = `user/${userID}`;
     } catch (error) {
       console.log(error);
       toast.error("Invalid Credentials", { autoClose: 1500 });

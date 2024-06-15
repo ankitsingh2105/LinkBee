@@ -6,6 +6,23 @@
     padding-top: 5rem;
 }
 
+.floatingButton{
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    box-shadow: 5px 5px 10px black;
+    padding:10px;
+    z-index: 101001139012;
+    background-color: #FFBF23;
+    border-radius: 100px;
+    padding: 13px 5px;
+    font-size: 14px;
+    font-weight: bolder;
+}
+.floatingButton :hover{
+    cursor: pointer;
+}
+
 .User_main h1 {
     font-size: 3.5rem;
     font-family: var(--main-font);

@@ -1,5 +1,24 @@
 const mongoose = require("mongoose");
 
+
+const urlSchema = new mongoose.Schema({
+    class : {
+        type :String,
+    },
+    color : {
+        type : String,
+    },
+    link : {
+        type : String,
+    },
+    name : {
+        type : String,
+    },
+    title : {
+        type : String
+    }
+  });
+
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -22,7 +41,7 @@ const userSchema = new mongoose.Schema({
     imageUrl: {
         type: String,
     },
-    profileName: {
+    profile: {
         type: String
     },
     bio: {
@@ -42,7 +61,11 @@ const userSchema = new mongoose.Schema({
     },
     backImage: { 
         type: String,
-    }
+    },
+    bioAndProfileColor : {
+        type : String
+    },
+    linkArray : [urlSchema]
 })  
  
 const userModel = mongoose.model("userModel", userSchema);
