@@ -50,6 +50,7 @@ export default function Navbar(props) {
     useEffect(() => {
         async function fetchData() {
             try {
+                // const response = await axios.get(`https://localhost:3000/user`);
                 const response = await axios.get(`https://linkbee-2.onrender.com/user`);
                 setname(response.data.name);
                 setuserID(response.data.userID);

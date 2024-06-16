@@ -283,6 +283,7 @@ export default function User() {
     useEffect(() => {
         async function fetchData() {
             try {
+                // const response = await axios.get(`https://localhost:3000/user`);
                 const response = await axios.get(`https://linkbee-2.onrender.com/user`);
                 console.log("here in the frontend :: ", response);
                 const userData = response.data;
@@ -431,6 +432,7 @@ export default function User() {
     const haldleBackEndUpdates = async () => {
         console.log("In the update area");
         try {
+            // await axios.put("https://localhost:3000/user/updateBackEnd", {
             await axios.put("https://linkbee-2.onrender.com/user/updateBackEnd", {
                 profile,
                 bio,
@@ -476,6 +478,7 @@ export default function User() {
                                 <nav className='authNav'>
                                     <ul>
                                         <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
+                                        {/* <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`https://localhost:3000/${userID}`}</button></li> */}
                                         <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`https://link-bee-roan.vercel.app/${userID}`}</button></li>
                                     </ul>
                                 </nav>

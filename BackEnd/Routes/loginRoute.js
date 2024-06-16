@@ -21,13 +21,13 @@ router.post('/', async (req, res) => {
         const token = jwt.sign({ userID }, SECRET_KEY);
 
         // secure: true, // Ensure your site uses HTTPS
-        // httpOnly: false,
-        // sameSite: "none",
         // httpOnly: true, 
+        // Domain: "https://link-bee-roan.vercel.app"
+        // sameSite: 'none',  
+        // secure: true, 
         res.cookie('token', token, {
-            secure: true, 
-            sameSite: 'none', 
-            Domain: "https://link-bee-roan.vercel.app"
+            httpOnly: true,
+            sameSite: "lax",
         });
         res.status(200).send({ token });
     }
