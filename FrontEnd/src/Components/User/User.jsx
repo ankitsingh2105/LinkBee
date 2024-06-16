@@ -278,7 +278,6 @@ export default function User() {
     const [fontFamily, setFontFamily] = useState("'Bree Serif', serif");
     const [bgColor, setbgColor] = useState("rgb(51, 55, 55)");
     const [fontColor, setfontColor] = useState("white");
-    const [imgUrl, seturl] = useState("");
     const [backImage, setbackImage] = useState("");
     const [bioAndProfileColor, setbioandprofile] = useState("")
 
@@ -287,14 +286,12 @@ export default function User() {
         async function fetchData() {
             try {
                 const response = await axios.get(`${backendLink}/user`);
-                console.log("here in the frontend :: ", response);
                 const userData = response.data;
-                console.log("this i s :: ", userData);
                 setID(userData.userID);
                 setuserID(userData.userID);
                 setprofile(userData.profile || '');
                 setbio(userData.bio || '');
-                setImageUrl(`/src/Components/User/ProfileImages/${userData.imageUrl}` || Dummy);
+                setImageUrl(`${userData.imageUrl}` || Dummy);
                 setgradientValue(userData.gradient || '');
                 setFontFamily(userData.fontFamily || '');
                 setbgColor(userData.bgColor || '');
@@ -303,17 +300,11 @@ export default function User() {
                 setbioandprofile(userData.bioAndProfileColor || '');
                 setLinkArray(userData.linkArray || []);
             } catch (error) {
-                console.log(error);
                 toast.error("Please Login", { autoClose: 1500 });
             }
         }
         fetchData();
     }, []);
-
-    useEffect(() => {
-        console.log(imageUrl);
-        console.log(typeof (imageUrl))
-    }, [imageUrl])
 
 
 
@@ -325,12 +316,10 @@ export default function User() {
     const handleImageChanges = (e) => {
         const photo = e.target.files[0];
         setImage(photo);
-        console.log("the image is :: ", photo);
     };
 
 
     const handleUploading = async () => {
-        console.log("image is ::", image);
         if (image) {
             try {
                 const formData = new FormData();
@@ -344,11 +333,9 @@ export default function User() {
                 });
 
                 toast.success('Upload successful!', { autoClose: 1500 });
-                console.log("upload data :: ", response.data);
                 window.location.reload();
             } catch (err) {
                 toast.error('Failed to upload photo', { autoClose: 1500 });
-                console.error("Failed to upload photo", err);
             }
 
         } else {
@@ -437,7 +424,7 @@ export default function User() {
     }
 
     const haldleBackEndUpdates = async () => {
-        console.log("In the update area");
+        
         try {
             await axios.put(`${backendLink}/user/updateBackEnd`, {
                 profile,
@@ -453,10 +440,10 @@ export default function User() {
                 userID
             })
             toast.success("Data Saved", { autoClose: 1500 });
-            console.log("this is the response from the server");
+            
         }
         catch (error) {
-            console.log("Error :: ", error);
+            
             toast.error("Please Login", { autoClose: 1500 });
         }
     }
@@ -502,8 +489,8 @@ export default function User() {
                                     <h1>~ Customization ~</h1>
                                     <h2>~Profile Section~</h2>
 
-                                    <div className='align2'>
-                                        <img src={imageUrl ? imageUrl : Dummy} alt="click upload new image" />
+                                    <div className='align2'> 
+                                        <img src={imageUrl==="/src/Components/User/ProfileImages/undefined" ? Dummy: `/src/Components/User/ProfileImages/${imageUrl}`} alt="click upload new image" />
                                         <input name="avatar" id="imageInput" type="file" accept="image/*" onChange={handleImageChanges} />
                                         <button onClick={handleUploading}>Upload New Image</button>
                                     </div>
@@ -574,13 +561,13 @@ export default function User() {
 
                                             <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav2' >
                                                 <ul>
-                                                    <li><img src={imageUrl} alt="" /></li>
+                                                    <li><img src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" /></li>
                                                     <li>@{id}</li>
                                                     <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button style={{ fontFamily: fontFamily }} >Link Bee</button></li>
                                                 </ul>
                                             </nav>
 
-                                            <img style={{ marginTop: "4rem" }} src={imageUrl} alt="" />
+                                            <img style={{ marginTop: "4rem" }} src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : imageUrl} alt="" />
                                             <br />
                                             <span>
                                                 <b style={{ color: bioAndProfileColor }} > @{id} </b>

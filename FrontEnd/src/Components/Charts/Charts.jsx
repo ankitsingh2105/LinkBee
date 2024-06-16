@@ -27,7 +27,6 @@ export default function Charts() {
     const parts = currentUrl.split('/');
     const userIDAnalyse = parts[parts.length - 2];
     async function fetchStats() {
-      console.log("userId :: ", userIDAnalyse);
       try {
         let response = await axios.post(`${backendLink}/user/getLinkanalytics`, {
           "userID": userIDAnalyse
@@ -37,18 +36,14 @@ export default function Charts() {
           setclickArray((prev) => [...prev, element.count]);
         });
         setloading(false);
-        console.log("response : stats : ", response.data);
       }
       catch (error) {
-        console.log(error);
       }
     }
     fetchStats();
   }, [])
 
   useEffect(() => {
-    console.log(clickArray);
-    console.log(linkName);
   }, [clickArray, linkName])
 
   const options = {

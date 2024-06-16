@@ -8,7 +8,6 @@ axios.defaults.withCredentials = true;
 import backendLink from "../backendLink";
 
 export default function Navbar(props) {
-    console.log(" -- " , backendLink);
     const { id } = props;
     const scroll = (id) => {
         const element = document.getElementById(id);
@@ -24,7 +23,6 @@ export default function Navbar(props) {
 
     const handleLogout = async (e) => {
         try {
-            // await axios.post("https://linkbee-2.onrender.com/user/logout");
             await axios.post(`${backendLink}/user/logout`);
             window.location.href = "/";
         }
@@ -58,7 +56,7 @@ export default function Navbar(props) {
                 setloading(false);
                 setTempStat(true);
             } catch (error) {
-                console.log('Error fetching data:', error);
+                console.log('Error:', error);
             }
         }
         fetchData();

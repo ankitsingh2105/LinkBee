@@ -37,13 +37,10 @@ export default function FinalDisplay() {
     const parts = currentUrl.split('/');
     const userID = parts[parts.length - 1];
     async function fetchData() {
-      console.log("this si the suer : ", userID);
       try {
         const response = await axios.post(`${backendLink}/user/displayUser`, { userID });
-        console.log("here in the frontend :: ", response);
         setErrorMessage(false);
         const userData = response.data;
-        console.log("this i s :: ", userData);
         setID(userData.userID);
         setprofile(userData.profile || '');
         setbio(userData.bio || '');
@@ -56,22 +53,18 @@ export default function FinalDisplay() {
         setbioandprofile(userData.bioAndProfileColor || '');
         setLinkArray(userData.linkArray || []);
       } catch (error) {
-        console.log("error :: ", error);
       }
     }
     fetchData();
   }, [])
 
   const handleAnalytics = async (link) => {
-    console.log(" :: these are analytics ::");
     try {
       let response = await axios.post(`${backendLink}/user/analytics`, {
         link, "userID": id 
       })
-      console.log("analytics :: ", response);
     }
     catch (error) {
-      console.log("Error :: ", error);
     }
   }
   return (
@@ -95,7 +88,7 @@ export default function FinalDisplay() {
         <>
           <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav'>
             <ul>
-              <li><img src={imageUrl} alt="" /></li>
+              <li><img src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" /></li>
               <li>@{id}</li>
               <li onClick={() => { window.location.href = "http://linkbee.online/" }}><button>Link Bee</button></li>
             </ul>
@@ -120,7 +113,7 @@ export default function FinalDisplay() {
               <meta name="title" content="From Helmet" />
             </Helmet>
 
-            <img src={imageUrl} alt="" />
+            <img src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" />
             <br />
             <span>
               <b style={{ color: bioandprofile }} > @{id} </b>
