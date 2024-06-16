@@ -14,7 +14,7 @@ export default function Navbar(props) {
         element.scrollIntoView({ behavior: "smooth" });
     }
 
-    const [name, setname] = useState("")
+    const [name, setname] = useState("tempUser")
     const [loading, setloading] = useState(true);
     const [isUser, setTempStat] = useState(false);
 
