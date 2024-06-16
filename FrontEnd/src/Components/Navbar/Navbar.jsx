@@ -14,7 +14,7 @@ export default function Navbar(props) {
         element.scrollIntoView({ behavior: "smooth" });
     }
 
-    const [name, setname] = useState("tempUser")
+    const [name, setname] = useState("")
     const [loading, setloading] = useState(true);
     const [isUser, setTempStat] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Navbar(props) {
 
     const handleLogout = async (e) => {
         try {
-            await axios.post("/user/logout");
+            await axios.post("https://linkbee-2.onrender.com/user/logout");
             // await axios.post("http://localhost:3000/user/logout");
             window.location.href = "/";
         }
@@ -50,7 +50,7 @@ export default function Navbar(props) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`/user`,);
+                const response = await axios.get(`https://linkbee-2.onrender.com/user`);
                 setname(response.data.name);
                 setuserID(response.data.userID);
                 setloading(false);

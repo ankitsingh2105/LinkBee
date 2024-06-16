@@ -23,9 +23,9 @@ router.post('/', async (req, res) => {
         // secure: true, // Ensure your site uses HTTPS
         // httpOnly: false,
         // sameSite: "none",
+        // httpOnly: true, 
         res.cookie('token', token, {
             secure: true, 
-            httpOnly: true, 
             sameSite: 'none', 
             Domain: "https://link-bee-roan.vercel.app"
         });

@@ -22,7 +22,7 @@ export default function Login() {
     try {
       // e.target.userID.value = "";
       // e.target.password.value = "";
-      let response = await axios.post("/login", {
+      let response = await axios.post("https://linkbee-2.onrender.com/login", {
       // let response = await axios.post("http://localhost:3000/login", {
         userID, password
       },{
