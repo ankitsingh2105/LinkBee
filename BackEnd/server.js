@@ -28,7 +28,7 @@ app.use(cors({
     origin: "https://link-bee-roan.vercel.app",
     credentials: true
 }));
-// app.set("trust proxy",1);
+app.set("trust proxy",1);
 
 
 // const storage = multer.diskStorage({
