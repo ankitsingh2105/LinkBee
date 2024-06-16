@@ -8,6 +8,10 @@ import "./User.css"
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
+import op  from "./ProfileImages/1718557583174logo.png"
+
+import backendLink from '../backendLink';
+
 import one from "./LINKBEEDESIGNS/1.webp";
 import two from "./LINKBEEDESIGNS/2.webp";
 import four from "./LINKBEEDESIGNS/4.webp";
@@ -279,12 +283,10 @@ export default function User() {
     const [bioAndProfileColor, setbioandprofile] = useState("")
 
 
-
     useEffect(() => {
         async function fetchData() {
             try {
-                // const response = await axios.get(`https://localhost:3000/user`);
-                const response = await axios.get(`https://linkbee-2.onrender.com/user`);
+                const response = await axios.get(`${backendLink}/user`);
                 console.log("here in the frontend :: ", response);
                 const userData = response.data;
                 console.log("this i s :: ", userData);
@@ -292,7 +294,7 @@ export default function User() {
                 setuserID(userData.userID);
                 setprofile(userData.profile || '');
                 setbio(userData.bio || '');
-                setImageUrl(userData.imageUrl || Dummy);
+                setImageUrl(`/src/Components/User/ProfileImages/${userData.imageUrl}` || Dummy);
                 setgradientValue(userData.gradient || '');
                 setFontFamily(userData.fontFamily || '');
                 setbgColor(userData.bgColor || '');
@@ -301,6 +303,7 @@ export default function User() {
                 setbioandprofile(userData.bioAndProfileColor || '');
                 setLinkArray(userData.linkArray || []);
             } catch (error) {
+                console.log(error);
                 toast.error("Please Login", { autoClose: 1500 });
             }
         }
@@ -308,8 +311,9 @@ export default function User() {
     }, []);
 
     useEffect(() => {
-        console.log(linkArray);
-    }, [linkArray])
+        console.log(imageUrl);
+        console.log(typeof (imageUrl))
+    }, [imageUrl])
 
 
 
@@ -331,22 +335,25 @@ export default function User() {
             try {
                 const formData = new FormData();
                 formData.append('avatar', image);
+                formData.append('userID', userID);
 
                 toast('Uploading started', { autoClose: 1500 });
 
-                const response = await axios.post('https://linkbee-2.onrender.com/upload', {formData, userID}, {
-                // const response = await axios.post('http://localhost:3000/upload', {formData, userID}, {
+                const response = await axios.post(`${backendLink}/upload`, formData, {
                     headers: { "Content-Type": "multipart/form-data" }
                 });
 
                 toast.success('Upload successful!', { autoClose: 1500 });
-                console.log(response.data);
+                console.log("upload data :: ", response.data);
+                window.location.reload();
             } catch (err) {
                 toast.error('Failed to upload photo', { autoClose: 1500 });
                 console.error("Failed to upload photo", err);
             }
+
         } else {
             toast('Please choose an image', { autoClose: 1500 });
+            return;
         }
     }
 
@@ -432,8 +439,7 @@ export default function User() {
     const haldleBackEndUpdates = async () => {
         console.log("In the update area");
         try {
-            // await axios.put("https://localhost:3000/user/updateBackEnd", {
-            await axios.put("https://linkbee-2.onrender.com/user/updateBackEnd", {
+            await axios.put(`${backendLink}/user/updateBackEnd`, {
                 profile,
                 bio,
                 imageUrl,
@@ -455,6 +461,10 @@ export default function User() {
         }
     }
 
+    const haldleAnalyticsNav = () => {
+        window.location.href = `/user/${userID}/analytics`;
+    }
+
 
     return (
         <>
@@ -462,6 +472,11 @@ export default function User() {
                 <center>
                     Save
                     <br /> Changes
+                </center>
+            </section>
+            <section className="floatingButton_analytics" onClick={haldleAnalyticsNav} >
+                <center>
+                    Analytics
                 </center>
             </section>
             <Helmet>
@@ -478,8 +493,8 @@ export default function User() {
                                 <nav className='authNav'>
                                     <ul>
                                         <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
-                                        {/* <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`https://localhost:3000/${userID}`}</button></li> */}
-                                        <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`https://link-bee-roan.vercel.app/${userID}`}</button></li>
+                                        <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`linkbee/${userID}`}</button></li>
+                                        {/* <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`https://link-bee-roan.vercel.app/${userID}`}</button></li> */}
                                     </ul>
                                 </nav>
                                 <main className="User_main">
@@ -488,7 +503,7 @@ export default function User() {
                                     <h2>~Profile Section~</h2>
 
                                     <div className='align2'>
-                                        <img src={image ? image : Dummy} alt="click upload new image" />
+                                        <img src={imageUrl ? imageUrl : Dummy} alt="click upload new image" />
                                         <input name="avatar" id="imageInput" type="file" accept="image/*" onChange={handleImageChanges} />
                                         <button onClick={handleUploading}>Upload New Image</button>
                                     </div>
@@ -546,6 +561,7 @@ export default function User() {
                                         }
                                     </div>
                                 </main>
+
 
                                 {/* This is the preview */}
                                 <div className="preview_section">

@@ -1,0 +1,35 @@
+.chart_main{
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #dbd034;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 100px 0px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+@media only screen and (min-width: 600px) {
+    .chart_main section{
+        width: 700px;
+    }
+}

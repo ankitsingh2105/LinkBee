@@ -22,6 +22,21 @@
 .floatingButton :hover{
     cursor: pointer;
 }
+.floatingButton_analytics{
+    position: fixed;
+    bottom: 25%;
+    right: 5%;
+    box-shadow: 5px 5px 10px black;
+    z-index: 101001139012;
+    background-color: #FFBF23;
+    border-radius: 100px;
+    padding: 23px 4px;
+    font-size: 14px;
+    font-weight: bolder;
+}
+.floatingButton_analytics :hover{
+    cursor: pointer;
+}
 
 .User_main h1 {
     font-size: 3.5rem;

@@ -3,6 +3,7 @@ const router = express.Router();
 const verifyUser = require("../middleware/verifyUserMiddleWare")
 const userModel = require("../models/userModel");
 
+
 router.get('/', verifyUser, async (req, response) => {
     const userID = req.userInfo.userID;
     console.log("user ID ::", userID);
@@ -32,6 +33,8 @@ router.get('/', verifyUser, async (req, response) => {
     }
     console.log("verification successfull");
 });
+
+
 router.post('/displayUser', async (req, response) => {
     const userID = req.body.userID
     console.log("user is ::", userID);
@@ -87,35 +90,61 @@ router.put("/updateBackEnd", verifyUser, async (req, res) => {
         linkArray,
     } = req.body;
     try {
-        // Find the user by userID
-        const userData = await userModel.findOne({ userID });
+        const updatedUser = await userModel.findOneAndUpdate({ "userID": userID }, {
+            profile,
+            bio,
+            imageUrl,
+            gradient,
+            fontFamily,
+            bgColor,
+            fontColor,
+            backImage,
+            bioAndProfileColor,
+            userID,
+            linkArray,
+        })
 
-        if (!userData) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Update the user's information
-        userData.profile = profile;
-        userData.bio = bio;
-        userData.imageUrl = imageUrl;
-        userData.gradient = gradient;
-        userData.fontFamily = fontFamily;
-        userData.bgColor = bgColor;
-        userData.fontColor = fontColor;
-        userData.backImage = backImage;
-        userData.bioAndProfileColor = bioAndProfileColor;
-        userData.linkArray = linkArray;
-
-        // Save the updated user data
-        await userData.save();
-        console.log(userData);
-        // Optionally, you can respond with updated user data
-        res.json(userData);
+        console.log(updatedUser);
+        res.json(updatedUser);
 
     } catch (error) {
         console.error("Error:", error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
+
+
+router.post("/analytics", async (req, response) => {
+    console.log("Analytics section response :: ", req.body);
+    const { userID, link } = req.body;
+    console.log("userID :: ", userID);
+    try {
+        const user = await userModel.findOneAndUpdate(
+            { userID: userID, 'linkArray.link': link },
+            { $inc: { 'linkArray.$.count': 1 } },
+            { new: true }
+        );
+        console.log("user is  :: ", user)
+    } 
+    catch (error) {
+        console.log(error);
+        response.send(error);
+    }
+})
+router.post("/getLinkanalytics", async (req, response) => {
+    console.log("Analytics section response :: ", req.body);
+    const { userID } = req.body;
+    console.log("userID :: ", userID);
+    try {
+        const linkStats = await userModel.findOne({ userID })
+        response.send(linkStats.linkArray);
+        console.log("user is  :: ", linkStats.linkArray);
+    }
+    catch (error) {
+        console.log(error);
+        response.send(error);
+    }
+})
+
 
 module.exports = router; 

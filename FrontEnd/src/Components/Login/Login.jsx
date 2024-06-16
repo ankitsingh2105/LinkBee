@@ -22,15 +22,15 @@ export default function Login() {
     try {
       // e.target.userID.value = "";
       // e.target.password.value = "";
-      let response = await axios.post("https://linkbee-2.onrender.com/login", {
-      // let response = await axios.post("http://localhost:3000/login", {
+      // let response = await axios.post("https://linkbee-2.onrender.com/login", {
+      let response = await axios.post("http://localhost:3000/login", {
         userID, password
       },{
         withCredentials: true,
       });
       console.log("response ::", response);
       toast.success("Logging in", { autoClose: 1500 });
-      // window.location.href = `user/${userID}`;
+      window.location.href = `user/${userID}`;
     } catch (error) {
       console.log(error);
       toast.error("Invalid Credentials", { autoClose: 1500 });

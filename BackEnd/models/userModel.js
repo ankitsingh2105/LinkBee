@@ -16,7 +16,11 @@ const urlSchema = new mongoose.Schema({
     },
     title : {
         type : String
-    }
+    },
+    count : {
+        type : Number,
+        default: 0
+    },
   });
 
 const userSchema = new mongoose.Schema({

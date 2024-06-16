@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios";
 axios.defaults.withCredentials = true;
+import backendLink from "../backendLink";
 
 export default function Navbar(props) {
-
+    console.log(" -- " , backendLink);
     const { id } = props;
     const scroll = (id) => {
         const element = document.getElementById(id);
@@ -23,8 +24,8 @@ export default function Navbar(props) {
 
     const handleLogout = async (e) => {
         try {
-            await axios.post("https://linkbee-2.onrender.com/user/logout");
-            // await axios.post("http://localhost:3000/user/logout");
+            // await axios.post("https://linkbee-2.onrender.com/user/logout");
+            await axios.post(`${backendLink}/user/logout`);
             window.location.href = "/";
         }
         catch (error) {
@@ -50,8 +51,8 @@ export default function Navbar(props) {
     useEffect(() => {
         async function fetchData() {
             try {
-                // const response = await axios.get(`https://localhost:3000/user`);
-                const response = await axios.get(`https://linkbee-2.onrender.com/user`);
+                const response = await axios.get(`${backendLink}/user`);
+                // const response = await axios.get(`https://linkbee-2.onrender.com/user`);
                 setname(response.data.name);
                 setuserID(response.data.userID);
                 setloading(false);

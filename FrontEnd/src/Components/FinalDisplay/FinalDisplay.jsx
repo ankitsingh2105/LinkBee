@@ -6,9 +6,9 @@ import logo from "./logo.png"
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-axios.defaults.withCredentials = true;
-
+import backendLink from "../backendLink";
 import errorHoney from "./errorHoney.webp"
+axios.defaults.withCredentials = true;
 
 export default function FinalDisplay() {
   const [loading, setloading] = useState(true);
@@ -39,8 +39,7 @@ export default function FinalDisplay() {
     async function fetchData() {
       console.log("this si the suer : ", userID);
       try {
-        const response = await axios.post(`https://linkbee-2.onrender.com/user/displayUser`, { userID });
-        // const response = await axios.post(`http://localhost:3000/user/displayUser`, { userID });
+        const response = await axios.post(`${backendLink}/user/displayUser`, { userID });
         console.log("here in the frontend :: ", response);
         setErrorMessage(false);
         const userData = response.data;
@@ -62,6 +61,19 @@ export default function FinalDisplay() {
     }
     fetchData();
   }, [])
+
+  const handleAnalytics = async (link) => {
+    console.log(" :: these are analytics ::");
+    try {
+      let response = await axios.post(`${backendLink}/user/analytics`, {
+        link, "userID": id 
+      })
+      console.log("analytics :: ", response);
+    }
+    catch (error) {
+      console.log("Error :: ", error);
+    }
+  }
   return (
     <>
       {!loading ? (
@@ -126,7 +138,7 @@ export default function FinalDisplay() {
                 >
                   <i style={{ color: `${e.color}`, border: ".1px solid black" }} className={e.class}></i>
                   <span>{e.name}</span>
-                  <a href={e.link}>
+                  <a href={e.link} onClick={() => { handleAnalytics(e.link) }} >
                     <i style={{ border: ".1px solid black" }} className="fa-solid fa-diamond-turn-right" />
                   </a>
                 </div>
