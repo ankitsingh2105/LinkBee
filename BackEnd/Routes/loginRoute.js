@@ -22,11 +22,12 @@ router.post('/', async (req, res) => {
 
         // secure: true, // Ensure your site uses HTTPS
         // httpOnly: false,
-        // sameSite: 'Strict',
+        // sameSite: "none",
         res.cookie('token', token, {
-            sameSite: "none",
-            secure: true,
-            httpOnly: true,
+            secure: true, 
+            httpOnly: true, 
+            sameSite: 'None', 
+            Domain: "https://link-bee-roan.vercel.app"
         });
         res.status(200).send({ token });
     }
