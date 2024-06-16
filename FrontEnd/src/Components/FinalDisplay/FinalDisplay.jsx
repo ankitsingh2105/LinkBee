@@ -39,8 +39,8 @@ export default function FinalDisplay() {
     async function fetchData() {
       console.log("this si the suer : ", userID);
       try {
-        // const response = await axios.post(`https://linkbee-2.onrender.com/user/displayUser`, { userID });
-        const response = await axios.post(`http://localhost:3000/user/displayUser`, { userID });
+        const response = await axios.post(`https://linkbee-2.onrender.com/user/displayUser`, { userID });
+        // const response = await axios.post(`http://localhost:3000/user/displayUser`, { userID });
         console.log("here in the frontend :: ", response);
         setErrorMessage(false);
         const userData = response.data;
