@@ -20,10 +20,12 @@ router.post('/', async (req, res) => {
         }
         const token = jwt.sign({ userID }, SECRET_KEY);
 
+        // secure: true, // Ensure your site uses HTTPS
+        // httpOnly: false,
+        // sameSite: 'Strict',
         res.cookie('token', token, {
-            secure: true, // Ensure your site uses HTTPS
-            httpOnly: false,
-            sameSite: 'Strict',
+            sameSite: "none",
+            secure: true
         });
         res.status(200).send({ token });
     }
