@@ -14,10 +14,6 @@ router.post('/', async (req, response, next) => {
             }
         );
         await user.save();
-        // this below is causing the 404 status code error 
-        // await userModel.create({
-        //     name, email, userID, password 
-        // })
         return user;
     }
     catch (error) {

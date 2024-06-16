@@ -9,13 +9,10 @@ router.use(cookieParser());
 
 router.post('/', async (req, res) => {
     const { userID, password } = req.body;
-    console.log(userID, password);
-    console.log("I am in login");
 
     try {
         const isValidUser = await userModel.findOne({ userID, password });
         if (!isValidUser) {
-            console.log("invalid credentials");
             return res.status(401).send({ message: 'Invalid Credentials' });
         }
         const token = jwt.sign({ userID }, SECRET_KEY);
@@ -32,7 +29,6 @@ router.post('/', async (req, res) => {
         res.status(200).send({ token });
     }
     catch (error) {
-        console.error('Error in login:', error);
         res.status(500).send({ message: 'Internal Server Error' });
     }
 });
