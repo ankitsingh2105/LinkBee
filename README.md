@@ -11,11 +11,13 @@ LinkBee is a modern "link in bio" tool similar to Linktree, built using the MERN
 
 ## Technologies Used
 
-- **Frontend**: React.js, Chart.js
+- **Frontend**: React.js
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)
 - **Styling**: CSS3
+- **image uploading**: Multer
+- **analytics and charts** : Chart.js
 
 ## Usage
 
