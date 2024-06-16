@@ -25,7 +25,8 @@ router.post('/', async (req, res) => {
         // sameSite: 'Strict',
         res.cookie('token', token, {
             sameSite: "none",
-            secure: true
+            secure: true,
+            httpOnly: true,
         });
         res.status(200).send({ token });
     }
