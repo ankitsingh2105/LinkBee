@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         // secure: true, 
         // sameSite: "lax",
         res.cookie('token', token, {
-            httpOnly: true,
+            secure: true,
             sameSite: 'none',  
         });
         res.status(200).send({ token });
