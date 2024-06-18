@@ -23,7 +23,8 @@ export default function Navbar(props) {
 
     const handleLogout = async (e) => {
         try {
-            await axios.post(`${backendLink}/user/logout`);
+            let response = await axios.post(`${backendLink}/user/logout`);
+            console.log("this is the respose :: " , response);
             // window.location.href = "/";
         }
         catch (error) {
