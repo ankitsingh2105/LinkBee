@@ -30,7 +30,7 @@ export default function Login() {
       });
       console.log("response ::", response);
       toast.success("Logging in", { autoClose: 1500 });
-      window.location.href = `user/${userID}`;
+      // window.location.href = `user/${userID}`;
     } catch (error) {
       console.log(error);
       toast.error("Invalid Credentials", { autoClose: 1500 });
