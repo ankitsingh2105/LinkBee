@@ -59,7 +59,9 @@ router.post('/displayUser', async (req, response) => {
 });
 
 router.post('/logout', (req, res) => {
+    console.log("this is the cooloe :: " ,  req.cookies.token);
     res.clearCookie('token').sendStatus(200);
+    res.send("the cookie deleted :: " , req.cookies.token);
 });
 
 

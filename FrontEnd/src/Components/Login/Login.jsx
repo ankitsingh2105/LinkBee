@@ -24,7 +24,6 @@ export default function Login() {
       // e.target.userID.value = "";
       // e.target.password.value = "";
       let response = await axios.post(`${backendLink}/login`, {
-      // let response = await axios.post("http://localhost:3000/login", {
         userID, password
       },{
         withCredentials: true,
