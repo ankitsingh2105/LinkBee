@@ -60,7 +60,7 @@ router.post('/displayUser', async (req, response) => {
 
 router.post('/logout', (req, res) => {
     console.log("this is the cooloe :: " ,  req.cookies.token);
-    res.clearCookie('token').send(req.cookie.token);
+    res.clearCookie('token').send(req.cookies.token);
     // res.send("the cookie deleted :: " , req.cookies.token);
 });
 
