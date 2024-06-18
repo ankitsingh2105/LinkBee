@@ -51,7 +51,6 @@ export default function Navbar(props) {
         async function fetchData() {
             try {
                 const response = await axios.get(`${backendLink}/user`);
-                // const response = await axios.get(`https://linkbee-2.onrender.com/user`);
                 setname(response.data.name);
                 setuserID(response.data.userID);
                 setloading(false);
