@@ -32,9 +32,10 @@ export default function Signup() {
 
         try {
             toast.success("Please wait ... ", { autoClose: 6000 });
-            await axios.post(`${backendLink}/signup`, {
+            let response = await axios.post(`${backendLink}/signup`, {
                 name, email, userID, password
             });
+            console.log(response);
             toast.success("Sign Up successfull, please login", { autoClose: 1500 });
             window.location.href = `login`;
         } catch (e) {
@@ -69,7 +70,7 @@ export default function Signup() {
                 <input type="email" placeholder='Email' name="email" required />
                 <input type="text" placeholder='User ID (cannot be changed)' name="userID" required />
                 <input placeholder='Password' type="password" name="password" required />
-                <button onClick={() => { toast("Processing", { autoClose: 1500 }); }} >Sign Up</button>
+                <button>Sign Up</button>
             </form>
 
             <h2>Already have an account? Login here</h2>
