@@ -27,7 +27,7 @@ connectToMongoDB(process.env.MONGO_URL);
 // origin: "http://localhost:5173",
 
 app.use(cors({
-    origin: "https://link-bee-roan.vercel.app",
+    origin: "https://linkbeemern.vercel.app/",
     credentials: true 
 }));
 app.set("trust proxy", 1);

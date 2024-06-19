@@ -56,8 +56,8 @@ export default function Login() {
       </h1>
       <h2>~ Login to you Link Bee account ~</h2>
       <form onSubmit={handleLogin} action="">
-        <input type="userID" placeholder='userID' name="userID" />
-        <input placeholder='Password' type="password" name="password" />
+        <input required type="userID" placeholder='userID' name="userID" />
+        <input required placeholder='Password' type="password" name="password" />
         <button onClick={loginMessage}>Login</button>
       </form>
       <h2>Don't have an account? Sign Up here</h2>
