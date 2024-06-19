@@ -23,7 +23,7 @@ export default function Login() {
     try {
       e.target.userID.value = "";
       e.target.password.value = "";
-      await axios.post(`${backendLink}/login`, {
+      let response = await axios.post(`${backendLink}/login`, {
         userID, password
       },{
         withCredentials: true,
