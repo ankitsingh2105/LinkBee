@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const loginRouter = require("../Routes/loginRoute");
-const signupRouter = require("../Routes/signupRoute");
-const userRoute = require("../Routes/userRoutes");
-const connectToMongoDB = require("../connect");
-const userModel = require("../models/userModel");
+const loginRouter = require("./Routes/loginRoute");
+const signupRouter = require("./Routes/signupRoute");
+const userRoute = require("./Routes/userRoutes");
+const connectToMongoDB = require("./connect");
+const userModel = require("./models/userModel");
 
 const cookieParser = require('cookie-parser');
 const multer = require("multer");
