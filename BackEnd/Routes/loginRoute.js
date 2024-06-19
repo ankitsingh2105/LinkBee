@@ -17,11 +17,6 @@ router.post('/', async (req, res) => {
         }
         const token = jwt.sign({ userID }, SECRET_KEY);
 
-        // secure: true, // Ensure your site uses HTTPS
-        // httpOnly: true, 
-        // Domain: "https://link-bee-roan.vercel.app"
-        // secure: true, 
-        // sameSite: "lax",
         res.cookie('token', token, {
             secure: true,
             sameSite: 'none',  

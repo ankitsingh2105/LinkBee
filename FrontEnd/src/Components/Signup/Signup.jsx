@@ -8,6 +8,7 @@ axios.defaults.withCredentials = true;
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import backendLink from '../backendLink';
 
 import { Helmet } from 'react-helmet';
 
@@ -30,20 +31,24 @@ export default function Signup() {
         }
 
         try {
-            // let response  = await axios.post("https://linkbee-2.onrender.com/signup", {
-            let response  = await axios.post("http://localhost:3000/signup", {
-                name , email , userID , password
+            toast.success("Please wait ... ", { autoClose: 6000 });
+            let response = await axios.post(`${backendLink}/signup`, {
+                name, email, userID, password
             });
-            console.log("RESPONSE :: " , response);
-            toast(response.data, { autoClose: 1500 });
-            // window.location.href = `user/${userID}`;
+            await axios.post(`${backendLink}/login`, {
+                userID, password
+            }, {
+                withCredentials: true,
+            });
+            toast.success("Sign Up successfull", { autoClose: 1500 });
+            window.location.href = `user/${userID}`;
         } catch (e) {
             console.log(e);
             toast.error("Password should be at least 6 characters / Email already exists", { autoClose: 1700 });
         }
     };
 
-    
+
     return (
         <main className="Signup_main">
 

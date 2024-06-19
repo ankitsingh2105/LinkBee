@@ -25,7 +25,7 @@ export default function Navbar(props) {
         try {
             let response = await axios.post(`${backendLink}/user/logout`);
             console.log("this is the respose :: " , response);
-            // window.location.href = "/";
+            window.location.href = "/";
         }
         catch (error) {
             console.log("error :: ", error);
