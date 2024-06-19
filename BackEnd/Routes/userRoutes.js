@@ -60,7 +60,11 @@ router.post('/displayUser', async (req, response) => {
 
 router.post('/logout', (req, res) => {
     console.log("this is the cookie :: " ,  req.cookies.token);
-    res.clearCookie('token').send(req.cookies.token);
+    // res.clearCookie('token').send(req.cookies.token);
+    res.clearCookie('token', {
+        secure: true, 
+        sameSite: 'none', 
+    }).send();
 });
 
 
