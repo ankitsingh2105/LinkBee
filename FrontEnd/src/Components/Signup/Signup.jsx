@@ -32,7 +32,7 @@ export default function Signup() {
 
         try {
             toast.success("Please wait ... ", { autoClose: 4000 });
-            ;et response = await axios.post(`${backendLink}/signup`, {
+            let response = await axios.post(`${backendLink}/signup`, {
                 name, email, userID, password
             });
             // becasue the server is free and slow
