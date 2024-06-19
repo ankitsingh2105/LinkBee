@@ -481,7 +481,6 @@ export default function User() {
                                     <ul>
                                         <li onClick={() => { window.location.href = "/" }} ><img src={logo} alt="" /></li>
                                         <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`linkbee/${userID}`}</button></li>
-                                        {/* <li onClick={() => { window.location.href = `/${userID}` }} > <button>{`https://link-bee-roan.vercel.app/${userID}`}</button></li> */}
                                     </ul>
                                 </nav>
                                 <main className="User_main">
