@@ -8,8 +8,6 @@ import "./User.css"
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-import op  from "./ProfileImages/1718557583174logo.png"
-
 import backendLink from '../backendLink';
 
 import one from "./LINKBEEDESIGNS/1.webp";
@@ -299,7 +297,8 @@ export default function User() {
                 setbackImage(userData.backImage || '');
                 setbioandprofile(userData.bioAndProfileColor || '');
                 setLinkArray(userData.linkArray || []);
-            } catch (error) {
+            }
+            catch (error) {
                 toast.error("Please Login", { autoClose: 1500 });
             }
         }
@@ -320,6 +319,8 @@ export default function User() {
 
 
     const handleUploading = async () => {
+        toast.error("Sorry this functionality is not availabe right now" , {autoClose : 1500});
+        return;
         if (image) {
             try {
                 const formData = new FormData();
@@ -424,7 +425,7 @@ export default function User() {
     }
 
     const haldleBackEndUpdates = async () => {
-        
+
         try {
             await axios.put(`${backendLink}/user/updateBackEnd`, {
                 profile,
@@ -440,10 +441,9 @@ export default function User() {
                 userID
             })
             toast.success("Data Saved", { autoClose: 1500 });
-            
+
         }
         catch (error) {
-            
             toast.error("Please Login", { autoClose: 1500 });
         }
     }
@@ -488,8 +488,8 @@ export default function User() {
                                     <h1>~ Customization ~</h1>
                                     <h2>~Profile Section~</h2>
 
-                                    <div className='align2'> 
-                                        <img src={imageUrl==="/src/Components/User/ProfileImages/undefined" ? Dummy: `/src/Components/User/ProfileImages/${imageUrl}`} alt="click upload new image" />
+                                    <div className='align2'>
+                                        <img src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="click upload new image" />
                                         <input name="avatar" id="imageInput" type="file" accept="image/*" onChange={handleImageChanges} />
                                         <button onClick={handleUploading}>Upload New Image</button>
                                     </div>
@@ -560,13 +560,13 @@ export default function User() {
 
                                             <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav2' >
                                                 <ul>
-                                                    <li><img src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" /></li>
+                                                    <li><img src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" /></li>
                                                     <li>@{id}</li>
                                                     <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button style={{ fontFamily: fontFamily }} >Link Bee</button></li>
                                                 </ul>
                                             </nav>
 
-                                            <img style={{ marginTop: "4rem" }} src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : imageUrl} alt="" />
+                                            <img style={{ marginTop: "4rem" }} src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : imageUrl} alt="" />
                                             <br />
                                             <span>
                                                 <b style={{ color: bioAndProfileColor }} > @{id} </b>

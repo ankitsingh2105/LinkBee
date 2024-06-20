@@ -24,11 +24,11 @@ app.use(cookieParser());
 
 connectToMongoDB(process.env.MONGO_URL);
 // console.log(process.env.MONGO_URL);
-// origin: "http://localhost:5173",
 
+// origin: "http://localhost:5173",
 app.use(cors({
     origin: "https://linkbeemern.vercel.app",
-    credentials: true 
+    credentials: true
 }));
 app.set("trust proxy", 1);
 

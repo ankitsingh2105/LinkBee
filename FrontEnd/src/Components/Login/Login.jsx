@@ -23,17 +23,17 @@ export default function Login() {
     try {
       e.target.userID.value = "";
       e.target.password.value = "";
-      let response = await axios.post(`${backendLink}/login`, {
+      await axios.post(`${backendLink}/login`, {
         userID, password
-      },{
+      }, {
         withCredentials: true,
       });
       toast.success("Logging in", { autoClose: 1500 });
       window.location.href = `user/${userID}`;
-    } catch (error) {
-      console.log(error);
-      toast.error("Invalid Credentials", { autoClose: 1500 });
     } 
+    catch (error) {
+      toast.error("Invalid Credentials", { autoClose: 1500 });
+    }
   }
 
   const loginMessage = () => {

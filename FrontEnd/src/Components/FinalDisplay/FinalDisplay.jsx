@@ -11,7 +11,7 @@ import errorHoney from "./errorHoney.webp"
 axios.defaults.withCredentials = true;
 
 export default function FinalDisplay() {
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   const [profile, setprofile] = useState('');
   const [bio, setbio] = useState('');
   const [linkArray, setLinkArray] = useState([]);
@@ -52,7 +52,10 @@ export default function FinalDisplay() {
         setbackIMG(userData.backImage || '');
         setbioandprofile(userData.bioAndProfileColor || '');
         setLinkArray(userData.linkArray || []);
-      } catch (error) {
+        setloading(true);
+      }
+      catch (error) {
+        toast.error("Something went wrong ", { autoClose: 15000 });
       }
     }
     fetchData();
@@ -61,7 +64,7 @@ export default function FinalDisplay() {
   const handleAnalytics = async (link) => {
     try {
       let response = await axios.post(`${backendLink}/user/analytics`, {
-        link, "userID": id 
+        link, "userID": id
       })
     }
     catch (error) {
@@ -88,9 +91,9 @@ export default function FinalDisplay() {
         <>
           <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav'>
             <ul>
-              <li><img src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" /></li>
+              <li><img src={logo} alt="" /></li>
               <li>@{id}</li>
-              <li onClick={() => { window.location.href = "http://linkbee.online/" }}><button>Link Bee</button></li>
+              <li onClick={() => { window.location.href = "http://linkbeemern.vercel.app/" }}><button>Link Bee</button></li>
             </ul>
           </nav>
           <main
@@ -113,7 +116,7 @@ export default function FinalDisplay() {
               <meta name="title" content="From Helmet" />
             </Helmet>
 
-            <img src={imageUrl === "/src/Components/User/ProfileImages/undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" />
+            <img src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" />
             <br />
             <span>
               <b style={{ color: bioandprofile }} > @{id} </b>

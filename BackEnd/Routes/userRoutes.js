@@ -25,7 +25,7 @@ router.get('/', verifyUser, async (req, response) => {
         });
     }
     catch (error) {
-        response.send(error);
+        response.status(404);
     }
 });
 
@@ -37,7 +37,6 @@ router.post('/displayUser', async (req, response) => {
         if (!userData) {
             return response.status(404).send("Please login");
         }
-        const name = userData.name;
         response.send({
             profile: userData.profile,
             bio: userData.bio,
@@ -54,7 +53,7 @@ router.post('/displayUser', async (req, response) => {
         });
     }
     catch (error) {
-        response.send(error);
+        response.status(404);
     }
 });
 
@@ -98,12 +97,12 @@ router.put("/updateBackEnd", verifyUser, async (req, res) => {
         res.json(updatedUser);
 
     } catch (error) {
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(404);
     }
 });
 
 
-router.post("/analytics", async (req, response) => {
+router.post("/analytics", verifyUser, async (req, response) => {
     const { userID, link } = req.body;
     try {
         const user = await userModel.findOneAndUpdate(
@@ -116,7 +115,7 @@ router.post("/analytics", async (req, response) => {
         response.send(error);
     }
 })
-router.post("/getLinkanalytics", async (req, response) => {
+router.post("/getLinkanalytics", verifyUser,  async (req, response) => {
     const { userID } = req.body;
     try {
         const linkStats = await userModel.findOne({ userID })

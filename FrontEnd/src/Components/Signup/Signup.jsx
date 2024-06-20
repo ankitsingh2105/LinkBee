@@ -35,16 +35,10 @@ export default function Signup() {
             let response = await axios.post(`${backendLink}/signup`, {
                 name, email, userID, password
             });
-            // becasue the server is free and slow
-            if(!response){
-                toast.error("Password should be at least 6 characters / Email already exists", { autoClose: 1700 });
-                return;
-            }
             toast.success("Sign Up successfull, please login", { autoClose: 1500 });
             window.location.href = `login`;
         } 
         catch (e) {
-            console.log(e);
             toast.error("Password should be at least 6 characters / Email already exists", { autoClose: 1700 });
         }
     };
