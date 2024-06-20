@@ -57,8 +57,8 @@ router.post('/displayUser', async (req, response) => {
     }
 });
 
-router.post('/logout', (req, res) => {
-    res.clearCookie('token', {
+router.post('/logout', (req, response) => {
+    response.clearCookie('token', {
         secure: true, 
         sameSite: 'none', 
     }).send();
@@ -66,7 +66,7 @@ router.post('/logout', (req, res) => {
 
 
 
-router.put("/updateBackEnd", verifyUser, async (req, res) => {
+router.put("/updateBackEnd", verifyUser, async (req, response) => {
     const {
         profile,
         bio,
@@ -94,10 +94,10 @@ router.put("/updateBackEnd", verifyUser, async (req, res) => {
             userID,
             linkArray,
         })
-        response.status(200);
+        response.status(200).send("updated");
 
     } catch (error) {
-        res.status(404);
+        response.status(404).send(error);
     }
 });
 

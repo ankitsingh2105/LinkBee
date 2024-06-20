@@ -427,7 +427,7 @@ export default function User() {
     const haldleBackEndUpdates = async () => {
 
         try {
-            await axios.put(`${backendLink}/user/updateBackEnd`, {
+            let response = await axios.put(`${backendLink}/user/updateBackEnd`, {
                 profile,
                 bio,
                 imageUrl,
@@ -440,11 +440,12 @@ export default function User() {
                 linkArray,
                 userID
             })
+            console.log("response :: " , response);
             toast.success("Data Saved", { autoClose: 1500 });
-
         }
         catch (error) {
             toast.error("Please Login", { autoClose: 1500 });
+            console.log(error)
         }
     }
 
