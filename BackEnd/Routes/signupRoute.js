@@ -11,7 +11,7 @@ router.post('/', async (req, response, next) => {
         }
         );
         await user.save();
-        return user;
+        response.status(200);
     }
     catch (error) {
         console.log("soemthing went wrong", error);

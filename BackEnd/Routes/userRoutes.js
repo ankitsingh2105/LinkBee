@@ -9,7 +9,7 @@ router.get('/', verifyUser, async (req, response) => {
     try {
         let userData = await userModel.findOne({ userID });
         const name = userData.name;
-        response.send({
+        response.status(200).send({
             profile: userData.profile,
             bio: userData.bio,
             imageUrl: userData.imageUrl,
@@ -37,7 +37,7 @@ router.post('/displayUser', async (req, response) => {
         if (!userData) {
             return response.status(404).send("Please login");
         }
-        response.send({
+        response.status(200).send({
             profile: userData.profile,
             bio: userData.bio,
             imageUrl: userData.imageUrl,
@@ -81,7 +81,7 @@ router.put("/updateBackEnd", verifyUser, async (req, res) => {
         linkArray,
     } = req.body;
     try {
-        const updatedUser = await userModel.findOneAndUpdate({ "userID": userID }, {
+        await userModel.findOneAndUpdate({ "userID": userID }, {
             profile,
             bio,
             imageUrl,
@@ -94,7 +94,7 @@ router.put("/updateBackEnd", verifyUser, async (req, res) => {
             userID,
             linkArray,
         })
-        res.json(updatedUser);
+        response.status(200);
 
     } catch (error) {
         res.status(404);
@@ -110,6 +110,7 @@ router.post("/analytics", verifyUser, async (req, response) => {
             { $inc: { 'linkArray.$.count': 1 } },
             { new: true }
         );
+        response.status(200);
     } 
     catch (error) {
         response.send(error);

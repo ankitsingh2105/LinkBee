@@ -21,10 +21,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // connectToMongoDB("mongodb://127.0.0.1:27017/LinkBeeMERNAPP");
-
 connectToMongoDB(process.env.MONGO_URL);
-// console.log(process.env.MONGO_URL);
 
+// console.log(process.env.MONGO_URL);
 // origin: "http://localhost:5173",
 app.use(cors({
     origin: "https://linkbeemern.vercel.app",
