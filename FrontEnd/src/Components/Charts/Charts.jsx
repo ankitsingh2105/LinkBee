@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Bar, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { Chart as ChartJs, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import "./Chart.css";
 import axios from "axios";
 import backendLink from '../backendLink';
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
+
 ChartJs.register(
   CategoryScale,
   LinearScale,
@@ -14,10 +15,7 @@ ChartJs.register(
   Legend,
 );
 
-
 export default function Charts() {
-
-
   const [loading, setloading] = useState(true);
   const [clickArray, setclickArray] = useState([]);
   const [linkName, setlinkName] = useState([]);
@@ -26,29 +24,37 @@ export default function Charts() {
     const currentUrl = window.location.pathname;
     const parts = currentUrl.split('/');
     const userIDAnalyse = parts[parts.length - 2];
+
     async function fetchStats() {
       try {
         let response = await axios.post(`${backendLink}/user/getLinkanalytics`, {
           "userID": userIDAnalyse
-        })
-        console.log("response is ::" , response.data);
-        response.data.forEach(element => {
-          setlinkName((prev) => [...prev, `${element.name} (${element.title}) `]);
-          setclickArray((prev) => [...prev, element.count]);
         });
+        console.log("response is ::", response.data);
+
+        const newLinkNames = [];
+        const newClickArray = [];
+
+        response.data.forEach(element => {
+          newLinkNames.push(`${element.name} (${element.title}) `);
+          newClickArray.push(element.count);
+        });
+
+        setlinkName(newLinkNames);
+        setclickArray(newClickArray);
         setloading(false);
-      }
-      catch (error) {
-        toast.error("Something went wrong! " , {autoClose : 1500})
+      } catch (error) {
+        toast.error("Something went wrong!", { autoClose: 1500 });
       }
     }
+
     fetchStats();
-  }, [])
+  }, []);
 
   useEffect(() => {
-    console.log("click array :: " , clickArray);
-    console.log("linkArray :: " , linkName);
-  }, [clickArray, linkName])
+    console.log("click array ::", clickArray);
+    console.log("linkArray ::", linkName);
+  }, [clickArray, linkName]);
 
   const options = {
     responsive: true,
@@ -111,8 +117,8 @@ export default function Charts() {
     },
   };
 
-  const halfLinkName = linkName.slice(0, linkName.length / 2);
-  const halfclickArray = clickArray.slice(0, clickArray.length / 2);
+  const halfLinkName = linkName.slice(0, Math.ceil(linkName.length / 2));
+  const halfclickArray = clickArray.slice(0, Math.ceil(clickArray.length / 2));
 
   const data = {
     labels: halfLinkName,
@@ -131,15 +137,11 @@ export default function Charts() {
     <main className="chart_main">
       {
         loading ?
-          <>
-            <div className="loader"></div>
-          </>
+          <div className="loader"></div>
           :
-          <>
-            <section style={{ height: "500px" }}>
-              <Bar options={options} data={data} />
-            </section>
-          </>
+          <section style={{ height: "500px" }}>
+            <Bar options={options} data={data} />
+          </section>
       }
     </main>
   );
