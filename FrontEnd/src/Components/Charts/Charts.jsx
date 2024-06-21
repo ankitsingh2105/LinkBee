@@ -44,6 +44,8 @@ export default function Charts() {
   }, [])
 
   useEffect(() => {
+    console.log(clickArray);
+    console.log(linkName);
   }, [clickArray, linkName])
 
   const options = {
