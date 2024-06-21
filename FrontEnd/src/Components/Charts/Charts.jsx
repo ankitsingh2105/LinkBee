@@ -121,11 +121,11 @@ export default function Charts() {
   const halfclickArray = clickArray.slice(0, Math.ceil(clickArray.length / 2));
 
   const data = {
-    labels: halfLinkName,
+    labels: linkName,
     datasets: [
       {
         label: "clicks",
-        data: halfclickArray,
+        data: clickArray,
         backgroundColor: "lightgreen",
         borderColor: "black",
         borderWidth: .5
