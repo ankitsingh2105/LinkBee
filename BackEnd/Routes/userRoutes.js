@@ -123,7 +123,7 @@ router.post("/getLinkanalytics", verifyUser,  async (req, response) => {
         response.send(linkStats.linkArray);
     }
     catch (error) {
-        response.send(error);
+        response.status(404).send(error);
     }
 })
 

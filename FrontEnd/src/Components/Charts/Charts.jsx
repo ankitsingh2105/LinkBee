@@ -4,7 +4,7 @@ import { Chart as ChartJs, CategoryScale, LinearScale, BarElement, Title, Toolti
 import "./Chart.css";
 import axios from "axios";
 import backendLink from '../backendLink';
-
+import {toast} from "react-toastify"
 ChartJs.register(
   CategoryScale,
   LinearScale,
@@ -31,6 +31,7 @@ export default function Charts() {
         let response = await axios.post(`${backendLink}/user/getLinkanalytics`, {
           "userID": userIDAnalyse
         })
+        console.log("response is ::" , response.data);
         response.data.forEach(element => {
           setlinkName((prev) => [...prev, `${element.name} (${element.title}) `]);
           setclickArray((prev) => [...prev, element.count]);
@@ -38,6 +39,7 @@ export default function Charts() {
         setloading(false);
       }
       catch (error) {
+        toast.error("Something went wrong! " , {autoClose : 1500})
       }
     }
     fetchStats();
@@ -133,7 +135,7 @@ export default function Charts() {
           :
           <>
             <section style={{ height: "500px" }}>
-              <Bar  options={options} data={data} />
+              <Bar options={options} data={data} />
             </section>
           </>
       }
