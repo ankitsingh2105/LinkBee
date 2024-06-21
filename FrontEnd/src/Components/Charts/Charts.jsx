@@ -46,6 +46,8 @@ export default function Charts() {
   }, [])
 
   useEffect(() => {
+    console.log("click array :: " , clickArray);
+    console.log("linkArray :: " , linkName);
   }, [clickArray, linkName])
 
   const options = {
@@ -110,7 +112,7 @@ export default function Charts() {
   };
 
   const halfLinkName = linkName.slice(0, linkName.length / 2);
-  const halfclickArray = clickArray.slice(0, linkName.length / 2);
+  const halfclickArray = clickArray.slice(0, clickArray.length / 2);
 
   const data = {
     labels: halfLinkName,
