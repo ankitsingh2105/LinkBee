@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function Home(props) {
     const handleNavigation = () => {
-        // window.location.href = "/unauth/tempUser";
+        window.location.href = "/user";
     }
 
     return (

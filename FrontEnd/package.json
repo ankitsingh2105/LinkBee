@@ -11,12 +11,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.8",
     "@fortawesome/fontawesome-free": "^6.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
+    "graphql": "^16.9.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-color": "^2.19.3",
@@ -36,7 +38,7 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "vite": "^4.3.9"
   },
-  "description": "[link](https://linkbee.online/)",
+  "description": "[link](https://linkbeemern.vercel.app/)",
   "main": "vite.config.js",
   "author": "",
   "license": "ISC"
