@@ -77,35 +77,35 @@ export default function User() {
         {
             class: "fa fa-facebook",
             color: "blue",
-            link: "https://ankitsinghchauhan.tech/",
+            // link: "https://ankitsinghchauhan.tech/",
             name: "Dummy Facebook",
             title: "Dummy Facebook"
         },
         {
             class: "fa fa-instagram",
             color: "#E4405F",
-            link: "https://ankitsinghchauhan.tech/",
+            // link: "https://ankitsinghchauhan.tech/",
             name: "Dummy Insta ",
             title: "Instagram"
         },
         {
             class: "fa fa-github",
             color: "black",
-            link: "https://ankitsinghchauhan.tech/",
+            // link: "https://ankitsinghchauhan.tech/",
             name: " Dummy Github",
             title: "Snapchat"
         },
         {
             class: "fa fa-snapchat-ghost",
             color: "yellow",
-            link: "https://ankitsinghchauhan.tech/",
+            // link: "https://ankitsinghchauhan.tech/",
             name: "Dummy SnapChat",
             title: "Snapchat"
         },
         {
             class: "fa fa-stack-overflow",
             color: "orange",
-            link: "https://ankitsinghchauhan.tech/",
+            // link: "https://ankitsinghchauhan.tech/",
             name: "Dummy StackOverFlow",
             title: "Snapchat"
         },
