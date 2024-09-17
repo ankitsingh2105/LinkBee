@@ -43,10 +43,10 @@ export default function Charts() {
     fetchStats();
   }, [])
 
-  // useEffect(() => {
-  //   console.log(clickArray);
-  //   console.log(linkName);
-  // }, [clickArray, linkName])
+  useEffect(() => {
+    console.log(clickArray);
+    console.log(linkName);
+  }, [clickArray, linkName])
 
   const options = {
     responsive: true,
