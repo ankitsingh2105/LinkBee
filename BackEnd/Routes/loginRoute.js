@@ -23,9 +23,7 @@ router.post('/', async (req, res) => {
         });
         res.status(200).send({ token });
     }
-    catch (error) {
-        res.status(500);
-    }
+   
 });
 
 module.exports = router;
