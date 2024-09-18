@@ -8,9 +8,7 @@ const urlSchema = new mongoose.Schema({
     color : {
         type : String,
     },
-    link : {
-        type : String,
-    },
+   
     name : {
         type : String,
     },
