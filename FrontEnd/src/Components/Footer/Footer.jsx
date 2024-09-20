@@ -9,7 +9,7 @@ export default function Footer() {
                 ~ Start connecting with the world now ~
             </h3>
             <small>Designed and developed by <h5>Amanjeet</h5>
-{/*                 <a href="http://ankitsinghchauhan.in/">Ankit Singh Chauhan</a> */}
+{}
             </small>
         </main>
     )
