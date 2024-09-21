@@ -21,7 +21,7 @@ export default function Home(props) {
                 </h1>
                 <div className="align">
                     <p>
-                        Welcome to our platform designed to empower you in the digital realm. Curate and showcase your online presence with ease, allowing others to explore the depths of your creativity. <b>Share you portfolio, social media accounts and more only with one ~ Link Bee ~ link.</b>
+                        Welcome to our platform designed to empower you in the digital realm. Curate and showcase your online presence with ease, allowing others to explore the depths of your creativity. <b>Share you portfolio, social media accounts and more only with one ~ Link Bee.</b>
                     </p>
                     <div className="align2">
                         <button onClick={handleNavigation} >Demo Page</button>
