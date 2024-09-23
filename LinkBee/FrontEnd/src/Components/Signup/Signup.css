@@ -1,0 +1,99 @@
+.Signup_main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: var(--main-font);
+    text-align: center;
+}
+.Signup_main h1{
+    font-size: 3.5rem;
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 0px;
+}
+
+.Signup_main input{
+    padding:1rem;  
+    margin-bottom: 1rem; 
+    border-radius: 10px;
+    border: 1.5px solid gray;
+    width: 20rem;
+}
+
+.Signup_main form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.fixed-images {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
+#elem6 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 6rem;
+    left: 36rem;
+    z-index: 1;
+}
+
+#elem5 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 30rem;
+    left: 53rem;
+    z-index: 1;
+}
+
+#elem4 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 10rem;
+    left: 113px;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1199px) {
+    #elem5 {
+        top: 30rem;
+        left: 43rem;
+    }
+
+    #elem4 {
+        top: 10rem;
+        left: 113px;
+    }
+}
+
+@media screen and (max-width: 1078px) {
+
+    #elem5 {
+        display: none;
+    }
+
+    #elem4 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 739px) {
+    #elem6{
+        display: none;
+    }
+}
+@media screen and (max-width: 516px) {
+    .Signup_main h1{
+        font-size: 3rem;
+    }
+    .Signup_main h2{
+        font-size: 1.4rem;
+    }
+}

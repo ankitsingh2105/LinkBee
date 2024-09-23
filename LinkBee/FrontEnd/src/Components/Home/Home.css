@@ -1,0 +1,167 @@
+body{
+    font-family: var(--main-font);
+}
+.main_home {
+    margin: 3rem;
+    margin-top: -20px;
+    display: flex;
+    padding-top: 6rem;
+    font-family: var(--main-font);
+}
+
+.main_home button{
+    font-size: 40px;
+    font-family: var(--main-font);
+    margin: 0px 10px;
+}
+.main_home button:hover{
+    cursor: pointer;
+}
+.main_home p{
+    font-family: sans-serif;
+}
+
+.main_home h1 {
+    font-size: 8rem;
+    margin: 0px;
+}
+
+.main_home h1:nth-child(2) {
+    margin-top: -4rem;
+}
+
+.main_home p {
+    text-align: center;
+    line-height: 30px;
+}
+
+.main_home h1:nth-child(1) {
+    margin-top: 3rem;
+}
+
+.main_home img {
+    border-radius: 30px;
+    width:  430px;
+    height: 540px;
+}
+.main_home img:hover {
+    cursor: pointer;
+}
+
+.floating_bee{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: -10;
+    top: 25%;
+    right: 46%;
+    rotate: -20deg;
+}
+
+
+@media screen and (max-width: 1199px) {
+    .main_home h1 {
+        font-size: 7rem;
+    }
+}
+
+@media screen and (max-width: 1130px) {
+    .main_home img {
+        width: 408px;
+        height: 550px;
+    }
+    .main_home h1 {
+        font-size: 6.5rem;
+    }
+}
+
+@media screen and (max-width: 994px) {
+    .main_home h1 {
+        font-size: 6rem;
+    }
+
+    .main_home h1:nth-child(2) {
+        margin-top: -3rem;
+    }
+}
+
+@media screen and (max-width: 957px) {
+    .main_home img {
+        width: 350px;
+        height: 450px;
+    }
+
+    .main_home h1 {
+        font-size: 5.5rem;
+    }
+}
+
+@media screen and (max-width: 906px) {
+    .main_home img {
+        width: 300px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 890px) {
+
+    .main_home h1 {
+        font-size: 5.5rem;
+        margin-top: 3rem;
+    }
+    .main_home p {
+        font-size: 13.5px;
+    }
+}
+
+@media screen and (max-width: 863px) {
+
+    .main_home,
+    .main_home h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main_home img {
+        width: 388px;
+        height: 541px;
+        margin: 4rem 0rem;
+    }
+
+    .main_home h1:nth-child(1) {
+        margin-top: -1rem;
+    }
+    .main_home{
+        margin: 0px;
+        padding-top:8rem;
+    }
+    .main_home button{
+        font-size: 24px;
+    }
+    .floating_bee{
+        top: 10%;
+        right: 5%;
+    }
+}
+
+@media screen and (max-width: 485px) {
+
+    .main_home h1 {
+        font-size: 4.5rem;
+        margin-top: 3rem;
+    }
+
+    .main_home h1:nth-child(2) {
+        margin-top: -2rem;
+    }
+
+    .main_home p {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 379px) {
+    .main_home h1 {
+        font-size: 4.2rem;
+    }
+}

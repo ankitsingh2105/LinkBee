@@ -1,0 +1,44 @@
+.Message_main h1 {
+    font-size: 4rem;
+}
+
+.Message_main{
+    border-bottom: 6px solid var(--main-color);
+    margin-bottom: 2rem;
+}
+
+.Message_main input,
+.Message_main textarea {
+    margin: 1rem 0rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: var(--main-color);
+    font-weight: bolder;
+}
+
+.Message_main input::placeholder,
+.Message_main textarea::placeholder {
+    color: rgb(0, 0, 0);
+    font-family: sans-serif;
+}
+
+.message_align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Message_main form {
+    padding: 1rem;
+    margin-bottom: 3rem;
+    border: 2px solid black;
+    border-radius: 30px;
+}
+
+@media screen and (max-width: 994px) {
+    .Message_main h1 {
+        font-size: 2rem;
+    }
+}

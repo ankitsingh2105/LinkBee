@@ -1,0 +1,44 @@
+{
+  "name": "linkbee",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "proxy": "https://linkbee-2.onrender.com",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.7.2",
+    "chart.js": "^4.4.3",
+    "graphql": "^16.9.0",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-lazy-load-image-component": "^1.6.0",
+    "react-router-dom": "^6.14.0",
+    "react-toastify": "^9.1.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "vite": "^4.3.9"
+  },
+  "description": "[link](https://linkbeemern.vercel.app/)",
+  "main": "vite.config.js",
+  "author": "",
+  "license": "ISC"
+}

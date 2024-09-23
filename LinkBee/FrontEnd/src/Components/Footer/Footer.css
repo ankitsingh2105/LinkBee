@@ -1,0 +1,23 @@
+.Footer_main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.Footer_main img{
+    width: 70px;
+    height: 70px;
+}
+.Footer_main a {
+    color: black;
+    font-weight: bolder;
+    background-color: var(--main-color);
+    padding: 0px 2px;
+    border-radius: 2px;
+}
+.Footer_main small{
+    margin-bottom: 1rem;
+}
+.Footer_main h3{
+    font-size: 1.1rem;
+}
