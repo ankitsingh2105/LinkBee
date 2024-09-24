@@ -11,7 +11,7 @@ export default function Home(props) {
 
     return (
         <main className="main_home" id={props.id} >
-            <img style={{ width: "100px", height: "100px" }} className="floating_bee" src={bee} alt="" />
+            <img style={{ width: " 100px", height: "100px" }} className="floating_bee" src={bee} alt="" />
             <div>
                 <h1>
                     Your links
