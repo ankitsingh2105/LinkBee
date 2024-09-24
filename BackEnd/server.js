@@ -22,7 +22,7 @@ app.use(cookieParser());
  
 // connectToMongoDB("mongodb://127.0.0.1:27017/LinkBeeMERNAPP");
 
-connectToMongoDB("mongodb+srv://ankitchauhan21500:thechauhan1@cluster0.guz5bor.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+connectToMongoDB(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL , process.env.PORT);
 // origin: "http://localhost:5173",
 
@@ -30,7 +30,7 @@ app.use(cors({
     origin: "https://linkbeemern.vercel.app",
     credentials: true 
 }));
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 
 
 const storage = multer.diskStorage({
