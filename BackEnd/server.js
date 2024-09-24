@@ -30,7 +30,7 @@ app.use(cors({
     origin: "https://linkbeemern.vercel.app",
     credentials: true 
 }));
-// app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 
 
 const storage = multer.diskStorage({
