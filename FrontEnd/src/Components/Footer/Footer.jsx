@@ -8,7 +8,7 @@ export default function Footer() {
             <h3>
                 ~ Start connecting with the world now ~
             </h3>
-            <small>Designed and developed by <a href="http://amanjeet.in/">Aman Jeet</a></small>
+            <small>Designed and developed by <a href="http://ankitsinghchauhan.in/">Ankit Singh Chauhan</a></small>
         </main>
     )
 }
