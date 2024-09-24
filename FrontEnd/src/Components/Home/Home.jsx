@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./Home.css"
-// import HomeImg from "./Linkbee_Home_Image.webp"
+import HomeImg from "./Linkbee_Home_Image.webp"
 import bee from "./elem2.webp";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ export default function Home(props) {
     }
 
     return (
-        <main className="main_home" id={props.id} >
+        <main className="main_home" id={props.id}>
             <img style={{ width: "100px", height: "100px" }} className="floating_bee" src={bee} alt="" />
             <div>
                 <h1>
