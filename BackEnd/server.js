@@ -22,8 +22,8 @@ app.use(cookieParser());
  
 // connectToMongoDB("mongodb://127.0.0.1:27017/LinkBeeMERNAPP");
 
-connectToMongoDB(process.env.MONGO_URL);
-// console.log(process.env.MONGO_URL);
+connectToMongoDB("mongodb+srv://ankitchauhan21500:thechauhan1@cluster0.guz5bor.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+console.log(process.env.MONGO_URL , process.env.PORT);
 // origin: "http://localhost:5173",
 
 app.use(cors({
@@ -67,9 +67,9 @@ app.use("/user", userRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/", (req, response) => {
-    response.send("testing the api");
+    response.send("Your backend is live");
 })
 
 app.listen(PORT, () => {
     console.log("listening to the serve", PORT);
-});
+}); 
