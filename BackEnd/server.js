@@ -24,10 +24,10 @@ connectToMongoDB("mongodb://127.0.0.1:27017/LinkBeeMERNAPP");
 
 // connectToMongoDB(process.env.MONGO_URL);
 // console.log(process.env.MONGO_URL);
-// origin: "https://linkbeemern.vercel.app",
+// origin: "http://localhost:5173",
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://linkbeemern.vercel.app",
     credentials: true 
 }));
 // app.set("trust proxy", 1);
