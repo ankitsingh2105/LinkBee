@@ -27,8 +27,13 @@ connectToMongoDB(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL , process.env.PORT);
 // origin: "http://localhost:5173",
 
+// app.use(cors({
+//     origin: "http://localhost:5173",
+//     credentials: true 
+// }));
+
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://linkbeemern.vercel.app",
     credentials: true 
 }));
 // app.set("trust proxy", 1);

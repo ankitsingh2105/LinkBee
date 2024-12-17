@@ -10,6 +10,8 @@ import backendLink from "../backendLink";
 import errorHoney from "./errorHoney.webp"
 axios.defaults.withCredentials = true;
 
+
+
 export default function FinalDisplay() {
   const [loading, setloading] = useState(false);
   const [profile, setprofile] = useState('');
@@ -44,7 +46,7 @@ export default function FinalDisplay() {
         setID(userData.userID);
         setprofile(userData.profile || '');
         setbio(userData.bio || '');
-        setImageUrl(userData.imageUrl || Dummy);
+        setImageUrl(userData.imageUrl || '');
         setgradient(userData.gradient || '');
         setfontFamily(userData.fontFamily || '');
         setbgColor(userData.bgColor || '');
@@ -116,7 +118,7 @@ export default function FinalDisplay() {
               <meta name="title" content="From Helmet" />
             </Helmet>
 
-            <img src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" />
+            <img src={imageUrl == '' ? Dummy : `${imageUrl}`} alt= {Dummy} />
             <br />
             <span>
               <b style={{ color: bioandprofile }} > @{id} </b>
