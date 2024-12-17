@@ -9,6 +9,7 @@ const userModel = require("./models/userModel");
 
 const cookieParser = require('cookie-parser');
 const multer = require("multer");
+const { uploadOnCloudinary } = require("./middleware/Cloudinary.middleware");
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,7 +28,7 @@ console.log(process.env.MONGO_URL , process.env.PORT);
 // origin: "http://localhost:5173",
 
 app.use(cors({
-    origin: "https://linkbeemern.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true 
 }));
 // app.set("trust proxy", 1);
@@ -47,9 +48,9 @@ const upload = multer({ storage });
 app.post('/upload', upload.single('avatar'), async function (req, res, next) {
     try {
         const userID = req.body.userID;
-        const imageName = req.file.filename;
+        const url = await uploadOnCloudinary(req.file.path);
         await userModel.findOneAndUpdate({ userID }, {
-            "imageUrl": imageName
+            "imageUrl": url
         });
         res.send("uploaded successsfully");
     }

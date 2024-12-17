@@ -319,13 +319,14 @@ export default function User() {
 
 
     const handleUploading = async () => {
-        toast.error("Sorry this functionality is not availabe right now" , {autoClose : 1500});
-        return;
+        // toast.error("Sorry this functionality is not availabe right now" , {autoClose : 1500});
+        // return;
         if (image) {
             try {
                 const formData = new FormData();
                 formData.append('avatar', image);
                 formData.append('userID', userID);
+                console.log(formData.get('avatar'));
 
                 toast('Uploading started', { autoClose: 1500 });
 
