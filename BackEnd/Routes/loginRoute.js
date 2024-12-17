@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userModel = require("../models/userModel");
-const SECRET_KEY = "aman";
+const SECRET_KEY = "ankit";
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 

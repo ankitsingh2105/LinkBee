@@ -14,7 +14,7 @@ router.post('/', async (req, response, next) => {
         response.status(200);
     }
     catch (error) {
-        console.log("soemthing went wrong", error);
+        console.log("something went wrong", error);
         response.status(404);
     }
     next();
