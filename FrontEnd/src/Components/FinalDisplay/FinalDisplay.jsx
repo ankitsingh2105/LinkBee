@@ -46,7 +46,9 @@ export default function FinalDisplay() {
         setID(userData.userID);
         setprofile(userData.profile || '');
         setbio(userData.bio || '');
-        setImageUrl(userData.imageUrl || '');
+        const oldUrl = userData.imageUrl;
+        const newUrl = oldUrl.replace("http://", "https://");
+        setImageUrl(newUrl || '');
         setgradient(userData.gradient || '');
         setfontFamily(userData.fontFamily || '');
         setbgColor(userData.bgColor || '');
@@ -93,7 +95,7 @@ export default function FinalDisplay() {
         <>
           <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav'>
             <ul>
-              <li><img src={logo} alt="" /></li>
+              <li><img style={{ marginTop: "2px" }} src={!imageUrl ? logo : `${imageUrl}`} alt="" /></li>
               <li>@{id}</li>
               <li onClick={() => { window.location.href = "http://linkbeemern.vercel.app/" }}><button>Link Bee</button></li>
             </ul>
@@ -106,7 +108,6 @@ export default function FinalDisplay() {
               overflow: "auto",
               backgroundImage: width >= certainLimit ? gradient : `url(${backImage})`,
               backgroundImage: `url(${backImage})`,
-              // backgroundRepeat: "no-repeat", 
               backgroundAttachment: "fixed",
               backgroundSize: width >= certainLimit ? "cover" : `auto 740px`,
             }}
@@ -118,7 +119,7 @@ export default function FinalDisplay() {
               <meta name="title" content="From Helmet" />
             </Helmet>
 
-            <img src={imageUrl == '' ? Dummy : `${imageUrl}`} alt= {Dummy} />
+            <img src={imageUrl == '' ? Dummy : `${imageUrl}`} alt={Dummy} />
             <br />
             <span>
               <b style={{ color: bioandprofile }} > @{id} </b>

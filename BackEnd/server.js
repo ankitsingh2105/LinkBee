@@ -25,18 +25,16 @@ app.use(cookieParser());
 
 connectToMongoDB(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL , process.env.PORT);
-// origin: "http://localhost:5173",
-
-// app.use(cors({
-//     origin: "http://localhost:5173",
-//     credentials: true 
-// }));
 
 app.use(cors({
-    origin: "https://linkbeemern.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true 
 }));
-// app.set("trust proxy", 1);
+
+// app.use(cors({
+//     origin: "https://linkbeemern.vercel.app",
+//     credentials: true 
+// }));
 
 
 const storage = multer.diskStorage({

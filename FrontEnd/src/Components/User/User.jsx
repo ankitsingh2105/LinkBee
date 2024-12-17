@@ -491,7 +491,7 @@ export default function User() {
                                     <h2>~Profile Section~</h2>
 
                                     <div className='align2'>
-                                        <img src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="click upload new image" />
+                                        <img src={!imageUrl ? Dummy : `${imageUrl}`} alt="click upload new image" />
                                         <input name="avatar" id="imageInput" type="file" accept="image/*" onChange={handleImageChanges} />
                                         <button onClick={handleUploading}>Upload New Image</button>
                                     </div>
