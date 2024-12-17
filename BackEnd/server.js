@@ -56,14 +56,12 @@ const storage = Multer.memoryStorage();
 const upload = Multer({ storage });
 
 app.post("/upload", upload.single("avatar"), async (req, res) => {
-    console.log("bc" , req.file);
     console.log(req.body);
     const {userID} = req.body;
     try {
         const b64 = Buffer.from(req.file.buffer).toString("base64");
         let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
         const cldRes = await handleUpload(dataURI);
-        console.log("shit:: ", cldRes);
         await userModel.findOneAndUpdate({ userID }, {
             "imageUrl": cldRes.secure_url,
         });
@@ -86,9 +84,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/", (req, response) => {
     response.send("Your backend is not live");
-});
-app.use("/shit", (req, response) => {
-    response.send("Your backend not live");
 });
 
 app.listen(PORT, () => {
