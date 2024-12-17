@@ -326,18 +326,15 @@ export default function User() {
                 const formData = new FormData();
                 formData.append('avatar', image);
                 formData.append('userID', userID);
-                console.log(formData.get('avatar'));
 
                 toast('Uploading started please wait', { autoClose: 5000 });
 
                 const response = await axios.post(`${backendLink}/upload`, formData, {
                     headers: { "Content-Type": "multipart/form-data" }
                 });
-                console.log("repsonse is :: ", response);
                 toast.success('Upload successful!', { autoClose: 1500 });
                 window.location.reload();
             } catch (error) {
-                console.log(error)
                 toast.error('Failed to upload photo', { autoClose: 1500 });
             }
         } else {
@@ -447,7 +444,6 @@ export default function User() {
         }
         catch (error) {
             toast.error("Please Login", { autoClose: 1500 });
-            console.log(error)
         }
     }
 

@@ -24,7 +24,6 @@ export default function Navbar(props) {
     const handleLogout = async (e) => {
         try {
             let response = await axios.post(`${backendLink}/user/logout`);
-            console.log("this is the respose :: " , response);
             window.location.href = "/";
         }
         catch (error) {
@@ -54,7 +53,6 @@ export default function Navbar(props) {
                 const response = await axios.get(`${backendLink}/user` , {
                     withCredentials: true,
                 });
-                console.log(response.data);
                 setname(response.data.name);
                 setuserID(response.data.userID);
                 setloading(false);
