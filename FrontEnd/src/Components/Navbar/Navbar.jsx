@@ -54,7 +54,7 @@ export default function Navbar(props) {
                 const response = await axios.get(`${backendLink}/user` , {
                     withCredentials: true,
                 });
-                console.log(reponse.data);
+                console.log(response.data);
                 setname(response.data.name);
                 setuserID(response.data.userID);
                 setloading(false);
