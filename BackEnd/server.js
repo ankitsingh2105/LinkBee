@@ -69,6 +69,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use("/", (req, response) => {
     response.send("Your backend is live");
 })
+app.use("/shit", (req, response) => {
+    response.send("Your backend not live");
+})
 
 app.listen(PORT, () => {
     console.log("listening to the serve", PORT);
