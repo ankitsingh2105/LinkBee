@@ -285,12 +285,13 @@ export default function User() {
             try {
                 const response = await axios.get(`${backendLink}/user/`);
                 const userData = response.data;
-                console.log(response.data);
                 setID(userData.userID);
                 setuserID(userData.userID);
                 setprofile(userData.profile || '');
                 setbio(userData.bio || '');
-                setImageUrl(`${userData.imageUrl}` || Dummy);
+                const oldUrl = userData.imageUrl;
+                const newUrl = oldUrl.replace("http://", "https://");
+                setImageUrl(newUrl || Dummy);
                 setgradientValue(userData.gradient || '');
                 setFontFamily(userData.fontFamily || '');
                 setbgColor(userData.bgColor || '');
@@ -327,24 +328,24 @@ export default function User() {
                 formData.append('userID', userID);
                 console.log(formData.get('avatar'));
 
-                toast('Uploading started', { autoClose: 1500 });
+                toast('Uploading started please wait', { autoClose: 5000 });
 
                 const response = await axios.post(`${backendLink}/upload`, formData, {
                     headers: { "Content-Type": "multipart/form-data" }
                 });
-
+                console.log("repsonse is :: ", response);
                 toast.success('Upload successful!', { autoClose: 1500 });
                 window.location.reload();
             } catch (error) {
                 console.log(error)
                 toast.error('Failed to upload photo', { autoClose: 1500 });
             }
-
         } else {
             toast('Please choose an image', { autoClose: 1500 });
             return;
         }
-    }
+    };
+
 
 
 
@@ -428,7 +429,7 @@ export default function User() {
     const haldleBackEndUpdates = async () => {
 
         try {
-            toast("Saving the data ....." , {autoClose :3000})
+            toast("Saving the data .....", { autoClose: 3000 })
             let response = await axios.put(`${backendLink}/user/updateBackEnd`, {
                 profile,
                 bio,
@@ -562,7 +563,7 @@ export default function User() {
 
                                             <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav2' >
                                                 <ul>
-                                                    <li><img src={imageUrl ==''? Dummy : `${imageUrl}`} alt="" /></li>
+                                                    <li><img src={imageUrl == '' ? Dummy : `${imageUrl}`} alt="" /></li>
                                                     <li>@{id}</li>
                                                     <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button style={{ fontFamily: fontFamily }} >Link Bee</button></li>
                                                 </ul>
