@@ -67,7 +67,7 @@ app.use("/user", userRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/", (req, response) => {
-    response.send("Your backend is live");
+    response.send("Your backend is not live");
 })
 app.use("/shit", (req, response) => {
     response.send("Your backend not live");
