@@ -320,8 +320,6 @@ export default function User() {
 
 
     const handleUploading = async () => {
-        // toast.error("Sorry this functionality is not availabe right now" , {autoClose : 1500});
-        // return;
         if (image) {
             try {
                 const formData = new FormData();
@@ -337,7 +335,8 @@ export default function User() {
 
                 toast.success('Upload successful!', { autoClose: 1500 });
                 window.location.reload();
-            } catch (err) {
+            } catch (error) {
+                console.log(error)
                 toast.error('Failed to upload photo', { autoClose: 1500 });
             }
 
