@@ -283,8 +283,9 @@ export default function User() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`${backendLink}/user`);
+                const response = await axios.get(`${backendLink}/user/`);
                 const userData = response.data;
+                console.log(response.data);
                 setID(userData.userID);
                 setuserID(userData.userID);
                 setprofile(userData.profile || '');
@@ -319,13 +320,14 @@ export default function User() {
 
 
     const handleUploading = async () => {
-        toast.error("Sorry this functionality is not availabe right now" , {autoClose : 1500});
-        return;
+        // toast.error("Sorry this functionality is not availabe right now" , {autoClose : 1500});
+        // return;
         if (image) {
             try {
                 const formData = new FormData();
                 formData.append('avatar', image);
                 formData.append('userID', userID);
+                console.log(formData.get('avatar'));
 
                 toast('Uploading started', { autoClose: 1500 });
 
@@ -561,7 +563,7 @@ export default function User() {
 
                                             <nav style={{ background: gradient, fontFamily: fontFamily }} className='FinalDisplayNav2' >
                                                 <ul>
-                                                    <li><img src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : `/src/Components/User/ProfileImages/${imageUrl}`} alt="" /></li>
+                                                    <li><img src={imageUrl ==''? Dummy : `${imageUrl}`} alt="" /></li>
                                                     <li>@{id}</li>
                                                     <li onClick={() => { window.location.href = "http://linkbee.online/" }} ><button style={{ fontFamily: fontFamily }} >Link Bee</button></li>
                                                 </ul>
