@@ -51,7 +51,9 @@ export default function Navbar(props) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`${backendLink}/user`);
+                const response = await axios.get(`${backendLink}/user` , {
+                    withCredentials: true,
+                });
                 setname(response.data.name);
                 setuserID(response.data.userID);
                 setloading(false);
