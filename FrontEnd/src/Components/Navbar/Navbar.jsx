@@ -33,6 +33,7 @@ export default function Navbar(props) {
     }
 
     function getFirstWord(str) {
+        if(!str) return;
         const firstWord = str.split(' ')[0];
         return firstWord;
     }
