@@ -548,7 +548,7 @@ export default function User() {
                                 </main>
 
 
-                                {/* This is the preview */}
+                                {/* This is the mobile preview */}
                                 <div className="preview_section">
                                     <main className='sticky_phone_preview' >
                                         <h1 className="align" >~ Preview ~</h1>
@@ -565,7 +565,7 @@ export default function User() {
                                                 </ul>
                                             </nav>
 
-                                            <img style={{ marginTop: "4rem" }} src={imageUrl === "/src/Components/User/ProfileImages/undefined" || "undefined" ? Dummy : imageUrl} alt="" />
+                                            <img style={{ marginTop: "4rem" }} src={imageUrl == '' ? Dummy : `${imageUrl}`} alt="" />
                                             <br />
                                             <span>
                                                 <b style={{ color: bioAndProfileColor }} > @{id} </b>
