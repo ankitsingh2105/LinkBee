@@ -48,7 +48,7 @@ console.log(process.env.MONGO_URL, process.env.PORT);
 // }));
 
 app.use(cors({
-    origin: "https://linkbeemern.vercel.app",
+    origin: ["https://linkbeemern.vercel.app", "https://linkbee.tech"],
     credentials: true
 }));
 
