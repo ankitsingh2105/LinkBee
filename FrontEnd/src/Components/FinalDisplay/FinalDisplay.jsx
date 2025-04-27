@@ -109,7 +109,7 @@ export default function FinalDisplay() {
               backgroundImage: width >= certainLimit ? gradient : `url(${backImage})`,
               backgroundImage: `url(${backImage})`,
               backgroundAttachment: "fixed",
-              backgroundSize: width >= certainLimit ? "cover" : `auto 740px`,
+              backgroundSize: width >= certainLimit ? "443px" : `auto 740px`,
             }}
 
           >
